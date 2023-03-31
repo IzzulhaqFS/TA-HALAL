@@ -30,7 +30,7 @@ class MenuComposer
             $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
             $view->with('page_name', $pageName);
             $view->with('layout', $layout);
-            $view->with('breadcrumb', request()->route()->uri());
+            $view->with('breadcrumb', request()->route()->getPrefix());
         }
     }
 

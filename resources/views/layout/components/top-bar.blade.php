@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">App</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{  ucfirst($breadcrumb) == '/' ? 'Home' : ucfirst($breadcrumb) }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{  empty($breadcrumb) ? 'Home' : ucfirst(trim($breadcrumb, '/')) }}</li>
         </ol>
     </nav>
     <!-- END: Breadcrumb -->

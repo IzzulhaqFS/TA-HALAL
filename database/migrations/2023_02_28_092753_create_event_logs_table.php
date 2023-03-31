@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('status_halal', 20);
             $table->dateTime('timestamp');
             $table->foreignId('ingredient_id')->constrained('ingredients')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('user_id');
             $table->bigInteger('product_id');
             $table->timestamps();
         });

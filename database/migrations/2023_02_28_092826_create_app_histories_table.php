@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('product_id');
             $table->bigInteger('ingredient_id');
             $table->dateTime('timestamp');
-            $table->string('status_halal', 20);
+            $table->string('status_halal', 32);
             $table->timestamps();
         });
     }

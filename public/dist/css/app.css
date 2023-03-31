@@ -310,6 +310,27 @@ object {
   display: block; /* 1 */
   vertical-align: middle; /* 2 */
 }
+/* 
+Tambahan Jagad 
+*/
+#jumlah-bahan-info svg{
+  display: inline-block !important;
+}
+
+.btn svg{
+  display: inline-block !important;
+  margin-bottom: 0.1rem;
+}
+
+#mover-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#left-btn {
+  margin-right: auto;
+}
 /*
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */

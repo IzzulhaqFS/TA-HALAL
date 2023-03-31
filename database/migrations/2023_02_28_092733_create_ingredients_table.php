@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->string('status_halal', 20)->nullable();
+            $table->string('type', 32)->nullable();
+            $table->string('status_halal', 32)->nullable();
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
