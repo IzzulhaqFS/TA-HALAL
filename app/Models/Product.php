@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Ingredient;
 
 class Product extends Model
 {
@@ -14,6 +15,10 @@ class Product extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function ingredients(){
+        return $this->hasMany(Ingredient::class, 'product_id');
     }
 }
 

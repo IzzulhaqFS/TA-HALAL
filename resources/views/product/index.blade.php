@@ -6,6 +6,20 @@
 
 @section('subcontent')
     <h2 class="intro-y text-lg font-medium mt-10">Daftar Produk</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success mt-2" style="display: inline-block;">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <a href="{{ route('product.create') }}" class="btn btn-primary inline-block mr-1 mb-2 pr-5"><i data-lucide="plus" class="w-5"></i> Cek Produk Baru</a>
@@ -37,25 +51,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (array_slice($fakers, 0, 9) as $faker)
+                    @foreach ($products as $product)
                         <tr class="intro-x">
                             <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $faker['products'][0]['name'] }}</a>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $faker['products'][0]['category'] }}</div>
+                                <p class="font-medium whitespace-nowrap ml-1">{{ $product->name }}</p>
                             </td>
-                            <td class="text-center">{{ $faker['stocks'][0] }}</td>
+                            <td class="text-center">{{ $product->ingredient_count }}</td>
                             <td class="w-40">
-                                <div class="flex items-center justify-center {{ $faker['true_false'][0] ? 'text-success' : 'text-danger' }}">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ $faker['true_false'][0] ? 'Halal' : 'Haram' }}
+                                <div class="flex items-center justify-center {{ $product->product_status == 'Halal' ? 'text-success' : 'text-danger' }}">
+                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ $product->product_status }}
                                 </div>
                             </td>
                             <td class="table-report__action">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center text-success mr-5" href="javascript:;">
-                                        <i data-lucide="plus" class="w-4 h-4 mr-1"></i> Cek Bahan Baru
+                                    <a class="flex items-center text-success mr-5" href="{{ route('ingredient.create', ['product_id'=> $product->id]) }}">
+                                        <i data-lucide="plus" class="w-4 h-4 mr-1"></i> Cek Bahan Lainnya
                                     </a>
                                     <a class="flex items-center text-info mr-5" href="javascript:;">
-                                        <i data-lucide="file-textp" class="w-4 h-4 mr-1"></i> Detail
+                                        <i data-lucide="file-text" class="w-4 h-4 mr-1"></i> Detail
                                     </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
                                         <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Hapus

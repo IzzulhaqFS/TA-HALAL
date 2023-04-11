@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\DarkModeController;
-use App\Http\Controllers\ColorSchemeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -32,6 +31,16 @@ Route::middleware('auth')->group(function() {
         Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
         Route::put('/{id}', [ProductController::class, 'update'])->name('update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('ingredient')->name('ingredient.')->group(function() {
+        Route::get('/', [IngredientController::class, 'index'])->name('index');
+        Route::get('/create/{product_id}', [IngredientController::class, 'create'])->name('create');
+        Route::post('/', [IngredientController::class, 'store'])->name('store');
+        Route::get('/{id}', [IngredientController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [IngredientController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [IngredientController::class, 'update'])->name('update');
+        Route::delete('/{id}', [IngredientController::class, 'destroy'])->name('destroy');
     });
 });
 
