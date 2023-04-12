@@ -5,8 +5,8 @@ const storeDataToSession = () => {
         // Initialize an empty object to store the form data
         let mainActivityData = {};
         let subActivityData = {};
-        let mainKey = document.querySelector('.main-activity').getAttribute('data-main-label');
 
+        let mainKey = document.querySelector('.main-activity').getAttribute('data-main-label');
         (typeof getMainValue === 'function')
             ? mainActivityData[mainKey] = getMainValue()
             : mainActivityData[mainKey] = 'Syubhat';
@@ -19,6 +19,20 @@ const storeDataToSession = () => {
             // and the input element's value as the value in the subActivityData object
             subActivityData[elem.getAttribute('data-label')] = elem.value;
         });
+
+        // Retrieve the existing main & sub activity data from session storage
+        let existingMainData = sessionStorage.getItem('main-activity');
+        let existingSubData = sessionStorage.getItem('sub-activity');
+
+        // Merge the existing main activity data and the new main activity data
+        if (existingMainData) {
+            let parsedData = JSON.parse(existingMainData);
+            mainActivityData = Object.assign({}, parsedData, mainActivityData);
+        }
+        if (existingSubData) {
+            let parsedData = JSON.parse(existingMainData);
+            subActivityData = Object.assign({}, parsedData, subActivityData);
+        }
 
         // Store the subActivityData object in session storage with the key 'data-log'
         sessionStorage.setItem('main-activity', JSON.stringify(mainActivityData));
