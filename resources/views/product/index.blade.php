@@ -23,8 +23,7 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <a href="{{ route('product.create') }}" class="btn btn-primary inline-block mr-1 mb-2 pr-5"><i data-lucide="plus" class="w-5"></i> Cek Produk Baru</a>
-            <div class="hidden md:block mx-auto text-slate-500">Menampilkan 1-10 dari 150 produk</div>
-            <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+            <div class="w-full sm:w-auto mt-3 mt-0 ml-auto">
                 <div class="w-56 relative text-slate-500">
                     <input type="text" class="form-control w-56 box pr-10" placeholder="Cari...">
                     <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
@@ -36,7 +35,8 @@
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap">NAMA PRODUK</th>
+                        <th class="whitespace-nowrap">NO</th>
+                        <th class="text-center whitespace-nowrap">NAMA PRODUK</th>
                         <th class="text-center whitespace-nowrap">JUMLAH BAHAN
                             <span id="jumlah-bahan-info">
                                 <i 
@@ -51,10 +51,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @foreach ($products as $key => $product)
                         <tr class="intro-x">
                             <td>
-                                <p class="font-medium whitespace-nowrap ml-1">{{ $product->name }}</p>
+                                <p class="font-medium whitespace-nowrap ml-1">{{ $key + 1 + (($products->currentPage() - 1) * $products->perPage()) }}</p>
+                            </td>
+                            <td>
+                                <p class="font-medium text-center">{{ $product->name }}</p>
                             </td>
                             <td class="text-center">{{ $product->ingredient_count }}</td>
                             <td class="w-40">
@@ -79,57 +82,16 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="ml-3 mt-6">
+                {{ $products->links() }}
+            </div>
+            <script>
+                const spanElement = document.querySelector('span.relative.z-0.inline-flex.shadow-sm.rounded-md');
+                spanElement.classList.add('ml-4');
+                spanElement.classList.add('-mt-2');
+            </script>
         </div>
         <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevrons-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevron-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevron-right"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevrons-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
-        </div>
-        <!-- END: Pagination -->
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">

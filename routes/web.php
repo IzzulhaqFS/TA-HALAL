@@ -35,12 +35,15 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('ingredient')->name('ingredient.')->group(function() {
         Route::get('/', [IngredientController::class, 'index'])->name('index');
-        Route::get('/create/{product_id}', [IngredientController::class, 'create'])->name('create');
+        Route::get('/{product_id}/create', [IngredientController::class, 'create'])->name('create');
         Route::post('/', [IngredientController::class, 'store'])->name('store');
         Route::get('/{id}', [IngredientController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [IngredientController::class, 'edit'])->name('edit');
         Route::put('/{id}', [IngredientController::class, 'update'])->name('update');
         Route::delete('/{id}', [IngredientController::class, 'destroy'])->name('destroy');
+        
+        
+        Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'certificateCheck'])->name('certificate');
     });
 });
 

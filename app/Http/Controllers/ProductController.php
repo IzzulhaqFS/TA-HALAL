@@ -22,23 +22,21 @@ class ProductController extends Controller
                 then the product_status will be 'syubhat'. 
         */
 
-        $products = DB::select("
-            SELECT 
-                p.*, 
-                COUNT(i.id) AS ingredient_count,
-                CASE
-                    WHEN COUNT(CASE WHEN i.status_halal = 'haram' THEN 1 END) > 0 THEN 'Haram'
-                    WHEN COUNT(CASE WHEN i.status_halal IS NULL THEN 1 END) > 0 THEN 'Belum Dicek'
-                    WHEN COUNT(CASE WHEN i.status_halal = 'syubhat' THEN 1 END) > 0 THEN 'Syubhat'
-                    ELSE 'Halal'
-                END AS product_status
-            FROM 
-                products p
-                LEFT JOIN ingredients i ON p.id = i.product_id
-            GROUP BY 
-                p.id
-        ");
-            
+        $products = DB::table('products as p')
+            ->select(
+                'p.*', 
+                DB::raw('COUNT(i.id) AS ingredient_count'),
+                DB::raw("CASE
+                            WHEN COUNT(CASE WHEN i.status_halal = 'Haram' THEN 1 END) > 0 THEN 'Haram'
+                            WHEN COUNT(CASE WHEN i.status_halal IS NULL THEN 1 END) > 0 THEN 'Dalam Proses'
+                            WHEN COUNT(CASE WHEN i.status_halal = 'Syubhat' THEN 1 END) > 0 THEN 'Syubhat'
+                            ELSE 'Halal'
+                        END AS product_status")
+            )
+            ->leftJoin('ingredients as i', 'p.id', '=', 'i.product_id')
+            ->groupBy('p.id')
+            ->paginate(5);
+
         return view('product/index', \compact('products'));
     }
 

@@ -49,11 +49,4 @@
         </div>
     </form>
     <!-- END: Form -->
-
-    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>
-    
-    <script>
-        storeDataToSession();
-    </script>
-
 @endsection
