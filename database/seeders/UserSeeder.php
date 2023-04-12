@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Helpers\UuidGenerator;
 
 class UserSeeder extends Seeder
 {
@@ -16,8 +17,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Default credentials
-        \App\Models\User::insert([
+        User::insert([
             [ 
+                'id' => UuidGenerator::get(),
                 'name' => 'jagadul',
                 'email' => 'jagad@mail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

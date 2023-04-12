@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,13 +15,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('event_logs', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->text('activity');
             $table->string('status_halal', 20);
             $table->dateTime('timestamp');
-            $table->foreignId('ingredient_id')->constrained('ingredients')->onUpdate('cascade')->onDelete('cascade');
-            $table->bigInteger('user_id');
-            $table->bigInteger('product_id');
+            $table->foreignUuid('ingredient_id')->constrained('ingredients')->onUpdate('cascade')->onDelete('cascade');
+            $table->uuid('user_id');
+            $table->uuid('product_id');
             $table->timestamps();
         });
     }

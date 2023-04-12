@@ -50,7 +50,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request)
     {
         $user = Auth::user();
-
+        
         try {
             $product = $user->products()->create([
                 'name' => $request->input('name'),

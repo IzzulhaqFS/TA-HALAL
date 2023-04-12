@@ -8,7 +8,7 @@ use App\Models\Product;
 
 class Ingredient extends Model
 {
-    use HasFactory;
+    use HasFactory, hasuu;
     protected $table = 'ingredients';
     protected $guarded = ['id'];
 
