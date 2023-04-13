@@ -37,6 +37,10 @@ class IngredientController extends Controller
             return redirect()->route('product.index')->with('error', 'Bahan gagal disimpan.');
         }
 
+        if ($statusHalal == 'Halal') {
+            return redirect()->route('product.index')->with('success', 'Bahan berhasil disimpan.');
+        }
+
         return redirect()->route('ingredient.certificate', ['ingredient_id' => $ingredient->id])
             ->with('success', 'Bahan berhasil disimpan.');
     }
@@ -48,6 +52,16 @@ class IngredientController extends Controller
             ->leftJoin('products', 'ingredients.product_id', '=', 'products.id')
             ->where('ingredients.id', '=', $ingredient_id)
             ->first();
+
+        return view('ingredient/common/certificate', \compact('ingredient'));
+    }
+    
+    public function certificateStore(Request $request)
+    {
+        
+        if ($request->input('')) {
+            # code...
+        }
 
         return view('ingredient/common/certificate', \compact('ingredient'));
     }

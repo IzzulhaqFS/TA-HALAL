@@ -48,21 +48,21 @@
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Tipe Bahan</label>
-                                <select id="ingredient-type-form" class="form-control" name="type">
+                                <select id="ingredient-type-select" class="form-control" name="type">
                                     <option value="">-- Pilih Tipe Bahan --</option>
-                                    <option value="Hewani" {{ old('type') == 'Hewani' ? 'selected' : '' }} class="sub-activity" data-label="Tipe Bahan">Hewani</option>
-                                    <option value="Nabati" {{ old('type') == 'Nabati' ? 'selected' : '' }} class="sub-activity" data-label="Tipe Bahan">Nabati</option>
+                                    <option value="Hewani" {{ old('type') == 'Hewani' ? 'selected' : '' }} class="" data-label="Tipe Bahan">Hewani</option>
+                                    <option value="Nabati" {{ old('type') == 'Nabati' ? 'selected' : '' }} class="" data-label="Tipe Bahan">Nabati</option>
                                 </select>
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam positif list?</label>
-                                <select id="is-positif-list-form" class="form-control" name="is-positif-list">
+                                <select id="is-positif-list-select" class="form-control" name="is-positif-list">
                                     <option value="">-- Pilih --</option>
-                                    <option value="0" {{ old('is-positif-list') == '0' ? 'selected' : '' }} class="sub-activity" data-label="Apakah bahan termasuk dalam poisitif list?">Tidak</option>
-                                    <option value="1" {{ old('is-positif-list') == '1' ? 'selected' : '' }} class="sub-activity" data-label="Apakah bahan termasuk dalam poisitif list?">Iya</option>
+                                    <option value="0" {{ old('is-positif-list') == '0' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Tidak</option>
+                                    <option value="1" {{ old('is-positif-list') == '1' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Iya</option>
                                 </select>
                                 <script>
-                                    const select = document.querySelector('#ingredient-type-form');
+                                    const select = document.querySelector('#ingredient-type-select');
                                     const h2 = document.querySelector('.main-activity');
                                   
                                     select.addEventListener('change', () => {
@@ -89,22 +89,23 @@
     </form>
     <!-- END: Form -->
 
-    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>
-    
+    <!-- BEGIN: Form Scripts -->
+    <script src="{{ asset('dist/scripts/selectOptionModifier.js') }}"></script>
+    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>    
     <script>
         const getMainValue = () => {
-            const select = document.querySelector('#is-positif-list-form');
+            const select = document.querySelector('#is-positif-list-select');
             if (select.value === '1') {
                 return 'Halal'
             } else if (select.value === '0') {
                 return 'Syubhat'
             }
         };
-    </script>
-
+        </script>
     <script>
         storeDataToSession();
     </script>
+    <!-- END: Form Scripts -->
 
     <script>
         // Submit the form data to the Laravel route
