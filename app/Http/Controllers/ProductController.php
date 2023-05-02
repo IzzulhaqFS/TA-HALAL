@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Models\Ingredient;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class ProductController extends Controller
             )
             ->leftJoin('ingredients as i', 'p.id', '=', 'i.product_id')
             ->groupBy('p.id')
-            ->paginate(5);
+            ->paginate(10);
 
         return view('product/index', \compact('products'));
     }
@@ -63,5 +64,25 @@ class ProductController extends Controller
 
         return redirect()->route('ingredient.create', ['product_id' => $product->id])
             ->with('success', 'Produk berhasil disimpan.');
+    }
+
+    public function show($product_id)
+    {
+        $ingredients = Ingredient::where('product_id', $product_id)->paginate(10);
+        $product = Product::select('name')->findOrFail($product_id);
+
+        return view('product/show', \compact('ingredients', 'product'));
+    }
+
+    public function destroy($product_id)
+    {
+        $deleted = Product::findOrFail($product_id)->delete();
+
+        if ($deleted) {
+            return redirect()->route('product.index')->with('success', 'Produk berhasil dihapus.');
+        } else {
+            return redirect()->back()->with('error', 'Produk gagal dihapus.');
+
+        }
     }
 }

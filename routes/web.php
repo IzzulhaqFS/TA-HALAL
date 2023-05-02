@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
@@ -27,23 +28,28 @@ Route::middleware('auth')->group(function() {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::post('/', [ProductController::class, 'store'])->name('store');
-        Route::get('/{id}', [ProductController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [ProductController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::get('/{product_id}', [ProductController::class, 'show'])->name('show');
+        Route::get('/{product_id}/edit', [ProductController::class, 'edit'])->name('edit');
+        Route::put('/{product_id}', [ProductController::class, 'update'])->name('update');
+        Route::delete('/{product_id}', [ProductController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('ingredient')->name('ingredient.')->group(function() {
         Route::get('/', [IngredientController::class, 'index'])->name('index');
         Route::get('/{product_id}/create', [IngredientController::class, 'create'])->name('create');
         Route::post('/', [IngredientController::class, 'store'])->name('store');
-        Route::get('/{id}', [IngredientController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [IngredientController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [IngredientController::class, 'update'])->name('update');
-        Route::delete('/{id}', [IngredientController::class, 'destroy'])->name('destroy');
+        Route::get('/{ingredient_id}', [IngredientController::class, 'show'])->name('show');
+        Route::get('/{ingredient_id}/edit', [IngredientController::class, 'edit'])->name('edit');
+        Route::put('/{ingredient_id}', [IngredientController::class, 'update'])->name('update');
+        Route::delete('/{ingredient_id}', [IngredientController::class, 'destroy'])->name('destroy');
         
         
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'certificateCheck'])->name('certificate');
+        Route::put('/store/certificate', [IngredientController::class, 'certificateStore'])->name('certificate.store');
+    });
+
+    Route::prefix('activity')->name('activity.')->group(function() {
+        Route::post('/', [ActivityController::class, 'store'])->name('store');
     });
 });
 

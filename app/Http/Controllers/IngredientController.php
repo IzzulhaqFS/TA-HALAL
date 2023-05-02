@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CertificateStoreRequest;
 use App\Http\Requests\CreateIngredientRequest;
 use App\Models\Ingredient;
 use App\Models\Product;
@@ -20,7 +21,7 @@ class IngredientController extends Controller
     public function store(CreateIngredientRequest $request)
     {
         $product = Product::select('id')->findOrFail($request->input('product_id'));
-        $request->input('is-positif-list')
+        $request->input('is-positive-list')
             ? $statusHalal = 'Halal'
             : $statusHalal = null;
         
@@ -38,7 +39,8 @@ class IngredientController extends Controller
         }
 
         if ($statusHalal == 'Halal') {
-            return redirect()->route('product.index')->with('success', 'Bahan berhasil disimpan.');
+            // todo: Langsung proses model API
+            return redirect()->route('product.index')->with('success', 'Pengecekan bahan selesai.');
         }
 
         return redirect()->route('ingredient.certificate', ['ingredient_id' => $ingredient->id])
@@ -56,13 +58,31 @@ class IngredientController extends Controller
         return view('ingredient/common/certificate', \compact('ingredient'));
     }
     
-    public function certificateStore(Request $request)
+    public function certificateStore(CertificateStoreRequest $request)
     {
+        $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));
+        $halal = $request->input('is-halal-certified');
         
-        if ($request->input('')) {
-            # code...
-        }
+        if ($halal) {
+            $ingredient->update(['status_halal' => "Halal"]);
+        };
+    }
 
-        return view('ingredient/common/certificate', \compact('ingredient'));
+    
+    public function show($ingredient_id)
+    {
+
+    }
+
+    public function destroy($ingredient_id)
+    {
+        $deleted = Ingredient::findOrFail($ingredient_id)->delete();
+
+        if ($deleted) {
+            return redirect()->back()->with('success', 'Bahan berhasil dihapus.');
+        } else {
+            return redirect()->back()->with('error', 'Bahan gagal dihapus.');
+
+        }
     }
 }

@@ -56,23 +56,11 @@
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam positif list?</label>
-                                <select id="is-positif-list-select" class="form-control" name="is-positif-list">
+                                <select id="is-positive-list-select" class="form-control" name="is-positive-list">
                                     <option value="">-- Pilih --</option>
-                                    <option value="0" {{ old('is-positif-list') == '0' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Tidak</option>
-                                    <option value="1" {{ old('is-positif-list') == '1' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Iya</option>
+                                    <option value="0" {{ old('is-positive-list') == '0' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Tidak</option>
+                                    <option value="1" {{ old('is-positive-list') == '1' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Iya</option>
                                 </select>
-                                <script>
-                                    const select = document.querySelector('#ingredient-type-select');
-                                    const h2 = document.querySelector('.main-activity');
-                                  
-                                    select.addEventListener('change', () => {
-                                        if (select.value === 'Hewani') {
-                                            h2.setAttribute('data-main-label', 'Mengisi Info Bahan');
-                                        } else if (select.value === 'Nabati') {
-                                            h2.setAttribute('data-main-label', 'Cek informasi bahan');
-                                        }
-                                    });
-                                  </script>
                             </div>
                             
                             <input id="regular-form-1" type="hidden" class="form-control sub-activity" data-label="product_id" name="product_id" value="{{ $product->id }}">
@@ -89,15 +77,15 @@
     </form>
     <!-- END: Form -->
 
-    <!-- BEGIN: Form Scripts -->
+    {{-- BEGIN: Processing Scripts --}}
     <script src="{{ asset('dist/scripts/selectOptionModifier.js') }}"></script>
     <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>    
     <script>
         const getMainValue = () => {
-            const select = document.querySelector('#is-positif-list-select');
-            if (select.value === '1') {
+            const isPostiveSelect = document.querySelector('#is-positive-list-select');
+            if (isPostiveSelect.value === '1') {
                 return 'Halal'
-            } else if (select.value === '0') {
+            } else if (isPostiveSelect.value === '0') {
                 return 'Syubhat'
             }
         };
@@ -105,15 +93,30 @@
     <script>
         storeDataToSession();
     </script>
-    <!-- END: Form Scripts -->
+    {{-- END: Processing Scripts --}}
+
+    {{-- BEGIN: Additional Scripts --}}
+    <script>
+        const typeSelect = document.querySelector('#ingredient-type-select');
+        const h2 = document.querySelector('.main-activity');
+      
+        typeSelect.addEventListener('change', () => {
+            if (typeSelect.value === 'Hewani') {
+                h2.setAttribute('data-main-label', 'Mengisi Info Bahan');
+            } else if (typeSelect.value === 'Nabati') {
+                h2.setAttribute('data-main-label', 'Cek informasi bahan');
+            }
+        });
+    </script>
 
     <script>
         // Submit the form data to the Laravel route
         document.getElementById('right-btn').addEventListener('click', function(e) {
             let form = document.querySelector('#create-ingredient-form');
-            form.action = '{{ route("ingredient.store") }}';
             form.submit();
         })
     </script>
+    {{-- END: Additional Scripts --}}
+    
 
 @endsection
