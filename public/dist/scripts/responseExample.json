@@ -1,0 +1,33 @@
+{
+    "main-activity": [
+        {
+            "label": "Cek informasi bahan",
+            "value": "Halal",
+            "timestamp": "2023-05-03 07:50:32"
+        }
+    ],
+    "sub-activity": [
+        {
+            "label": "Nama Produk",
+            "value": "Bakso Enak"
+        },
+        {
+            "label": "Nama Bahan",
+            "value": "Cambah"
+        },
+        {
+            "label": "Tipe Bahan",
+            "value": "Nabati"
+        },
+        {
+            "label": "Apakah bahan termasuk dalam poisitif list?",
+            "value": "1"
+        },
+        {
+            "label": "product_id",
+            "value": "76aad987-d8f2-11ed-bbe4-3065ecc67506"
+        }
+    ]
+}
+
+

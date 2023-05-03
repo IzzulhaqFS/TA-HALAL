@@ -22,7 +22,7 @@
     @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="{{ route('ingredient.create', ['product_id'=> $ingredients[0]->product_id]) }}" class="btn btn-primary inline-block mr-1 mb-2 pr-5"><i data-lucide="plus" class="w-5"></i> Cek Bahan Baru</a>
+            <a href="{{ route('ingredient.create', ['product_id'=> $product->id]) }}" class="btn btn-primary inline-block mr-1 mb-2 pr-5"><i data-lucide="plus" class="w-5"></i> Cek Bahan Baru</a>
             <div class="w-full sm:w-auto mt-3 mt-0 ml-auto">
                 <div class="w-56 relative text-slate-500">
                     <input type="text" class="form-control w-56 box pr-10" placeholder="Cari...">

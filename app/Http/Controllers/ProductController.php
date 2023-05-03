@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function show($product_id)
     {
         $ingredients = Ingredient::where('product_id', $product_id)->paginate(10);
-        $product = Product::select('name')->findOrFail($product_id);
+        $product = Product::select(['id', 'name'])->findOrFail($product_id);
 
         return view('product/show', \compact('ingredients', 'product'));
     }

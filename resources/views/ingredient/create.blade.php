@@ -79,7 +79,8 @@
 
     {{-- BEGIN: Processing Scripts --}}
     <script src="{{ asset('dist/scripts/selectOptionModifier.js') }}"></script>
-    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>    
+    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>   
+    <script src="{{ asset('dist/scripts/processActivity.js') }}"></script>     
     <script>
         const getMainValue = () => {
             const isPostiveSelect = document.querySelector('#is-positive-list-select');
@@ -97,6 +98,7 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
+        // Adjustment for 2 models
         const typeSelect = document.querySelector('#ingredient-type-select');
         const h2 = document.querySelector('.main-activity');
       
@@ -114,6 +116,11 @@
         document.getElementById('right-btn').addEventListener('click', function(e) {
             let form = document.querySelector('#create-ingredient-form');
             form.submit();
+            
+            const isPostiveSelect = document.querySelector('#is-positive-list-select');
+            if (isPostiveSelect.value === '1') {
+                processActivity();
+            }
         })
     </script>
     {{-- END: Additional Scripts --}}

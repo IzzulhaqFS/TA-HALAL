@@ -39,8 +39,7 @@ class IngredientController extends Controller
         }
 
         if ($statusHalal == 'Halal') {
-            // todo: Langsung proses model API
-            return redirect()->route('product.index')->with('success', 'Pengecekan bahan selesai.');
+            return response('', 204);
         }
 
         return redirect()->route('ingredient.certificate', ['ingredient_id' => $ingredient->id])
@@ -82,7 +81,6 @@ class IngredientController extends Controller
             return redirect()->back()->with('success', 'Bahan berhasil dihapus.');
         } else {
             return redirect()->back()->with('error', 'Bahan gagal dihapus.');
-
         }
     }
 }

@@ -47,10 +47,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'certificateCheck'])->name('certificate');
         Route::put('/store/certificate', [IngredientController::class, 'certificateStore'])->name('certificate.store');
     });
-
-    Route::prefix('activity')->name('activity.')->group(function() {
-        Route::post('/', [ActivityController::class, 'store'])->name('store');
-    });
 });
 
 
