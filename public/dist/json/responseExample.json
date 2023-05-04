@@ -1,33 +1,37 @@
 {
     "main-activity": [
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "Cek informasi bahan",
             "value": "Halal",
-            "timestamp": "2023-05-03 07:50:32"
+            "timestamp": "2023-05-04 10:17:01"
         }
     ],
     "sub-activity": [
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "Nama Produk",
             "value": "Bakso Enak"
         },
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "Nama Bahan",
-            "value": "Cambah"
+            "value": "Nyam nyam"
         },
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "Tipe Bahan",
             "value": "Nabati"
         },
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "Apakah bahan termasuk dalam poisitif list?",
             "value": "1"
         },
         {
+            "id": "2457dacb-bd7e-491f-8f82-bda7078cf4fb",
             "label": "product_id",
             "value": "76aad987-d8f2-11ed-bbe4-3065ecc67506"
         }
     ]
 }
-
-

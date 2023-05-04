@@ -11,7 +11,7 @@ class EventLog extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'event_logs';
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public function ingredient(){
         return $this->belongsTo(Ingredient::class, 'ingredient_id');

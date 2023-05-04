@@ -16,4 +16,9 @@ class Ingredient extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public static function getLatest(){
+        $latestIngredient = Ingredient::latest('created_at')->first();
+        return $latestIngredient ? $latestIngredient->id : null;
+    }
 }

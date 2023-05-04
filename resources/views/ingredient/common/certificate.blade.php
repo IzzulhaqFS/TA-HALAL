@@ -144,7 +144,7 @@
             if (selectEl.value === "1") {
                 let form = document.querySelector('#is-halal-certified-form');
                 form.submit();
-                processActivity('{{ route('activity.store') }}');
+                processActivity('{{ csrf_token() }}');
             }
         })
     </script>

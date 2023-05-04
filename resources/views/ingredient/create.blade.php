@@ -119,7 +119,7 @@
             
             const isPostiveSelect = document.querySelector('#is-positive-list-select');
             if (isPostiveSelect.value === '1') {
-                processActivity();
+                processActivity('{{ csrf_token() }}');
             }
         })
     </script>

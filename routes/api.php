@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function() {
-    Route::prefix('activity')->name('activity.')->group(function() {
-        Route::post('/', [ActivityController::class, 'store'])->name('store');
-    });
+Route::prefix('activity')->name('activity.')->group(function() {
+    Route::post('/', [ActivityController::class, 'store'])->name('store');
 });

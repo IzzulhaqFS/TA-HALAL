@@ -22,12 +22,14 @@ const fillData = () => {
     // Initialize an empty object to store the form data
     let mainActivityData = [];
     let subActivityData = [];
+    let newUUID = generateUUID();
 
     // Fill mainActivityData
     let mainLabel = document.querySelector('.main-activity').getAttribute('data-main-label');
     let mainValue = (typeof getMainValue === 'function') ? getMainValue() : 'Syubhat';
 
     let mainActivityItem = {};
+    mainActivityItem.id = newUUID;
     mainActivityItem.label = mainLabel;
     mainActivityItem.value = mainValue;
     mainActivityItem.timestamp = getDateTime();
@@ -38,6 +40,7 @@ const fillData = () => {
     subActivityElems.forEach(function (elem, index) {
         // Use an object to store the label and value of each sub-activity item
         let subActivityItem = {};
+        subActivityItem.id = newUUID;
         subActivityItem.label = elem.getAttribute('data-label');
         subActivityItem.value = elem.value;
 
@@ -71,4 +74,16 @@ const getDateTime = () => {
     const datetime = now.toISOString().slice(0, 19).replace('T', ' ');
 
     return datetime;
+};
+
+const generateUUID = () => {
+    let d = new Date().getTime();
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+        d += performance.now();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
 };
