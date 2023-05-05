@@ -113,13 +113,14 @@
 
     <script>
         // Submit the form data to the Laravel route
-        document.getElementById('right-btn').addEventListener('click', function(e) {
+        document.getElementById('right-btn').addEventListener('click',  async function(e)  {
             let form = document.querySelector('#create-ingredient-form');
-            form.submit();
-            
+            await form.submit();
+            // belum selesai mesti lanjut
+
             const isPostiveSelect = document.querySelector('#is-positive-list-select');
             if (isPostiveSelect.value === '1') {
-                processActivity('{{ csrf_token() }}');
+                await processActivity('{{ csrf_token() }}');
             }
         })
     </script>

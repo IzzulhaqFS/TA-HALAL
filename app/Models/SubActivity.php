@@ -12,7 +12,7 @@ class SubActivity extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'sub_activities';
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public function eventLog(){
         return $this->belongsTo(EventLog::class, 'event_log_id');

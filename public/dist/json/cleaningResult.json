@@ -1,0 +1,44 @@
+{
+    "main": [
+        {
+            "id": "4ca44733-228c-45ee-9748-9aadf89a2d44",
+            "label": "Mengisi Info Bahan",
+            "value": "Halal",
+            "timestamp": "2023-05-05 09:37:35"
+        },
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "Cek informasi bahan",
+            "value": "Halal",
+            "timestamp": "2023-05-05 11:08:23"
+        }
+    ],
+    "sub": [
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "Nama Produk",
+            "value": "Bakso Enak"
+        },
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "Nama Bahan",
+            "value": "Micin"
+        },
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "Tipe Bahan",
+            "value": "Nabati"
+        },
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "Apakah bahan termasuk dalam poisitif list?",
+            "value": "1"
+        },
+        {
+            "id": "8d8338a1-4f5c-4b8f-b6f9-34145ecbdc90",
+            "label": "product_id",
+            "value": "76aad987-d8f2-11ed-bbe4-3065ecc67506"
+        }
+    ],
+    "msg": "Data successfully retrieved"
+}

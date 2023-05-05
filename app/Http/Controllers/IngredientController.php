@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CertificateStoreRequest;
+use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\CreateIngredientRequest;
 use App\Models\Ingredient;
 use App\Models\Product;
@@ -46,7 +46,7 @@ class IngredientController extends Controller
             ->with('success', 'Bahan berhasil disimpan.');
     }
 
-    public function certificateCheck($ingredient_id)
+    public function checkCertificate($ingredient_id)
     {
         $ingredient = DB::table('ingredients')
             ->select('ingredients.*', 'products.name as product_name')
@@ -57,7 +57,7 @@ class IngredientController extends Controller
         return view('ingredient/common/certificate', \compact('ingredient'));
     }
     
-    public function certificateStore(CertificateStoreRequest $request)
+    public function storeCertificate(storeCertificateRequest $request)
     {
         $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));
         $halal = $request->input('is-halal-certified');
