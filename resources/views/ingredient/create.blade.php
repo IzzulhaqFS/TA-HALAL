@@ -90,7 +90,7 @@
                 return 'Syubhat'
             }
         };
-        </script>
+    </script>
     <script>
         storeDataToSession();
     </script>
@@ -115,12 +115,33 @@
         // Submit the form data to the Laravel route
         document.getElementById('right-btn').addEventListener('click',  async function(e)  {
             let form = document.querySelector('#create-ingredient-form');
-            await form.submit();
-            // belum selesai mesti lanjut
 
-            const isPostiveSelect = document.querySelector('#is-positive-list-select');
-            if (isPostiveSelect.value === '1') {
-                await processActivity('{{ csrf_token() }}');
+            // Serialize the form data
+            let formData = new FormData(form);
+
+            try {
+                // Send the POST request to the Laravel route
+                let response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: new URLSearchParams(formData).toString(),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Continue with the processActivity function
+                const isPostiveSelect = document.querySelector('#is-positive-list-select');
+                if (isPostiveSelect.value === '1') {
+                    await processActivity('{{ csrf_token() }}');
+                }
+            } catch (error) {
+                // Handle any errors that occur during the request
+                console.error(error);
             }
         })
     </script>

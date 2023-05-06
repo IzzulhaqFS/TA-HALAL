@@ -88,6 +88,8 @@ class ActivityController extends Controller
     }
 
     public function storeEventlog ($mainActivity, $identity) {
+        // map $mainActivity collection to transform each item into an array 
+        // toArray convert collection of arrays to a plain PHP array
         $data = $mainActivity->map(function ($item) use ($identity) {
             return [
                 'id' => $item['id'],
