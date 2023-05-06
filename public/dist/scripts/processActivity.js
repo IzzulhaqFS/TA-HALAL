@@ -1,4 +1,4 @@
-const activityRoute = 'http://127.0.0.1:8000/api/activity';
+const activityRoute = 'http://127.0.0.1:8000/activity';
 const productRoute = 'http://127.0.0.1:8000/product';
 
 const processActivity = async (csrf_token) => {
@@ -24,7 +24,9 @@ const processActivity = async (csrf_token) => {
             body: JSON.stringify(data),
         });
 
-        if (!response.ok) {
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 

@@ -132,7 +132,7 @@
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                };
 
                 // Continue with the processActivity function
                 const isPostiveSelect = document.querySelector('#is-positive-list-select');

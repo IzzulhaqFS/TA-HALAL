@@ -14,7 +14,3 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::prefix('activity')->name('activity.')->group(function() {
-    Route::post('/', [ActivityController::class, 'store'])->name('store');
-});
