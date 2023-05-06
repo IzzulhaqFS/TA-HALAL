@@ -98,19 +98,14 @@
     </form>
     <!-- END: Form -->
 
-    {{-- BEGIN: Processing Scripts --}}
-    <script src="{{ asset('dist/scripts/selectOptionModifier.js') }}"></script>
-    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>    
-    <script src="{{ asset('dist/scripts/processActivity.js') }}"></script>    
-    <script>
-        const getMainValue = () => {
-            return mainValue
-        };
-    </script>
-    <script>
-        storeDataToSession();
-    </script>
-    {{-- END: Processing Scripts --}}
+    @include('../../layout/components/processing-script.blade.php')
+    @section('getMainValue')
+        <script>
+            const getMainValue = () => {
+                return mainValue
+            };
+        </script>
+    @show
 
     {{-- BEGIN: Additional Scripts --}}
     <script>

@@ -77,24 +77,19 @@
     </form>
     <!-- END: Form -->
 
-    {{-- BEGIN: Processing Scripts --}}
-    <script src="{{ asset('dist/scripts/selectOptionModifier.js') }}"></script>
-    <script src="{{ asset('dist/scripts/storeDataToSession.js') }}"></script>   
-    <script src="{{ asset('dist/scripts/processActivity.js') }}"></script>     
-    <script>
-        const getMainValue = () => {
-            const isPostiveSelect = document.querySelector('#is-positive-list-select');
-            if (isPostiveSelect.value === '1') {
-                return 'Halal'
-            } else if (isPostiveSelect.value === '0') {
-                return 'Syubhat'
-            }
-        };
-    </script>
-    <script>
-        storeDataToSession();
-    </script>
-    {{-- END: Processing Scripts --}}
+    @include('../layout/components/processing-script')
+    @section('getMainValue')
+        <script>
+            const getMainValue = () => {
+                const isPostiveSelect = document.querySelector('#is-positive-list-select');
+                if (isPostiveSelect.value === '1') {
+                    return 'Halal'
+                } else if (isPostiveSelect.value === '0') {
+                    return 'Syubhat'
+                }
+            };
+        </script>
+    @show
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
