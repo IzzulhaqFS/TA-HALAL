@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('app_histories', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->uuid('user_id');
             $table->uuid('product_id');
             $table->uuid('ingredient_id');

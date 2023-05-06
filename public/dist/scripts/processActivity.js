@@ -23,10 +23,8 @@ const processActivity = async (csrf_token) => {
             },
             body: JSON.stringify(data),
         });
-
-        if (response.redirected) {
-            window.location.href = response.url;
-        } else if (!response.ok) {
+        
+        if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 

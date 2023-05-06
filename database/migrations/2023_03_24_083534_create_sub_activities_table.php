@@ -15,10 +15,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sub_activities', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->text('description');
             $table->string('value');
-            $table->foreignUuid('event_log_id')->constrained('event_logs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('event_log_id')->references('code')->on('event_logs')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

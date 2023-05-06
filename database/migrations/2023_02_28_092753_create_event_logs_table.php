@@ -15,11 +15,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('event_logs', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
+            $table->uuid('code')->unique();
             $table->text('activity');
             $table->string('status_halal', 20);
             $table->dateTime('timestamp');
-            $table->foreignUuid('ingredient_id')->constrained('ingredients')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('ingredient_id')->constrained('ingredients')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->uuid('user_id');
             $table->uuid('product_id');
             $table->timestamps();

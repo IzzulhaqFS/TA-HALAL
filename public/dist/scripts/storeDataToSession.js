@@ -29,7 +29,7 @@ const fillData = () => {
     let mainValue = (typeof getMainValue === 'function') ? getMainValue() : 'Syubhat';
 
     let mainActivityItem = {};
-    mainActivityItem.id = newUUID;
+    mainActivityItem.code = newUUID;
     mainActivityItem.label = mainLabel;
     mainActivityItem.value = mainValue;
     mainActivityItem.timestamp = getDateTime();
@@ -40,7 +40,7 @@ const fillData = () => {
     subActivityElems.forEach(function (elem, index) {
         // Use an object to store the label and value of each sub-activity item
         let subActivityItem = {};
-        subActivityItem.id = newUUID;
+        subActivityItem.code = newUUID;
         subActivityItem.label = elem.getAttribute('data-label');
         subActivityItem.value = elem.value;
 

@@ -38,6 +38,7 @@
                     </div>
                     <div id="input" class="p-5">
                         <div class="preview">
+                            <input id="regular-form-1" type="hidden" class="form-control sub-activity" data-label="product_id" name="product_id" value="{{ $product->id }}">
                             <div>
                                 <label for="regular-form-1" class="form-label">Nama Produk</label>
                                 <input type="text" class="form-control sub-activity" disabled data-label="Nama Produk" value="{{ $product->name }}">
@@ -63,7 +64,6 @@
                                 </select>
                             </div>
                             
-                            <input id="regular-form-1" type="hidden" class="form-control sub-activity" data-label="product_id" name="product_id" value="{{ $product->id }}">
                             <div id="mover-container" class="mt-5">
                                 <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                                 <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
@@ -125,9 +125,11 @@
                     body: new URLSearchParams(formData).toString(),
                 });
 
-                if (!response.ok) {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
-                };
+                }
 
                 // Continue with the processActivity function
                 const isPostiveSelect = document.querySelector('#is-positive-list-select');

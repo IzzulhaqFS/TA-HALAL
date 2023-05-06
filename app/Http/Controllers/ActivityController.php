@@ -50,7 +50,7 @@ class ActivityController extends Controller
     public function cleanData($data) {
         return collect($data)->reduce(function($result, $item) {
             $label = $item['label'];
-            $id = $item['id'];
+            $code = $item['code'];
             $value = $item['value'];
             $timestamp = isset($item['timestamp']) ? $item['timestamp'] : null;
     
@@ -61,7 +61,7 @@ class ActivityController extends Controller
     
             if ($existingItemIndex !== false) {
                 $existingItem = $result->get($existingItemIndex);
-                $existingItem['id'] = $id;
+                $existingItem['code'] = $code;
                 $existingItem['value'] = $value;
                 if (!is_null($timestamp)) {
                     $existingItem['timestamp'] = $timestamp;
@@ -71,7 +71,7 @@ class ActivityController extends Controller
                 $result->put($existingItemIndex, $existingItem);
             } else {
                 $newItem = [
-                    'id' => $id,
+                    'code' => $code,
                     'label' => $label,
                     'value' => $value
                 ];
@@ -92,7 +92,7 @@ class ActivityController extends Controller
         // toArray convert collection of arrays to a plain PHP array
         $data = $mainActivity->map(function ($item) use ($identity) {
             return [
-                'id' => $item['id'],
+                'code' => $item['code'],
                 'activity' => $item['label'],
                 'status_halal' => $item['value'],
                 'timestamp' => $item['timestamp'],
@@ -117,10 +117,9 @@ class ActivityController extends Controller
     public function storeSubActivity($subActivity) {
         $data = $subActivity->map(function ($item) {
             return [
-                'id' => UuidGenerator::get(),
                 'description' => $item['label'],
                 'value' => $item['value'],
-                'event_log_id' => $item['id'],
+                'event_log_id' => $item['code'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
