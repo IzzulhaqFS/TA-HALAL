@@ -67,6 +67,8 @@ class IngredientController extends Controller
         if ($halal) {
             $ingredient->update(['status_halal' => "Halal"]);
         };
+        
+        return response('', 204);
     }
 
     
