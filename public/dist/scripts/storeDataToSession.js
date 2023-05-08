@@ -33,7 +33,9 @@ const fillData = () => {
     mainActivityItem.label = mainLabel;
     mainActivityItem.value = mainValue;
     mainActivityItem.timestamp = getDateTime();
-    mainActivityData.push(mainActivityItem);
+    if (mainActivityItem.value != '') {
+        mainActivityData.push(mainActivityItem);
+    };
 
     // Fill subActivityData. Loop through each input element with class 'sub-activity'
     let subActivityElems = document.querySelectorAll('.sub-activity');
@@ -45,7 +47,9 @@ const fillData = () => {
         subActivityItem.value = elem.value;
 
         // Push the sub-activity item object to the subActivityData array
-        subActivityData.push(subActivityItem);
+        if (elem.value != '') {
+            subActivityData.push(subActivityItem);
+        };
     });
 
     return { mainActivityData, subActivityData };

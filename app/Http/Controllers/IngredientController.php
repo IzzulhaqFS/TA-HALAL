@@ -66,9 +66,17 @@ class IngredientController extends Controller
         
         if ($halal) {
             $ingredient->update(['status_halal' => "Halal"]);
+            return response('', 204);
         };
-        
         return response('', 204);
+
+        if ($ingredient->type == 'Hewani') {
+            return redirect()->route('hewani.certificate', ['ingredient_id' => $ingredient->id])
+                ->with('success', 'Bahan berhasil disimpan.');
+        } else {
+
+        }
+        
     }
 
     

@@ -3,9 +3,11 @@
 use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HewaniController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\NabatiController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -50,6 +52,60 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('activity')->name('activity.')->group(function() {
         Route::post('/', [ActivityController::class, 'store'])->name('store');
+    });
+
+    Route::prefix('hewani')->name('hewani.')->group(function() {
+        // Not implemented yet
+        Route::get('/{ingredient_id}/check/uji-lab-babi', [HewaniController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
+        Route::put('/store/uji-lab-babi', [HewaniController::class, 'storeUjiLabBabi'])->name('uji-lab-babi.store');
+
+        Route::get('/{ingredient_id}/check/kelompok-bahan', [HewaniController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
+        Route::get('/{ingredient_id}/check/kehalalan-hewan', [HewaniController::class, 'checkKehalalanHewan'])->name('kehalalan-hewan');
+
+        Route::get('/{ingredient_id}/check/daging', [HewaniController::class, 'checkDaging'])->name('daging');
+        Route::get('/{ingredient_id}/check/lemak', [HewaniController::class, 'checkLemak'])->name('lemak');
+        Route::get('/{ingredient_id}/check/kulit', [HewaniController::class, 'checkKulit'])->name('kulit');
+        Route::get('/{ingredient_id}/check/tulang', [HewaniController::class, 'checkTulang'])->name('tulang');
+        Route::get('/{ingredient_id}/check/jerohan', [HewaniController::class, 'checkJerohan'])->name('jerohan');
+        Route::get('/{ingredient_id}/check/sembelih', [HewaniController::class, 'checkSembelih'])->name('halal-hewan');
+        
+        Route::get('/{ingredient_id}/check/pengolahan-tambahan', [HewaniController::class, 'checkPengolahanTambahan'])->name('pengolahan-tambahan');
+
+        Route::get('/{ingredient_id}/check/pemanis', [HewaniController::class, 'checkPemanis'])->name('pemanis');
+        Route::get('/{ingredient_id}/check/pewarna', [HewaniController::class, 'checkPewarna'])->name('pewarna');
+        Route::get('/{ingredient_id}/check/emulsifier', [HewaniController::class, 'checkEmulsifier'])->name('emulsifier');
+        Route::get('/{ingredient_id}/check/flavor', [HewaniController::class, 'checkFlavor'])->name('flavor');
+        Route::get('/{ingredient_id}/check/penyedap', [HewaniController::class, 'checkPenyedap'])->name('penyedap');
+        Route::get('/{ingredient_id}/check/garam', [HewaniController::class, 'checkGaram'])->name('garam');
+        Route::get('/{ingredient_id}/check/pengawet', [HewaniController::class, 'checkPengawet'])->name('pengawet');
+        Route::get('/{ingredient_id}/check/btp', [HewaniController::class, 'checkBtp'])->name('btp');
+    });
+
+    Route::prefix('nabati')->name('nabati.')->group(function() {
+        // Not implemented yet
+        Route::get('/{ingredient_id}/check/uji-lab-babi', [NabatiController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
+        Route::put('/store/uji-lab-babi', [NabatiController::class, 'storeUjiLabBabi'])->name('uji-lab-babi.store');
+
+        Route::get('/{ingredient_id}/check/uji-etanol', [NabatiController::class, 'checkUjiEtanol'])->name('uji-etanol');
+        Route::put('/store/uji-etanol', [NabatiController::class, 'storeUjiEtanol'])->name('uji-etanol.store');
+
+        // Simpan stack halaman list titik kritis per bahan
+        Route::get('/{ingredient_id}/check/kelompok-bahan', [NabatiController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
+
+        Route::get('/{ingredient_id}/check/laktosa', [NabatiController::class, 'checkLaktosa'])->name('laktosa');
+        Route::get('/{ingredient_id}/check/karbon-aktif-minyak', [NabatiController::class, 'checkKarbonAktifMinyak'])->name('karbon-aktif-minyak');
+        Route::get('/{ingredient_id}/check/vitamin', [NabatiController::class, 'checkVitamin'])->name('vitamin');
+        Route::get('/{ingredient_id}/check/emulsifier', [NabatiController::class, 'checkEmulsifier'])->name('emulsifier');
+        Route::get('/{ingredient_id}/check/enzim', [NabatiController::class, 'checkEnzim'])->name('enzim');
+        Route::get('/{ingredient_id}/check/karbon-aktif', [NabatiController::class, 'checkKarbonAktif'])->name('karbon-aktif');
+        Route::get('/{ingredient_id}/check/flavor', [NabatiController::class, 'checkFlavor'])->name('flavor');
+        Route::get('/{ingredient_id}/check/pewarna', [NabatiController::class, 'checkPewarna'])->name('pewarna');
+        Route::get('/{ingredient_id}/check/resin', [NabatiController::class, 'checkResin'])->name('resin');
+        Route::get('/{ingredient_id}/check/pelapis', [NabatiController::class, 'checkPelapis'])->name('pelapis');
+        Route::get('/{ingredient_id}/check/pelarut', [NabatiController::class, 'checkPelarut'])->name('pelarut');
+        Route::get('/{ingredient_id}/check/gula', [NabatiController::class, 'checkGula'])->name('gula');
+        Route::get('/{ingredient_id}/check/proses-produksi', [NabatiController::class, 'checkProsesProduksi'])->name('proses-produksi');
+        Route::get('/{ingredient_id}/check/gelatin', [NabatiController::class, 'checkGelatin'])->name('gelatin');
     });
 });
 
