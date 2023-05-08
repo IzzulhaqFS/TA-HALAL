@@ -10,7 +10,7 @@
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto main-activity" data-main-label="">Informasi Bahan</h2>
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="" data-main-value="Syubhat">Informasi Bahan</h2>
     </div>
     @if ($errors->any())
     <div class="alert alert-danger mt-2" style="display: inline-block;">
@@ -78,20 +78,20 @@
     <!-- END: Form -->
 
     @include('../layout/components/processing-script')
-    @section('getMainValue')
-        <script>
-            const getMainValue = () => {
-                const isPostiveSelect = document.querySelector('#is-positive-list-select');
-                if (isPostiveSelect.value === '1') {
-                    return 'Halal'
-                } else if (isPostiveSelect.value === '0') {
-                    return 'Syubhat'
-                }
-            };
-        </script>
-    @show
-
+    
     {{-- BEGIN: Additional Scripts --}}
+    <script>
+        const isPositiveSelect = document.querySelector('#is-positive-list-select');
+        const mainHeader = document.querySelector('#main-header');
+
+        isPositiveSelect.addEventListener('change', function() {
+            if (isPositiveSelect.value === '1') {
+                mainHeader.setAttribute('data-main-value', 'Halal');
+            } else {
+                mainHeader.setAttribute('data-main-value', 'Syubhat');
+            }
+        });
+    </script>
     <script>
         // Adjustment for 2 models
         const typeSelect = document.querySelector('#ingredient-type-select');

@@ -7,11 +7,11 @@
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
         @if ($ingredient->type == 'Hewani')
-        <h2 class="text-lg font-medium mr-auto main-activity" data-main-label="Cek Sertifikat Halal">
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="Cek Sertifikat Halal" data-main-value="">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @else
-        <h2 class="text-lg font-medium mr-auto main-activity" data-main-label="Cek sertifikat halal">
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="Cek sertifikat halal" data-main-value="">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @endif
@@ -96,13 +96,6 @@
     <!-- END: Form -->
 
     @include('../layout/components/processing-script')
-    @section('getMainValue')
-        <script>
-            const getMainValue = () => {
-                return mainValue
-            };
-        </script>
-    @show
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
@@ -110,19 +103,19 @@
         // Get a reference to the select element and the certificate-detail div
         let selectEl = document.querySelector('#is-halal-certified-select');
         let certDetailEl = document.querySelector('#certificate-detail');
-        let mainValue;
+        
         // Add an event listener to the select element to listen for changes
         selectEl.addEventListener('change', function() {
-        // Check if the selected value is "1"
-        if (selectEl.value === "1") {
-            // If it is, show the certificate-detail div
-            certDetailEl.style.display = 'block';
-            mainValue = 'Halal';
-        } else {
-            // Otherwise, hide it
-            certDetailEl.style.display = 'none';
-            mainValue = 'Syubhat';
-        }
+            // Check if the selected value is "1"
+            if (selectEl.value === "1") {
+                // If it is, show the certificate-detail div
+                certDetailEl.style.display = 'block';
+                document.getElementById('main-header').setAttribute('data-main-value', 'Halal');
+            } else {
+                // Otherwise, hide it
+                certDetailEl.style.display = 'none';
+                document.getElementById('main-header').setAttribute('data-main-value', 'Syubhat');
+            }
         });
 
         // Call the event listener once on page load to set the initial state of the div

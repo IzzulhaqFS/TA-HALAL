@@ -25,17 +25,20 @@ const fillData = () => {
     let newUUID = generateUUID();
 
     // Fill mainActivityData
-    let mainLabel = document.querySelector('.main-activity').getAttribute('data-main-label');
-    let mainValue = (typeof getMainValue === 'function') ? getMainValue() : 'Syubhat';
+    let mainActivityElems = document.querySelectorAll('.main-activity');
+    mainActivityElems.forEach(function (elem, index) {
+        // Use an object to store the label and value of each main-activity item
+        let mainActivityItem = {};
+        mainActivityItem.code = newUUID;
+        mainActivityItem.label = elem.getAttribute('data-main-label');
+        mainActivityItem.value = elem.getAttribute('data-main-value')
+        mainActivityItem.timestamp = getDateTime();
 
-    let mainActivityItem = {};
-    mainActivityItem.code = newUUID;
-    mainActivityItem.label = mainLabel;
-    mainActivityItem.value = mainValue;
-    mainActivityItem.timestamp = getDateTime();
-    if (mainActivityItem.value != '') {
-        mainActivityData.push(mainActivityItem);
-    };
+        // Push the main-activity item object to the mainActivityData array
+        if (elem.value != '') {
+            mainActivityData.push(mainActivityItem);
+        };
+    });
 
     // Fill subActivityData. Loop through each input element with class 'sub-activity'
     let subActivityElems = document.querySelectorAll('.sub-activity');
