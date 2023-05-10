@@ -10,7 +10,7 @@
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="" data-main-value="Syubhat">Informasi Bahan</h2>
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-label="" data-value="Syubhat">Informasi Bahan</h2>
     </div>
     @if ($errors->any())
     <div class="alert alert-danger mt-2" style="display: inline-block;">
@@ -86,9 +86,9 @@
 
         isPositiveSelect.addEventListener('change', function() {
             if (isPositiveSelect.value === '1') {
-                mainHeader.setAttribute('data-main-value', 'Halal');
+                mainHeader.setAttribute('data-value', 'Halal');
             } else {
-                mainHeader.setAttribute('data-main-value', 'Syubhat');
+                mainHeader.setAttribute('data-value', 'Syubhat');
             }
         });
     </script>
@@ -99,9 +99,9 @@
       
         typeSelect.addEventListener('change', () => {
             if (typeSelect.value === 'Hewani') {
-                h2.setAttribute('data-main-label', 'Mengisi Info Bahan');
+                h2.setAttribute('data-label', 'Mengisi Info Bahan');
             } else if (typeSelect.value === 'Nabati') {
-                h2.setAttribute('data-main-label', 'Cek informasi bahan');
+                h2.setAttribute('data-label', 'Cek informasi bahan');
             }
         });
     </script>

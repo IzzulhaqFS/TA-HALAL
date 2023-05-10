@@ -22,20 +22,29 @@ const fillData = () => {
     // Initialize an empty object to store the form data
     let mainActivityData = [];
     let subActivityData = [];
-    let newUUID = generateUUID();
+    let UUIDs = [];
 
     // Fill mainActivityData
     let mainActivityElems = document.querySelectorAll('.main-activity');
+
+    // Fill UUIDs
+    for (let i = 0; i < mainActivityElems.length; i++) {
+        UUIDs.push(generateUUID());
+    };
+
     mainActivityElems.forEach(function (elem, index) {
         // Use an object to store the label and value of each main-activity item
+        let dataPos = elem.getAttribute('data-pos') || '0';
+        let pos = parseInt(dataPos, 10);
+
         let mainActivityItem = {};
-        mainActivityItem.code = newUUID;
-        mainActivityItem.label = elem.getAttribute('data-main-label');
-        mainActivityItem.value = elem.getAttribute('data-main-value')
+        mainActivityItem.code = UUIDs[pos];
+        mainActivityItem.label = elem.getAttribute('data-label');
+        mainActivityItem.value = elem.getAttribute('data-value');
         mainActivityItem.timestamp = getDateTime();
 
         // Push the main-activity item object to the mainActivityData array
-        if (elem.value != '') {
+        if (mainActivityItem.value != '') {
             mainActivityData.push(mainActivityItem);
         };
     });
@@ -44,13 +53,16 @@ const fillData = () => {
     let subActivityElems = document.querySelectorAll('.sub-activity');
     subActivityElems.forEach(function (elem, index) {
         // Use an object to store the label and value of each sub-activity item
+        let dataPos = elem.getAttribute('data-pos') || '0';
+        let pos = parseInt(dataPos, 10);
+
         let subActivityItem = {};
-        subActivityItem.code = newUUID;
+        subActivityItem.code = UUIDs[pos];
         subActivityItem.label = elem.getAttribute('data-label');
         subActivityItem.value = elem.value;
 
         // Push the sub-activity item object to the subActivityData array
-        if (elem.value != '') {
+        if (subActivityItem.value != '') {
             subActivityData.push(subActivityItem);
         };
     });

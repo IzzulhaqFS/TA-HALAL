@@ -71,10 +71,9 @@ class IngredientController extends Controller
         return response('', 204);
 
         if ($ingredient->type == 'Hewani') {
-            return redirect()->route('hewani.certificate', ['ingredient_id' => $ingredient->id])
-                ->with('success', 'Bahan berhasil disimpan.');
+            return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
         } else {
-
+            return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
         }
         
     }

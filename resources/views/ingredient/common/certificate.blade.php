@@ -7,11 +7,17 @@
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
         @if ($ingredient->type == 'Hewani')
-        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="Cek Sertifikat Halal" data-main-value="">
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" 
+            data-pos='0' 
+            data-label="Cek Sertifikat Halal" 
+            data-value="">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @else
-        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-main-label="Cek sertifikat halal" data-main-value="">
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" 
+            data-pos='0'
+            data-label="Cek sertifikat halal" 
+            data-value="">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @endif
@@ -42,42 +48,47 @@
                     <div class="preview">
                         <div>
                             <label for="regular-form-1" class="form-label">Nama Produk</label>
-                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->product_name}}">
+                            <input type="text" class="form-control" disabled value="{{ $ingredient->product_name}}">
                         </div>
                         <div class="mt-3">
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
-                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->name }}">
+                            <input type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
                         <form id="is-halal-certified-form" action="{{ route('ingredient.certificate.store') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                <input id="regular-form-1" type="hidden" class="form-control sub-activity" data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
+                                @if ($ingredient->type == 'Hewani')
+                                <input type="hidden" class="form-control main-activity" data-pos='1' data-label="Cek Informasi Sertifikat Halal" data-value="Syubhat">
+                                @else
+                                <input type="hidden" class="form-control main-activity" data-pos='1' data-label="Cek informasi sertifikat halal" data-value="Syubhat">
+                                @endif
+                                <input type="hidden" class="form-control sub-activity" data-pos='1' data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah Bahan Telah Bersertifikat Halal?</label>
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
-                                    <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-label="Apakah Bahan Telah Bersertifikat Halal?">Iya</option>
-                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-label="Apakah Bahan Telah Bersertifikat Halal?">Tidak</option>
+                                    <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos='1' data-label="Apakah Bahan Telah Bersertifikat Halal?">Iya</option>
+                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos='1' data-label="Apakah Bahan Telah Bersertifikat Halal?">Tidak</option>
                                 </select>
                             </div>
                             {{-- BEGIN: Certificate Detail --}}
                             <div id="certificate-detail" class="certificate-detail">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Nomor Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-label="Nomor Sertifikat" name="certificate-number" placeholder="Nomor Sertifikat">
+                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Nomor Sertifikat" name="certificate-number" placeholder="Nomor Sertifikat">
                                 </div>
                                 <div class="mt-3">
                                     <label for="regular-form-1" class="form-label">Lembaga Penerbit Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-label="Lembaga Penerbit Sertifikat" name="certificate-institution" placeholder="Lembaga Penerbit Sertifikat">
+                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Lembaga Penerbit Sertifikat" name="certificate-institution" placeholder="Lembaga Penerbit Sertifikat">
                                 </div>
                                 <div style="display: flex; flex-wrap: wrap;" class="mt-1">
                                     <div class="mt-3">
                                         <label for="regular-form-1" class="form-label">Mulai Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-label="Mulai Masa Berlaku" name="certificate-start-date" placeholder="Mulai Masa Berlaku">
+                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Mulai Masa Berlaku" name="certificate-start-date" placeholder="Mulai Masa Berlaku">
                                     </div>
                                     <div class="mt-3 ml-5">
                                         <label for="regular-form-1" class="form-label">Akhir Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-label="Akhir Masa Berlaku" name="certificate-end-date" placeholder="Akhir Masa Berlaku">
+                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Akhir Masa Berlaku" name="certificate-end-date" placeholder="Akhir Masa Berlaku">
                                     </div>
                                 </div>
                             </div>
@@ -110,11 +121,11 @@
             if (selectEl.value === "1") {
                 // If it is, show the certificate-detail div
                 certDetailEl.style.display = 'block';
-                document.getElementById('main-header').setAttribute('data-main-value', 'Halal');
+                document.getElementById('main-header').setAttribute('data-value', 'Halal');
             } else {
                 // Otherwise, hide it
                 certDetailEl.style.display = 'none';
-                document.getElementById('main-header').setAttribute('data-main-value', 'Syubhat');
+                document.getElementById('main-header').setAttribute('data-value', 'Syubhat');
             }
         });
 

@@ -7,11 +7,11 @@
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
         @if ($ingredient->type == 'Hewani')
-        <h2 class="text-lg font-medium mr-auto main-activity" data-main-label="Cek Sertifikat Halal">
+        <h2 class="text-lg font-medium mr-auto main-activity" data-label="Cek Sertifikat Halal">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @else
-        <h2 class="text-lg font-medium mr-auto main-activity" data-main-label="Cek sertifikat halal">
+        <h2 class="text-lg font-medium mr-auto main-activity" data-label="Cek sertifikat halal">
             Pengecekan Sertifikat Halal Bahan
         </h2>
         @endif
