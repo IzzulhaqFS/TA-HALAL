@@ -31,6 +31,7 @@ const fillData = () => {
     for (let i = 0; i < mainActivityElems.length; i++) {
         UUIDs.push(generateUUID());
     };
+    console.log('UUIDs:', UUIDs);
 
     mainActivityElems.forEach(function (elem, index) {
         // Use an object to store the label and value of each main-activity item

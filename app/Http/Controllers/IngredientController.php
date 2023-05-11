@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class IngredientController extends Controller
 {
@@ -59,24 +60,36 @@ class IngredientController extends Controller
         return view('ingredient/common/certificate', \compact('ingredient'));
     }
     
-    public function storeCertificate(storeCertificateRequest $request)
+    public function storeCertificate(Request $request)
     {
         $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));
         $halal = $request->input('is-halal-certified');
         
         if ($halal) {
-            $ingredient->update(['status_halal' => "Halal"]);
-            return response('', 204);
-        };
-        return response('', 204);
+            // Validate the request if is-halal-certified is truthy
+            $validator = Validator::make($request->all(), [
+                'is-halal-certified' => 'required',
+                'certificate-number' => 'required',
+                'certificate-institution' => 'required',
+                'certificate-start-date' => 'required',
+                'certificate-end-date' => 'required',
+                'ingredient_id' => 'required',
+            ]);
 
-        if ($ingredient->type == 'Hewani') {
-            return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
-        } else {
-            return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
-        }
-        
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+        $ingredient->update(['status_halal' => "Halal"]);
+        return response('', 204);
     }
+    
+    if ($ingredient->type == 'Hewani') {
+        return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+    } else {
+        return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+    }    
+}
 
     
     public function show($ingredient_id)

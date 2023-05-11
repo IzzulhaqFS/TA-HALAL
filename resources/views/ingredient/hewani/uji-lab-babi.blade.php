@@ -6,15 +6,12 @@
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        @if ($ingredient->type == 'Hewani')
-        <h2 class="text-lg font-medium mr-auto main-activity" data-label="Cek Sertifikat Halal">
-            Pengecekan Sertifikat Halal Bahan
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" 
+            data-pos="0" 
+            data-label="Cek Certificate Analysis" 
+            data-value="Syubhat">
+            Pengecekan Hasil Uji Laboratorium
         </h2>
-        @else
-        <h2 class="text-lg font-medium mr-auto main-activity" data-label="Cek sertifikat halal">
-            Pengecekan Sertifikat Halal Bahan
-        </h2>
-        @endif
     </div>
     @if ($errors->any())
     <div class="alert alert-danger mt-2" style="display: inline-block;">
@@ -48,37 +45,42 @@
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
-                        <form id="is-halal-certified-form" action="{{ route('ingredient.certificate.store') }}" method="POST">
+                        <form id="is-not-babi-certified-form" action="{{ route('hewani.uji-lab-babi.store') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                <input id="regular-form-1" type="hidden" class="form-control sub-activity" data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <label for="regular-form-1" class="form-label">Apakah Bahan Telah Bersertifikat Halal?</label>
-                                <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
+                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kandungan DNA babi pada bahan?</label>
+                                <select id="is-not-babi-certified-select" class="form-control" name="is-not-babi-certified">
                                     <option value="">-- Pilih --</option>
-                                    <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-label="Apakah Bahan Telah Bersertifikat Halal?">Iya</option>
-                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-label="Apakah Bahan Telah Bersertifikat Halal?">Tidak</option>
+                                    <option value="1" {{ old('is-not-babi-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada bahan?">Ada</option>
+                                    <option value="0" {{ old('is-not-babi-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada bahan?">Tidak ada</option>
                                 </select>
                             </div>
-                            {{-- BEGIN: Certificate Detail --}}
-                            <div id="certificate-detail" class="certificate-detail">
+                            {{-- BEGIN: Uji Babi Detail --}}
+                            <div id="uji-babi-detail" class="uji-babi-detail main-activity" 
+                                data-pos="1"
+                                data-label="Cek COA DNA Babi"
+                                data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Nomor Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-label="Nomor Sertifikat" name="certificate-number" placeholder="Nomor Sertifikat">
+                                    <label for="regular-form-1" class="form-label">Nomor COA</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Nomor COA" name="coa-number" placeholder="Nomor COA">
                                 </div>
                                 <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Lembaga Penerbit Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-label="Lembaga Penerbit Sertifikat" name="certificate-institution" placeholder="Lembaga Penerbit Sertifikat">
+                                    <label for="regular-form-1" class="form-label">Parameter</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Parameter" name="parameter" placeholder="Parameter">
                                 </div>
-                                <div style="display: flex; flex-wrap: wrap;" class="mt-1">
-                                    <div class="mt-3">
-                                        <label for="regular-form-1" class="form-label">Mulai Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-label="Mulai Masa Berlaku" name="certificate-start-date" placeholder="Mulai Masa Berlaku">
-                                    </div>
-                                    <div class="mt-3 ml-5">
-                                        <label for="regular-form-1" class="form-label">Akhir Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-label="Akhir Masa Berlaku" name="certificate-end-date" placeholder="Akhir Masa Berlaku">
-                                    </div>
+                                <div class="mt-3">
+                                    <label for="regular-form-1" class="form-label">Metode</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Metode" name="metode" placeholder="Metode">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab</label>
+                                    <select id="hasil-uji-lab-select" class="form-control" name="hasil-uji-lab">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="1" {{ old('hasil-uji-lab') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Terdeteksi</option>
+                                        <option value="0" {{ old('hasil-uji-lab') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
+                                    </select>
                                 </div>
                             </div>
                             {{-- END: Certificate Detail --}}
@@ -96,71 +98,67 @@
     <!-- END: Form -->
 
     @include('../layout/components/processing-script')
-    @section('getMainValue')
-        <script>
-            const getMainValue = () => {
-                return mainValue
-            };
-        </script>
-    @show
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        // Display Certificate Detail if isHalalCertified 
-        // Get a reference to the select element and the certificate-detail div
-        let selectEl = document.querySelector('#is-halal-certified-select');
-        let certDetailEl = document.querySelector('#certificate-detail');
-        let mainValue;
-        // Add an event listener to the select element to listen for changes
-        selectEl.addEventListener('change', function() {
-        // Check if the selected value is "1"
-        if (selectEl.value === "1") {
-            // If it is, show the certificate-detail div
-            certDetailEl.style.display = 'block';
-            mainValue = 'Halal';
-        } else {
-            // Otherwise, hide it
-            certDetailEl.style.display = 'none';
-            mainValue = 'Syubhat';
-        }
+        // Display Certificate Detail if isNotBabiCertified 
+        // Get a reference to the select element and the uji-babi-detail div
+        let isCertifiedSelectEl = document.querySelector('#is-not-babi-certified-select');
+        let ujiBabiDetailEl = document.querySelector('#uji-babi-detail');
+        let HasilUjiBabiSelectEl = document.querySelector('#hasil-uji-lab-select');
+        
+        isCertifiedSelectEl.addEventListener('change', function() {
+            if (isCertifiedSelectEl.value === "1") {
+                ujiBabiDetailEl.style.display = 'block';
+            } else {
+                ujiBabiDetailEl.style.display = 'none';
+            }
+        });
+        
+        HasilUjiBabiSelectEl.addEventListener('change', function() {
+            if (HasilUjiBabiSelectEl.value === "1") {
+                ujiBabiDetailEl.setAttribute('data-value', 'Haram');
+            } else {
+                ujiBabiDetailEl.setAttribute('data-value', 'Halal');
+            }
         });
 
         // Call the event listener once on page load to set the initial state of the div
-        selectEl.dispatchEvent(new Event('change'));
+        isCertifiedSelectEl.dispatchEvent(new Event('change'));
     </script>
     
     <script>
-        // Process Activity if isHalalCertified
+        // Process Activity if isNotBabiCertified
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            let selectEl = document.querySelector('#is-halal-certified-select');
-            let form = document.querySelector('#is-halal-certified-form');
+            let form = document.querySelector('#is-not-babi-certified-form');
             
-            if (selectEl.value === "1") {
-                // Serialize the form data
-                let formData = new FormData(form);
+            // Serialize the form data
+            let formData = new FormData(form);
 
-                try {
-                    // Send the POST request to the Laravel route
-                    let response = await fetch(form.action, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        },
-                        body: new URLSearchParams(formData).toString(),
-                    });
+            try {
+                // Send the POST request to the Laravel route
+                let response = await fetch(form.action, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: new URLSearchParams(formData).toString(),
+                });
 
-                    if (response.redirected) {
-                        window.location.href = response.url;
-                    } else if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    
-                    await processActivity('{{ csrf_token() }}');
-                } catch (error) {
-                    // Handle any errors that occur during the request
-                    console.error(error);
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
+                let selectEl = document.querySelector('#is-not-babi-certified-select');
+                if (selectEl.value === "1") {
+                    await processActivity('{{ csrf_token() }}');
+                }
+            } catch (error) {
+                // Handle any errors that occur during the request
+                console.error(error);
             }
         })
     </script>

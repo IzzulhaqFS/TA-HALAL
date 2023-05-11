@@ -58,21 +58,26 @@
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                @if ($ingredient->type == 'Hewani')
-                                <input type="hidden" class="form-control main-activity" data-pos='1' data-label="Cek Informasi Sertifikat Halal" data-value="Syubhat">
-                                @else
-                                <input type="hidden" class="form-control main-activity" data-pos='1' data-label="Cek informasi sertifikat halal" data-value="Syubhat">
-                                @endif
-                                <input type="hidden" class="form-control sub-activity" data-pos='1' data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <label for="regular-form-1" class="form-label">Apakah Bahan Telah Bersertifikat Halal?</label>
+                                <input type="hidden" class="form-control sub-activity" data-pos='0' data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <label for="regular-form-1" class="form-label">Apakah bahan telah bersertifikat halal?</label>
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
-                                    <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos='1' data-label="Apakah Bahan Telah Bersertifikat Halal?">Iya</option>
-                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos='1' data-label="Apakah Bahan Telah Bersertifikat Halal?">Tidak</option>
+                                    <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Iya</option>
+                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Tidak</option>
                                 </select>
                             </div>
                             {{-- BEGIN: Certificate Detail --}}
-                            <div id="certificate-detail" class="certificate-detail">
+                            @if ($ingredient->type == 'Hewani')
+                            <div id="certificate-detail" class="certificate-detail main-activity" 
+                                data-pos='1' 
+                                data-label="Cek Informasi Sertifikat Halal" 
+                                data-value="">
+                            @else
+                            <div id="certificate-detail" class="certificate-detail main-activity" 
+                                data-pos='1' 
+                                data-label="Cek informasi sertifikat halal" 
+                                data-value="">
+                            @endif
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Nomor Sertifikat</label>
                                     <input type="text" class="form-control sub-activity" data-pos='1' data-label="Nomor Sertifikat" name="certificate-number" placeholder="Nomor Sertifikat">
@@ -122,10 +127,12 @@
                 // If it is, show the certificate-detail div
                 certDetailEl.style.display = 'block';
                 document.getElementById('main-header').setAttribute('data-value', 'Halal');
+                certDetailEl.setAttribute('data-value', 'Halal');
             } else {
                 // Otherwise, hide it
                 certDetailEl.style.display = 'none';
                 document.getElementById('main-header').setAttribute('data-value', 'Syubhat');
+                certDetailEl.setAttribute('data-value', '');
             }
         });
 
@@ -136,35 +143,35 @@
     <script>
         // Process Activity if isHalalCertified
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            let selectEl = document.querySelector('#is-halal-certified-select');
             let form = document.querySelector('#is-halal-certified-form');
-            
-            if (selectEl.value === "1") {
-                // Serialize the form data
-                let formData = new FormData(form);
+        
+            // Serialize the form data
+            let formData = new FormData(form);
 
-                try {
-                    // Send the POST request to the Laravel route
-                    let response = await fetch(form.action, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        },
-                        body: new URLSearchParams(formData).toString(),
-                    });
+            try {
+                // Send the POST request to the Laravel route
+                let response = await fetch(form.action, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: new URLSearchParams(formData).toString(),
+                });
 
-                    if (response.redirected) {
-                        window.location.href = response.url;
-                    } else if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    
-                    await processActivity('{{ csrf_token() }}');
-                } catch (error) {
-                    // Handle any errors that occur during the request
-                    console.error(error);
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
+                let selectEl = document.querySelector('#is-halal-certified-select');
+                if (selectEl.value === "1") {
+                    await processActivity('{{ csrf_token() }}');
+                }
+            } catch (error) {
+                // Handle any errors that occur during the request
+                console.error(error);
             }
         })
     </script>
