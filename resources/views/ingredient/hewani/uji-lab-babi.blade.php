@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Pengecekan Sertifikat Halal Bahan</title>
+    <title>Pengecekan Hasil Uji Laboratorium</title>
 @endsection
 
 @section('subcontent')
@@ -112,6 +112,7 @@
                 ujiBabiDetailEl.style.display = 'block';
             } else {
                 ujiBabiDetailEl.style.display = 'none';
+                removeActivityValue(ujiBabiDetailEl)
             }
         });
         
@@ -125,6 +126,7 @@
 
         // Call the event listener once on page load to set the initial state of the div
         isCertifiedSelectEl.dispatchEvent(new Event('change'));
+        HasilUjiBabiSelectEl.dispatchEvent(new Event('change'));
     </script>
     
     <script>
@@ -147,6 +149,7 @@
                 });
 
                 if (response.redirected) {
+                    // Tambah msg
                     window.location.href = response.url;
                 } else if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);

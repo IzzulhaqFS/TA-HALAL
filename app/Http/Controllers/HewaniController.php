@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storeUjiBabiRequest;
+use App\Http\Requests\ProcessKelompokBahanRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,13 +10,18 @@ use Illuminate\Support\Facades\Validator;
 
 class HewaniController extends Controller
 {
-    public function checkUjiLabBabi($ingredient_id)
+    public function getIngredient ($ingredient_id)
     {
-        $ingredient = DB::table('ingredients')
+        return DB::table('ingredients')
             ->select('ingredients.*', 'products.name as product_name')
             ->leftJoin('products', 'ingredients.product_id', '=', 'products.id')
             ->where('ingredients.id', '=', $ingredient_id)
             ->first();
+    }
+
+    public function checkUjiLabBabi($ingredient_id)
+    {
+        $ingredient = $this->getIngredient($ingredient_id);
 
         return view('ingredient/hewani/uji-lab-babi', \compact('ingredient'));
     }
@@ -28,12 +33,12 @@ class HewaniController extends Controller
 
         if ($certified) {
             $validator = Validator::make($request->all(), [
-                'is-not-babi-certified' => 'required',
-                'coa-number' => 'required',
-                'parameter' => 'required',
-                'metode' => 'required',
-                'hasil-uji-lab' => 'required',
-                'ingredient_id' => 'required',
+                'is-not-babi-certified' => 'required|string',
+                'coa-number' => 'required|string',
+                'parameter' => 'required|string',
+                'metode' => 'required|string',
+                'hasil-uji-lab' => 'required|string',
+                'ingredient_id' => 'required|string',
             ]);
 
             if ($validator->fails()) {
@@ -49,8 +54,48 @@ class HewaniController extends Controller
             return response('', 204);
         };
 
-        return response('aman', 200);
-        // return redirect()->route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id]);
-        
+        return redirect()->route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id]);
+    }
+
+    public function checkKelompokBahan($ingredient_id)
+    {
+        $ingredient = $this->getIngredient($ingredient_id);
+
+        return view('ingredient/hewani/kelompok-bahan', \compact('ingredient'));
+    }
+
+    public function processKelompokBahan (ProcessKelompokBahanRequest $request, $ingredient_id)
+    {
+        $ingredient = $this->getIngredient($ingredient_id);
+
+        $kelompokBahan = $request->input('kelompok-bahan');
+        $bahanBakuSembelih = $request->input('bahan-baku-sembelih');
+        $bahanBakuNonSembelih = $request->input('bahan-baku-nonsembelih');
+
+
+        !empty($bahanBakuSembelih)
+            ? $bahanBaku = $bahanBakuSembelih
+            : $bahanBaku = $bahanBakuNonSembelih;
+
+        if ($kelompokBahan == 'sembelih') {
+            if ($bahanBaku == 'darah') {
+                return redirect()->route('hewani.kehalalan-hewan', 
+                    ['ingredient_id' => $ingredient->id, 'bahanBaku' => $bahanBaku, 'isHalal' => false]);        
+            }
+
+            return redirect()->route('hewani.' . $bahanBaku, 
+                ['ingredient_id' => $ingredient->id, 'bahanBaku' => $bahanBaku]);
+        } else {
+            return redirect()->route('hewani.kehalalan-hewan', 
+                ['ingredient_id' => $ingredient->id, 'bahanBaku' => $bahanBaku, 'isHalal' => true]);
+        }
+    }
+
+    public function checkDaging(Request $request, $ingredient_id)
+    {
+        $bahanBaku = $request->query('bahanBaku');
+        $ingredient = $this->getIngredient($ingredient_id);
+
+        return view('ingredient/hewani/daging', \compact('ingredient', 'bahanBaku'));
     }
 }

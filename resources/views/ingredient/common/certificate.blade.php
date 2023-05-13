@@ -132,7 +132,7 @@
                 // Otherwise, hide it
                 certDetailEl.style.display = 'none';
                 document.getElementById('main-header').setAttribute('data-value', 'Syubhat');
-                certDetailEl.setAttribute('data-value', '');
+                removeActivityValue(certDetailEl);
             }
         });
 
