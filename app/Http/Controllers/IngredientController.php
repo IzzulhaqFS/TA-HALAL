@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\CreateIngredientRequest;
 use App\Models\Ingredient;
 use App\Models\Product;
@@ -98,11 +97,13 @@ class IngredientController extends Controller
     }
 
     public function destroy($ingredient_id)
-    {
-        $deleted = Ingredient::findOrFail($ingredient_id)->delete();
+    {   
+        $ingredient = Ingredient::findOrFail($ingredient_id);
+        $product_id = $ingredient->product->id;
+        $deleted = $ingredient->delete();
 
         if ($deleted) {
-            return redirect()->back()->with('success', 'Bahan berhasil dihapus.');
+            return redirect()->route('product.show', ['product_id' => $product_id])->with('success', 'Bahan berhasil dihapus.');
         } else {
             return redirect()->back()->with('error', 'Bahan gagal dihapus.');
         }

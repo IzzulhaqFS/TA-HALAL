@@ -62,11 +62,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/check/kelompok-bahan', [HewaniController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
         Route::get('/{ingredient_id}/process/kelompok-bahan', [HewaniController::class, 'processKelompokBahan'])->name('kelompok-bahan.process');
         
-        Route::get('/{ingredient_id}/check/daging', [HewaniController::class, 'checkDaging'])->name('daging');
-        Route::get('/{ingredient_id}/check/lemak', [HewaniController::class, 'checkLemak'])->name('lemak');
-        Route::get('/{ingredient_id}/check/kulit', [HewaniController::class, 'checkKulit'])->name('kulit');
-        Route::get('/{ingredient_id}/check/tulang', [HewaniController::class, 'checkTulang'])->name('tulang');
-        Route::get('/{ingredient_id}/check/jerohan', [HewaniController::class, 'checkJerohan'])->name('jerohan');
+        Route::get('/{ingredient_id}/check/bahan-baku', [HewaniController::class, 'checkBahanBaku'])->name('bahan-baku');
+        Route::get('/{ingredient_id}/process/bahan-baku', [HewaniController::class, 'processBahanBaku'])->name('bahan-baku.process');
         
         Route::get('/{ingredient_id}/check/kehalalan-bahan', [HewaniController::class, 'checkKehalalanHewan'])->name('kehalalan-bahan');
         Route::get('/{ingredient_id}/check/sembelih', [HewaniController::class, 'checkSembelih'])->name('sembelih');

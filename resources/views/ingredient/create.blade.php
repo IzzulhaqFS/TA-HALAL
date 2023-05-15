@@ -65,7 +65,7 @@
                             </div>
                             
                             <div id="mover-container" class="mt-5">
-                                <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                                <a href="{{ route('product.show', ['product_id' => $product->id]) }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                                 <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
                             </div>
                         </div>

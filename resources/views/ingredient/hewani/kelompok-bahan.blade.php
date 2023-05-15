@@ -97,7 +97,7 @@
                         </form>
                         {{-- END: Form --}}
                         <div id="mover-container" class="mt-5">
-                            <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                            <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                             <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
                         </div>
                     </div>

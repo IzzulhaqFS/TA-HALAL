@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Pengecekan Asal Bahan Daging</title>
+    <title>Pengecekan Bahan Daging</title>
 @endsection
 
 @section('subcontent')
@@ -10,7 +10,7 @@
             data-pos="0" 
             data-label="Cek Daging" 
             data-value="Syubhat">
-            Pengecekan Asal Bahan Daging
+            Pengecekan Bahan Daging
         </h2>
     </div>
     @if ($errors->any())
@@ -47,31 +47,34 @@
                         </div>
                         <div class="mt-3">
                             <label for="regular-form-1" class="form-label">Bahan Baku</label>
-                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $bahanBaku }}">
+                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku) }}">
                         </div>
                         {{-- BEGIN: Form --}}
-                        <form id="cek-daging-form" action="{{ route('hewani.kehalalan-bahan', ['ingredient_id' => $ingredient->id]) }}" method="GET">
+                        <form id="cek-daging-form" action="{{ route('hewani.bahan-baku.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-3">
                                 <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <input type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="">
+
                                 <label for="regular-form-1" class="form-label">Apakah hewan asal daging diketahui?</label>
-                                <select id="cek-daging-select" class="form-control" name="cek-daging">
+                                <select id="asal-hewan-diketahui-select" class="form-control" name="asal-hewan-diketahui">
                                     <option value="">-- Pilih --</option>
-                                    <option value="1" {{ old('cek-daging') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah hewan asal daging diketahui?">Diketahui</option>
-                                    <option value="0" {{ old('cek-daging') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah hewan asal daging diketahui?">Tidak Diketahui</option>
+                                    <option value="1" {{ old('asal-hewan-diketahui') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah hewan asal daging diketahui?">Diketahui</option>
+                                    <option value="0" {{ old('asal-hewan-diketahui') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah hewan asal daging diketahui?">Tidak Diketahui</option>
                                 </select>
                             </div>
     
                             {{-- BEGIN: Cek Asal Hewan Daging--}}
-                            <div id="cek-asal-hewan-daging" class="cek-asal-hewan-daging main-activity" 
+                            <div id="asal-hewan-halal" class="asal-hewan-halal main-activity" 
                                 data-pos="1"
                                 data-label="Cek Asal Hewan Bahan Daging"
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Apakah daging berasal dari hewan halal?</label>
-                                    <select id="is-asal-hewan-halal-select" class="form-control" name="is-asal-hewan-halal">
+                                    <select id="asal-hewan-halal-select" class="form-control" name="asal-hewan-halal">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('is-asal-hewan-halal') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Apakah daging berasal dari hewan halal?">Iya</option>
-                                        <option value="0" {{ old('is-asal-hewan-halal') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Apakah daging berasal dari hewan halal?">Tidak</option>
+                                        <option value="1" {{ old('asal-hewan-halal') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Apakah daging berasal dari hewan halal?">Iya</option>
+                                        <option value="0" {{ old('asal-hewan-halal') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Apakah daging berasal dari hewan halal?">Tidak</option>
                                     </select>
                                 </div>
                                 <div class="mt-3">
@@ -108,7 +111,7 @@
                                     <select id="cek-serat-daging-select" class="form-control" name="cek-serat-daging">
                                         <option value="">-- Pilih --</option>
                                         <option value="halus-renggang" {{ old('cek-serat-daging') == 'halus-renggang' ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Bagaimana Serat Daging?">Halus & Renggang</option>
-                                        <option value="kasar-rapat" {{ old('cek-serat-daging') == 'merah-tua' ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Bagaimana Serat Daging?">Kasar & Rapat</option>
+                                        <option value="kasar-rapat" {{ old('cek-serat-daging') == 'kasar-rapat' ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Bagaimana Serat Daging?">Kasar & Rapat</option>
                                         <option value="halus-rapat" {{ old('cek-serat-daging') == 'halus-rapat' ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Bagaimana Serat Daging?">Halus & Rapat</option>
                                     </select>
                                 </div>
@@ -124,9 +127,9 @@
                                     <label for="regular-form-1" class="form-label">Bagaimana Tekstur Daging?</label>
                                     <select id="cek-tekstur-daging-select" class="form-control" name="cek-tekstur-daging">
                                         <option value="">-- Pilih --</option>
-                                        <option value="halus-renggang" {{ old('cek-tekstur-daging') == 'halus-renggang' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Halus & Renggang</option>
-                                        <option value="kasar-rapat" {{ old('cek-tekstur-daging') == 'merah-tua' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Kasar & Rapat</option>
-                                        <option value="halus-rapat" {{ old('cek-tekstur-daging') == 'halus-rapat' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Halus & Rapat</option>
+                                        <option value="lunak-kenyal" {{ old('cek-tekstur-daging') == 'lunak-kenyal' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Lunak & Kenyal</option>
+                                        <option value="padat-kaku" {{ old('cek-tekstur-daging') == 'padat-kaku' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Padat & Kaku</option>
+                                        <option value="lembut" {{ old('cek-tekstur-daging') == 'lembut' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Bagaimana Tekstur Daging?">Lembut</option>
                                     </select>
                                 </div>
                             </div>
@@ -134,7 +137,7 @@
                         </form>
                         {{-- END: Form --}}
                         <div id="mover-container" class="mt-5">
-                            <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                            <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                             <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
                         </div>
                     </div>
@@ -149,39 +152,111 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        // Display Certificate Detail if isNotBabiCertified 
-        // Get a reference to the select element and the cek-asal-hewan-daging div
-        let kelompokBahanSelectEl = document.querySelector('#cek-daging-select');
-        let bahanSembelihDetailEl = document.querySelector('#cek-asal-hewan-daging');
-        let bahanNonsembelihDetailEl = document.querySelector('#cek-warna-daging');
+        let asalHewanHalalEl = document.querySelector('#asal-hewan-halal');
+        let cekWarnaEl = document.querySelector('#cek-warna-daging');
+        let cekSeratEl = document.querySelector('#cek-serat-daging');
+        let cekTeksturEl = document.querySelector('#cek-tekstur-daging');
+        let asalHewanDiketahuiSelectEl = document.querySelector('#asal-hewan-diketahui-select');
         
-        kelompokBahanSelectEl.addEventListener('change', function() {
-            if (kelompokBahanSelectEl.value === "sembelih") {
-                bahanSembelihDetailEl.style.display = 'block';
-                bahanSembelihDetailEl.setAttribute('data-value', 'Syubhat');
-                
-                bahanNonsembelihDetailEl.style.display = 'block';
-                bahanNonsembelihDetailEl.setAttribute('data-value', '');
-            } else {
-                bahanNonembelihDetailEl.style.display = 'block';
-                bahanNonembelihDetailEl.setAttribute('data-value', 'Syubhat');
+        asalHewanDiketahuiSelectEl.addEventListener('change', function() {
+            if (asalHewanDiketahuiSelectEl.value === "1") {
+                asalHewanHalalEl.style.display = 'block';
 
-                bahanSembelihDetailEl.style.display = 'none';
-                bahanSembelihDetailEl.setAttribute('data-value', '');
+                cekWarnaEl.style.display = 'none';
+                cekSeratEl.style.display = 'none';
+                cekTeksturEl.style.display = 'none';
+                removeActivityValue(cekWarnaEl);
+                removeActivityValue(cekSeratEl);
+                removeActivityValue(cekTeksturEl);
+            } else if (asalHewanDiketahuiSelectEl.value === "0"){
+                cekWarnaEl.style.display = 'block';
+                cekSeratEl.style.display = 'block';
+                cekTeksturEl.style.display = 'block';
+                
+                asalHewanHalalEl.style.display = 'none';
+                removeActivityValue(asalHewanHalalEl);
+            } else {
+                asalHewanHalalEl.style.display = 'none';
+                cekWarnaEl.style.display = 'none';
+                cekSeratEl.style.display = 'none';
+                cekTeksturEl.style.display = 'none';
+
+                removeActivityValue(asalHewanHalalEl);
+                removeActivityValue(cekWarnaEl);
+                removeActivityValue(cekSeratEl);
+                removeActivityValue(cekTeksturEl);
             }
         });
 
         // Call the event listener once on page load to set the initial state of the div
-        kelompokBahanSelectEl.dispatchEvent(new Event('change'));
+        asalHewanDiketahuiSelectEl.dispatchEvent(new Event('change'));
     </script>
-    
     <script>
-        // Process Activity if isNotBabiCertified
+        let asalHewanHalalSelectEl = document.querySelector('#asal-hewan-halal-select');
+        let cekWarnaSelectEl = document.querySelector('#cek-warna-daging-select');
+        let cekSeratSelectEl = document.querySelector('#cek-serat-daging-select');
+        let cekTeksturSelectEl = document.querySelector('#cek-tekstur-daging-select');
+
+        asalHewanHalalSelectEl.addEventListener('change', function() {
+            if (asalHewanHalalSelectEl.value === "1") {
+                asalHewanHalalEl.setAttribute('data-value', 'Halal');
+            } else if (asalHewanHalalSelectEl.value === "0") {
+                asalHewanHalalEl.setAttribute('data-value', 'Haram');
+            } else {
+                asalHewanHalalEl.setAttribute('data-value', '');
+            }
+        });
+
+        cekWarnaSelectEl.addEventListener('change', function() {
+            if (cekWarnaSelectEl.value === "merah-pucat") {
+                cekWarnaEl.setAttribute('data-value', 'Haram');
+            } else if (cekWarnaSelectEl.value === "") {
+                cekWarnaEl.setAttribute('data-value', '');
+            } else {
+                cekWarnaEl.setAttribute('data-value', 'Halal');
+            }
+        });
+
+        cekSeratSelectEl.addEventListener('change', function() {
+            if (cekSeratSelectEl.value === "halus-renggang") {
+                cekSeratEl.setAttribute('data-value', 'Haram');
+            } else if (cekSeratSelectEl.value === "") {
+                cekSeratEl.setAttribute('data-value', '');
+            } else {
+                cekSeratEl.setAttribute('data-value', 'Halal');
+            }
+        });
+
+        cekTeksturSelectEl.addEventListener('change', function() {
+            if (cekTeksturSelectEl.value === "lunak-kenyal") {
+                cekTeksturEl.setAttribute('data-value', 'Haram');
+            } else if (cekTeksturSelectEl.value === "") {
+                cekTeksturEl.setAttribute('data-value', '');
+            } else {
+                cekTeksturEl.setAttribute('data-value', 'Halal');
+            }
+        });
+
+    </script>
+
+
+    <script>
+        
         document.getElementById('right-btn').addEventListener('click', function(e) {
+            let kehalalanBahanEl = document.querySelector('#kehalalan-bahan');
+            kehalalanBahanEl.value = 'Halal';
+            
+            let mainActivityElems = document.querySelectorAll('.main-activity');
+            mainActivityElems.forEach(function (elem, index) {
+                let val = elem.getAttribute('data-value');
+                if (val === 'Haram') {
+                    kehalalanBahanEl.value = 'Haram';
+                };
+            });
+            
             let form = document.querySelector('#cek-daging-form');
             form.submit(); 
         })
     </script>
     {{-- END: Additional Scripts --}}
-
 @endsection

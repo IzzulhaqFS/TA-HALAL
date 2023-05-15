@@ -86,7 +86,7 @@
                             {{-- END: Certificate Detail --}}
                         </form>
                         <div id="mover-container" class="mt-5">
-                            <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                            <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                             <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
                         </div>
                     </div>
@@ -101,8 +101,6 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        // Display Certificate Detail if isNotBabiCertified 
-        // Get a reference to the select element and the uji-babi-detail div
         let isCertifiedSelectEl = document.querySelector('#is-not-babi-certified-select');
         let ujiBabiDetailEl = document.querySelector('#uji-babi-detail');
         let HasilUjiBabiSelectEl = document.querySelector('#hasil-uji-lab-select');
@@ -119,8 +117,10 @@
         HasilUjiBabiSelectEl.addEventListener('change', function() {
             if (HasilUjiBabiSelectEl.value === "1") {
                 ujiBabiDetailEl.setAttribute('data-value', 'Haram');
-            } else {
+            } else if HasilUjiBabiSelectEl.value === "0"{
                 ujiBabiDetailEl.setAttribute('data-value', 'Halal');
+            } else {
+                ujiBabiDetailEl.setAttribute('data-value', '');
             }
         });
 
@@ -130,7 +130,6 @@
     </script>
     
     <script>
-        // Process Activity if isNotBabiCertified
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             let form = document.querySelector('#is-not-babi-certified-form');
             

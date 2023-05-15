@@ -100,7 +100,7 @@
                             {{-- END: Certificate Detail --}}
                         </form>
                         <div id="mover-container" class="mt-5">
-                            <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                            <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                             <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
                         </div>
                     </div>
@@ -115,8 +115,6 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        // Display Certificate Detail if isHalalCertified 
-        // Get a reference to the select element and the certificate-detail div
         let selectEl = document.querySelector('#is-halal-certified-select');
         let certDetailEl = document.querySelector('#certificate-detail');
         
