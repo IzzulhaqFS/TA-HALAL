@@ -55,9 +55,8 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('hewani')->name('hewani.')->group(function() {
-        // Not implemented yet
         Route::get('/{ingredient_id}/check/uji-lab-babi', [HewaniController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
-        Route::put('/store/uji-lab-babi', [HewaniController::class, 'storeUjiLabBabi'])->name('uji-lab-babi.store');
+        Route::put('/process/uji-lab-babi', [HewaniController::class, 'processUjiLabBabi'])->name('uji-lab-babi.process');
 
         Route::get('/{ingredient_id}/check/kelompok-bahan', [HewaniController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
         Route::get('/{ingredient_id}/process/kelompok-bahan', [HewaniController::class, 'processKelompokBahan'])->name('kelompok-bahan.process');
@@ -65,9 +64,14 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/check/bahan-baku', [HewaniController::class, 'checkBahanBaku'])->name('bahan-baku');
         Route::get('/{ingredient_id}/process/bahan-baku', [HewaniController::class, 'processBahanBaku'])->name('bahan-baku.process');
         
-        Route::get('/{ingredient_id}/check/kehalalan-bahan', [HewaniController::class, 'checkKehalalanHewan'])->name('kehalalan-bahan');
+        Route::get('/{ingredient_id}/check/kehalalan-bahan', [HewaniController::class, 'checkKehalalanBahan'])->name('kehalalan-bahan');
+        Route::put('/{ingredient_id}/process/kehalalan-bahan', [HewaniController::class, 'processKehalalanBahan'])->name('kehalalan-bahan.process');
+        
         Route::get('/{ingredient_id}/check/sembelih', [HewaniController::class, 'checkSembelih'])->name('sembelih');
+        Route::put('/{ingredient_id}/process/sembelih', [HewaniController::class, 'processSembelih'])->name('sembelih.process');
+
         Route::get('/{ingredient_id}/check/pengolahan-tambahan', [HewaniController::class, 'checkPengolahanTambahan'])->name('pengolahan-tambahan');
+        Route::get('/{ingredient_id}/process/pengolahan-tambahan', [HewaniController::class, 'processPengolahanTambahan'])->name('pengolahan-tambahan.process');
 
         Route::get('/{ingredient_id}/check/pemanis', [HewaniController::class, 'checkPemanis'])->name('pemanis');
         Route::get('/{ingredient_id}/check/pewarna', [HewaniController::class, 'checkPewarna'])->name('pewarna');
@@ -82,7 +86,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('nabati')->name('nabati.')->group(function() {
         // Not implemented yet
         Route::get('/{ingredient_id}/check/uji-lab-babi', [NabatiController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
-        Route::put('/store/uji-lab-babi', [NabatiController::class, 'storeUjiLabBabi'])->name('uji-lab-babi.store');
+        Route::put('/process/uji-lab-babi', [NabatiController::class, 'processUjiLabBabi'])->name('uji-lab-babi.process');
 
         Route::get('/{ingredient_id}/check/uji-etanol', [NabatiController::class, 'checkUjiEtanol'])->name('uji-etanol');
         Route::put('/store/uji-etanol', [NabatiController::class, 'storeUjiEtanol'])->name('uji-etanol.store');

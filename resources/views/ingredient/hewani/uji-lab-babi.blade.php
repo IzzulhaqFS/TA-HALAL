@@ -45,7 +45,7 @@
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
-                        <form id="is-not-babi-certified-form" action="{{ route('hewani.uji-lab-babi.store') }}" method="POST">
+                        <form id="is-not-babi-certified-form" action="{{ route('hewani.uji-lab-babi.process') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
@@ -117,7 +117,7 @@
         HasilUjiBabiSelectEl.addEventListener('change', function() {
             if (HasilUjiBabiSelectEl.value === "1") {
                 ujiBabiDetailEl.setAttribute('data-value', 'Haram');
-            } else if HasilUjiBabiSelectEl.value === "0"{
+            } else if (HasilUjiBabiSelectEl.value === "0"){
                 ujiBabiDetailEl.setAttribute('data-value', 'Halal');
             } else {
                 ujiBabiDetailEl.setAttribute('data-value', '');
