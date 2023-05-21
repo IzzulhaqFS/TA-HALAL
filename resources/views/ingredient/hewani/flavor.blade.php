@@ -1,4 +1,5 @@
 <div id="flavor-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan Flavor --</b></h2>
     <div id="flavor-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="flavor-certificate-detail" class="main-activity" 
+    <div id="flavor-certificate-detail" class="main-activity" style="display: none;" 
         data-pos="" 
         data-label="Cek Informasi Sertifikat Halal Flavor" 
         data-value="">

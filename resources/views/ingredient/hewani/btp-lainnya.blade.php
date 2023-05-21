@@ -1,4 +1,5 @@
 <div id="btp-lainnya-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan BTP Lainnya --</b></h2>
     <div id="btp-lainnya-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="btp-lainnya-certificate-detail" class="main-activity" 
+    <div id="btp-lainnya-certificate-detail" class="main-activity" style="display: none;"
         data-pos="" 
         data-label="Cek Informasi Sertifikat Halal BTP Lainnya" 
         data-value="">

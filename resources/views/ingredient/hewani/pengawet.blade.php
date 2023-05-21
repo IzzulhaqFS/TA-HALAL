@@ -1,4 +1,5 @@
 <div id="pengawet-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan Pengawet --</b></h2>
     <div id="pengawet-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="pengawet-certificate-detail" class="main-activity" 
+    <div id="pengawet-certificate-detail" class="main-activity" style="display: none;"
         data-pos="" 
         data-label="Cek Informasi Halal Pengawet" 
         data-value="">

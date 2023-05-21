@@ -1,4 +1,5 @@
 <div id="garam-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan Garam --</b></h2>
     <div id="garam-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="garam-certificate-detail" class="main-activity" 
+    <div id="garam-certificate-detail" class="main-activity" style="display: none;"
         data-pos="" 
         data-label="Cek Informasi Sertifikat Halal Garam" 
         data-value="">

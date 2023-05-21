@@ -91,7 +91,7 @@
                         </form>
                         <div id="mover-container" class="mt-5">
                             <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
-                            <button id="right-btn" type="submit" class="btn btn-primary w-24 inline-block">Ambil Kesimpulan</button>
+                            <button id="right-btn" type="submit" class="btn btn-primary w-32 inline-block">Ambil Kesimpulan</button>
                         </div>
                     </div>
                 </div>

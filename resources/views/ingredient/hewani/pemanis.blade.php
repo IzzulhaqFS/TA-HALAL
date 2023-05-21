@@ -1,4 +1,5 @@
 <div id="pemanis-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan Pemanis --</b></h2>
     <div id="pemanis-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="pemanis-certificate-detail" class="main-activity" 
+    <div id="pemanis-certificate-detail" class="main-activity" style="display: none;"
         data-pos="" 
         data-label="Cek Informasi Sertifikat Halal Pemanis" 
         data-value="">

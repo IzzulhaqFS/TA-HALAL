@@ -1,4 +1,5 @@
 <div id="emulsifier-container" class="mt-6">
+    <hr>
     <h2 class="mt-4"><b>-- Pengecekan Emulsifier --</b></h2>
     <div id="emulsifier-detail" class="main-activity" 
     data-pos="" 
@@ -26,7 +27,7 @@
         </div>
     </div>
     
-    <div id="emulsifier-certificate-detail" class="main-activity" 
+    <div id="emulsifier-certificate-detail" class="main-activity" style="display: none;" 
         data-pos="" 
         data-label="Cek Informasi Sertifikat Halal Emulsifier" 
         data-value="">
