@@ -116,7 +116,8 @@
                                     <select id="agama-penyembelih-select" class="form-control" name="agama-penyembelih">
                                         <option value="">-- Pilih --</option>
                                         <option value="islam" {{ old('agama-penyembelih') == 'islam' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">Islam</option>
-                                        <option value="nonislam" {{ old('agama-penyembelih') == 'nonislam' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">Nonislam</option>
+                                        <option value="ahli-kitab" {{ old('agama-penyembelih') == 'ahli-kitab' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">Ahli kitab (Kristen / Yahudi)</option>
+                                        <option value="lainnya" {{ old('agama-penyembelih') == 'lainnya' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">lainnya</option>
                                     </select>
                                 </div>
                                 <div id="usia-penyembelih" class="mt-3 rph-activity" data-value="">
@@ -223,7 +224,7 @@
         }
 
         agamaPenyembelihSelectEl.addEventListener('change', function() {
-            if (agamaPenyembelihSelectEl.value === "nonislam") {
+            if (agamaPenyembelihSelectEl.value === "lainnya") {
                 agamaPenyembelihEl.setAttribute('data-value', 'Haram');
             } else if (agamaPenyembelihSelectEl.value === "") {
                 agamaPenyembelihEl.setAttribute('data-value', '');

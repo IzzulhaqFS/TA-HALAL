@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcessBahanBakuRequest;
+use App\Http\Requests\ProcessBtpRequest;
 use App\Http\Requests\ProcessKelompokBahanRequest;
 use App\Http\Requests\ProcessSembelihRequest;
 use App\Models\Ingredient;
@@ -162,5 +163,29 @@ class HewaniController extends Controller
         $ingredient = $this->getIngredientDetail($ingredient_id);
 
         return view('ingredient/hewani/pengolahan-tambahan', \compact('ingredient', 'bahanBaku')); 
+    }
+
+    public function processPengolahanTambahan(ProcessBtpRequest $request, $ingredient_id)
+    {
+        $listBTP = $request->input('list-btp');
+        $bahanBaku = $request->input('bahanBaku');
+        
+        return redirect()->route('hewani.btp', 
+            ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'list-btp' => $listBTP]);
+    }
+
+    public function checkBTP(Request $request, $ingredient_id)
+    {
+        $listBTP = $request->query('list-btp');
+        $loweredBTP = strtolower($listBTP);
+        $slugifiedBTP = str_replace(' ', '-', $loweredBTP);
+        $arrayBTP = explode(',', $slugifiedBTP);
+        
+        $bahanBaku = $request->query('bahanBaku');
+
+        $ingredient = $this->getIngredientDetail($ingredient_id);
+        
+        return view('ingredient/hewani/btp', \compact('ingredient', 'bahanBaku', 'arrayBTP')); 
+        
     }
 }

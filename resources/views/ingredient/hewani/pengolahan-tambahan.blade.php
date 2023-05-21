@@ -46,11 +46,11 @@
                         </div>
                         <div class="mt-3">
                             <label for="regular-form-1" class="form-label">Bahan Baku</label>
-                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku) }}">
+                            <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku)  }}">
                         </div>
-                        <form id="tambahan-form" action="{{ route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id])}}" method="GET">
+                        <form id="tambahan-form" action="{{ route('hewani.pengolahan-tambahan.process', ['ingredient_id' => $ingredient->id])}}" method="GET">
                             <div class="mt-3">
-                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <input id="bahan-baku" type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
                                 <label for="regular-form-1" class="form-label">Apakah terdapat pengolahan pada bahan?</label>
                                 <select id="is-ada-tambahan-select" class="form-control" name="is-ada-tambahan">
                                     <option value="">-- Pilih --</option>
@@ -63,13 +63,13 @@
                             <div id="tambahan-detail" class="tambahan-activity">
                                 <h2 class="mt-4"><b>-- Pilih Bahan Tambahan Pangan (BTP) pada Bahan --</b></h2>
                                 <div class="mt-4" id="list-bahan-tambahan">
-                                    <input id="list-btp" type="hidden" class="form-control sub-activity" data-label="Daftar Bahan Tambahan Pangan pada Bahan">
+                                    <input id="list-btp" type="hidden" class="form-control sub-activity" data-label="Daftar Bahan Tambahan Pangan pada Bahan" name="list-btp">
                                     
                                     <input id="checkbox-1" class="form-check-input mr-0 ml-3" data-label="Garam" data-value="Garam" type="checkbox">
                                     <label class="form-check-label ml-0" for="show-example-1">Garam</label>
 
-                                    <input id="checkbox-2" class="form-check-input mr-0 ml-3" data-label="Gula" data-value="Gula" type="checkbox">
-                                    <label class="form-check-label ml-0" for="show-example-1">Gula</label>
+                                    <input id="checkbox-2" class="form-check-input mr-0 ml-3" data-label="Gula/pemanis" data-value="Pemanis" type="checkbox">
+                                    <label class="form-check-label ml-0" for="show-example-1">Gula/pemanis</label>
                                     
                                     <input id="checkbox-3" class="form-check-input mr-0 ml-3" data-label="Flavor" data-value="Flavor" type="checkbox">
                                     <label class="form-check-label ml-0" for="show-example-1">Flavor</label>
@@ -77,7 +77,7 @@
                                     <input id="checkbox-4" class="form-check-input mr-0 ml-3" data-label="Pewarna" data-value="Pewarna" type="checkbox">
                                     <label class="form-check-label ml-0" for="show-example-1">Pewarna</label>
 
-                                    <input id="checkbox-5" class="form-check-input mr-0 ml-3" data-label="Penyedap" data-value="Penyedap" type="checkbox">
+                                    <input id="checkbox-5" class="form-check-input mr-0 ml-3" data-label="Penyedap" data-value="Penyedap Rasa" type="checkbox">
                                     <label class="form-check-label ml-0" for="show-example-1">Penyedap Rasa</label>
 
                                     <input id="checkbox-6" class="form-check-input mr-0 ml-3" data-label="Emulsifier" data-value="Emulsifier" type="checkbox">
@@ -91,7 +91,6 @@
                                 </div>
                             </div>
                             {{-- END: Tambahan Detail --}}
-
                         </form>
                         <!-- END: Form -->
                         <div id="mover-container" class="mt-5">
@@ -149,11 +148,9 @@
     
     <script>
         document.getElementById('right-btn').addEventListener('click', function(e) {
-            const checkedBTP = listBtpEl.value;
-            const arrayBTP = checkedBTP.split(',');
-            sessionStorage.setItem('tambahan-hewani', JSON.stringify(arrayBTP));
-            // Go to related all btp pages
-        })
+            let form = document.querySelector('#tambahan-form');
+            form.submit(); 
+        });
     </script>
     {{-- END: Additional Scripts --}}
 

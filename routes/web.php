@@ -72,15 +72,9 @@ Route::middleware('auth')->group(function() {
 
         Route::get('/{ingredient_id}/check/pengolahan-tambahan', [HewaniController::class, 'checkPengolahanTambahan'])->name('pengolahan-tambahan');
         Route::get('/{ingredient_id}/process/pengolahan-tambahan', [HewaniController::class, 'processPengolahanTambahan'])->name('pengolahan-tambahan.process');
-
-        Route::get('/{ingredient_id}/check/pemanis', [HewaniController::class, 'checkPemanis'])->name('pemanis');
-        Route::get('/{ingredient_id}/check/pewarna', [HewaniController::class, 'checkPewarna'])->name('pewarna');
-        Route::get('/{ingredient_id}/check/emulsifier', [HewaniController::class, 'checkEmulsifier'])->name('emulsifier');
-        Route::get('/{ingredient_id}/check/flavor', [HewaniController::class, 'checkFlavor'])->name('flavor');
-        Route::get('/{ingredient_id}/check/penyedap', [HewaniController::class, 'checkPenyedap'])->name('penyedap');
-        Route::get('/{ingredient_id}/check/garam', [HewaniController::class, 'checkGaram'])->name('garam');
-        Route::get('/{ingredient_id}/check/pengawet', [HewaniController::class, 'checkPengawet'])->name('pengawet');
-        Route::get('/{ingredient_id}/check/btp', [HewaniController::class, 'checkBtp'])->name('btp');
+        
+        Route::get('/{ingredient_id}/check/btp', [HewaniController::class, 'checkBTP'])->name('btp');
+        Route::get('/{ingredient_id}/process/btp', [HewaniController::class, 'processBTP'])->name('btp.process');
     });
 
     Route::prefix('nabati')->name('nabati.')->group(function() {
