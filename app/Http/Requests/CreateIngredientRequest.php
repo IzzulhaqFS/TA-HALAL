@@ -23,7 +23,7 @@ class CreateIngredientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'nama-bahan' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'product_id' => 'required|string|max:36',
         ];
@@ -37,7 +37,7 @@ class CreateIngredientRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Nama',
+            'nama-bahan' => 'Nama bahan',
             'type' => 'Tipe bahan',
             'product_id' => 'ID produk',
         ];

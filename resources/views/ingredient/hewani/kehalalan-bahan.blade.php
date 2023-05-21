@@ -53,8 +53,8 @@
                             @method('PUT')
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Status Kehalalan</label>
-                                <input id="regular-form-1" type="hidden" class="form-control" name="bahanBaku" disabled value="{{ $bahanBaku }}">
-                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan" disabled value="{{ $statusBahanBaku }}">
+                                <input id="regular-form-1" type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan" value="{{ $statusBahanBaku }}">
                             </div>
                         </form>
                         <!-- END: Form -->
@@ -76,7 +76,6 @@
             let mainHeaderEl = document.querySelector('#main-header');
             let form = document.querySelector('#kehalalan-bahan-form');
             let formData = new FormData(form);
-            
             try {
                 let response = await fetch(form.action, {
                     method: 'PUT',
@@ -99,6 +98,7 @@
                 }
                 
                 if (mainHeaderEl.getAttribute('data-value') === "Haram") {
+                    console.log('masuk haram');
                     await processActivity('{{ csrf_token() }}');
                 }
             } catch (error) {

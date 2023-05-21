@@ -31,7 +31,7 @@
                         <div class="preview">
                             <div>
                                 <label for="regular-form-1" class="form-label">Nama Produk</label>
-                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Produk" name="name" placeholder="Nama Produk">
+                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Produk" name="nama-produk" placeholder="Nama Produk">
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Supplier</label>

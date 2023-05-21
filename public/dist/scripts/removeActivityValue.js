@@ -22,4 +22,11 @@ function removeActivityValue(element) {
             option.classList.remove('sub-activity');
         });
     });
+    
+    // Select all input type checkboxes within the parent element
+    const checkboxes = element.querySelectorAll('input[type="checkbox"]');
+    // Uncheck each checkbox
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+    });
 }

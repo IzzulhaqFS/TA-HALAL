@@ -24,7 +24,7 @@ class CreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'nama-produk' => 'required|string|max:255',
             'supplier' => 'required|string|max:255',
         ];
     }
@@ -37,7 +37,7 @@ class CreateProductRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Nama bahan',
+            'nama-produk' => 'Nama produk',
             'supplier' => 'Supplier',
         ];
     }

@@ -70,28 +70,28 @@
                                 <h2 class="mt-4"><b>-- Detail Rumah Pemotongan Hewan (RPH)  --</b></h2>
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Nama Rumah Pemotongan Hewan (RPH)</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Nama RPH" placeholder="Nama RPH">
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Nama RPH" name="nama-rph" placeholder="Nama RPH">
                                 </div>
                                 <div class="mt-3">
                                     <label for="regular-form-1" class="form-label">Alamat Rumah Pemotongan Hewan (RPH)</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Alamat" placeholder="Alamat RPH">
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Alamat" name="alamat-rph" placeholder="Alamat RPH">
                                 </div>
                                 <div class="mt-3">
                                     <label for="regular-form-1" class="form-label">Nomor Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Nomor Sertifikat" placeholder="Nomor Sertifikat">
+                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Nomor Sertifikat" name="nomor-sertifikat-rph" placeholder="Nomor Sertifikat">
                                 </div>
                                 <div class="mt-3">
                                     <label for="regular-form-1" class="form-label">Lembaga Penerbit Sertifikat</label>
-                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Lembaga Penerbit Sertifikat" placeholder="Lembaga Penerbit Sertifikat">
+                                    <input type="text" class="form-control sub-activity" data-pos='1' data-label="Lembaga Penerbit Sertifikat" name="penerbit-rph" placeholder="Lembaga Penerbit Sertifikat">
                                 </div>
                                 <div style="display: flex; flex-wrap: wrap;" class="mt-1">
                                     <div class="mt-3">
                                         <label for="regular-form-1" class="form-label">Mulai Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Mulai Masa Berlaku" placeholder="Mulai Masa Berlaku">
+                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Mulai Masa Berlaku" name="mulai-berlaku-rph" placeholder="Mulai Masa Berlaku">
                                     </div>
                                     <div class="mt-3 ml-5">
                                         <label for="regular-form-1" class="form-label">Akhir Masa Berlaku</label>
-                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Akhir Masa Berlaku" placeholder="Akhir Masa Berlaku">
+                                        <input type="date" class="form-control sub-activity" data-pos='1' data-label="Akhir Masa Berlaku" name="akhir-berlaku-rph" placeholder="Akhir Masa Berlaku">
                                     </div>
                                 </div>
                             </div>
@@ -104,16 +104,16 @@
                                 data-value="">
                                 <h2 class="mt-4"><b>-- Cek Penyembelih --</b></h2>
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Nama RPH</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Nama RPH" placeholder="Nama RPH">
+                                    <label for="regular-form-1" class="form-label">Nama Rumah Pemotongan Hewan (RPH)</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Nama RPH" name="nama-rph" placeholder="Nama RPH">
                                 </div>
                                 <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Alamat" placeholder="Parameter">
+                                    <label for="regular-form-1" class="form-label">Alamat Rumah Pemotongan Hewan (RPH)</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Alamat" name="alamat-rph" placeholder="Alamat RPH">
                                 </div>
                                 <div id="agama-penyembelih" class="mt-3 rph-activity" data-value="">
                                     <label for="regular-form-1" class="form-label">Agama Penyembelih</label>
-                                    <select id="agama-penyembelih-select" class="form-control">
+                                    <select id="agama-penyembelih-select" class="form-control" name="agama-penyembelih">
                                         <option value="">-- Pilih --</option>
                                         <option value="islam" {{ old('agama-penyembelih') == 'islam' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">Islam</option>
                                         <option value="nonislam" {{ old('agama-penyembelih') == 'nonislam' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Agama Penyembelih">Nonislam</option>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div id="usia-penyembelih" class="mt-3 rph-activity" data-value="">
                                     <label for="regular-form-1" class="form-label">Usia Penyembelih</label>
-                                    <select id="usia-penyembelih-select" class="form-control">
+                                    <select id="usia-penyembelih-select" class="form-control" name="usia-penyembelih">
                                         <option value="">-- Pilih --</option>
                                         <option value="baligh" {{ old('usia-penyembelih') == 'baligh' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Usia Penyembelih">Sudah baligh</option>
                                         <option value="belum-baligh" {{ old('usia-penyembelih') == 'belum-baligh' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Usia Penyembelih">Belum baligh</option>
@@ -131,7 +131,7 @@
                                 <h2 class="mt-4"><b>-- Cek Metode Penyembelihan --</b></h2>
                                 <div id="metode-penyembelihan" class="mt-3 rph-activity" data-value="">
                                     <label for="regular-form-1" class="form-label">Metode</label>
-                                    <select id="metode-penyembelihan-select" class="form-control">
+                                    <select id="metode-penyembelihan-select" class="form-control" name="metode-penyembelihan">
                                         <option value="">-- Pilih --</option>
                                         <option value="tanpa-pingsan" {{ old('metode-penyembelihan') == 'tanpa-pingsan' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Metode Penyembelihan">Tanpa pemingsanan</option>
                                         <option value="pingsan" {{ old('metode-penyembelihan') == 'pingsan' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Metode Penyembelihan">Dengan pemingsanan</option>
@@ -163,6 +163,7 @@
         let agamaPenyembelihEl = document.querySelector('#agama-penyembelih');
         let usiaPenyembelihEl = document.querySelector('#usia-penyembelih');
         let metodePenyembelihanEl = document.querySelector('#metode-penyembelihan');
+        let kehalalanBahanEl = document.querySelector('#kehalalan-bahan');
         
         let isRumahHalalSelectEl = document.querySelector('#is-rumah-halal-select');
         let agamaPenyembelihSelectEl = document.querySelector('#agama-penyembelih-select');
@@ -176,18 +177,21 @@
                 rphDetailEl.style.display = 'none';
                 certificateDetailEl.setAttribute('data-value', 'Halal')
                 mainHeaderEl.setAttribute('data-value', 'Halal')
+                kehalalanBahanEl.value = 'Halal';
                 
                 removeActivityValue(rphDetailEl)
             } else if (isRumahHalalSelectEl.value === "0"){
                 rphDetailEl.style.display = 'block';
                 certificateDetailEl.style.display = 'none';
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
+                kehalalanBahanEl.value = ''
                 
                 removeActivityValue(certificateDetailEl)
             } else {
                 certificateDetailEl.style.display = 'none';
                 rphDetailEl.style.display = 'none';
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
+                kehalalanBahanEl.value = ''
 
                 removeActivityValue(certificateDetailEl)
                 removeActivityValue(rphDetailEl)
@@ -281,7 +285,10 @@
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 
-                await processActivity('{{ csrf_token() }}');
+                let kehalalanBahanEl = await document.querySelector('#kehalalan-bahan');
+                if (kehalalanBahanEl.value === 'Haram') {
+                    await processActivity('{{ csrf_token() }}');
+                }
 
             } catch (error) {
                 // Handle any errors that occur during the request

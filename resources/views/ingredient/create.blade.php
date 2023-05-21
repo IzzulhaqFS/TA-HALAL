@@ -45,7 +45,7 @@
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Nama Bahan</label>
-                                <input type="text" class="form-control sub-activity" data-label="Nama Bahan" name="name" placeholder="Nama Bahan">
+                                <input type="text" class="form-control sub-activity" data-label="Nama Bahan" name="nama-bahan" placeholder="Nama Bahan">
                             </div>
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Tipe Bahan</label>

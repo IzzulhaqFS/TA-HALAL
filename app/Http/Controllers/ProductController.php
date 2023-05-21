@@ -52,7 +52,7 @@ class ProductController extends Controller
         
         try {
             $product = $user->products()->create([
-                'name' => $request->input('name'),
+                'name' => $request->input('nama-produk'),
                 'supplier' => $request->input('supplier'),
             ]);
             

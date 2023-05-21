@@ -29,7 +29,7 @@ class IngredientController extends Controller
         
         try {
             $ingredient = $product->ingredients()->create([
-                'name' => $request->input('name'),
+                'name' => $request->input('nama-bahan'),
                 'type' => $request->input('type'),
                 'status_halal' => $statusHalal,
             ]);

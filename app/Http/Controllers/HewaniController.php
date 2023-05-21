@@ -77,14 +77,14 @@ class HewaniController extends Controller
 
         if ($kelompokBahan == 'sembelih') {
             if ($bahanBaku == 'darah') {
-                return redirect()->route('hewani.kehalalan-hewan', 
+                return redirect()->route('hewani.kehalalan-bahan', 
                     ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'statusBahanBaku' => 'Haram']);        
             }
 
             return redirect()->route('hewani.bahan-baku', 
                 ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku]);
         } else {
-            return redirect()->route('hewani.kehalalan-hewan', 
+            return redirect()->route('hewani.kehalalan-bahan', 
                 ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'statusBahanBaku' => 'Halal']);
         }
     }
