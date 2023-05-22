@@ -73,7 +73,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/process/pengolahan-tambahan', [HewaniController::class, 'processPengolahanTambahan'])->name('pengolahan-tambahan.process');
         
         Route::get('/{ingredient_id}/check/btp', [HewaniController::class, 'checkBTP'])->name('btp');
-        Route::get('/{ingredient_id}/process/btp', [HewaniController::class, 'processBTP'])->name('btp.process');
     });
 
     Route::prefix('nabati')->name('nabati.')->group(function() {

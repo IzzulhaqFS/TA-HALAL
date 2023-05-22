@@ -83,12 +83,9 @@
                             <label for="regular-form-1" class="form-label">Bahan Baku</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku) }}">
                         </div>
-                        <form id="btp-form" action="{{ route('hewani.btp.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
-                            {{-- Kurang pewarna & penyedap rasa --}}
-                            @foreach ($arrayBTP as $BTP)
-                                @include('../ingredient/hewani/' . $BTP)
-                            @endforeach
-                        </form>
+                        @foreach ($arrayBTP as $BTP)
+                            @include('../ingredient/hewani/' . $BTP)
+                        @endforeach
                         <div id="mover-container" class="mt-5">
                             <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                             <button id="right-btn" type="submit" class="btn btn-primary w-32 inline-block">Ambil Kesimpulan</button>
@@ -116,9 +113,8 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        document.getElementById('right-btn').addEventListener('click', function(e) {
-            let form = document.querySelector('#btp-form');
-            form.submit()
+        document.getElementById('right-btn').addEventListener('click', async function(e) {
+            await processActivity('{{ csrf_token() }}');
         })
     </script>
     {{-- END: Additional Scripts --}}
