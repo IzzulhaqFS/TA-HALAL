@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateIngredientRequest;
+use App\Models\EventLog;
 use App\Models\Ingredient;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class IngredientController extends Controller
@@ -79,22 +78,39 @@ class IngredientController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-        $ingredient->update(['status_halal' => "Halal"]);
-        return response('', 204);
+            $ingredient->update(['status_halal' => "Halal"]);
+            return response('', 204);
+        }
+
+        if ($ingredient->type == 'Hewani') {
+            return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+        } 
+
+        if ($ingredient->type == 'Nabati'){
+            return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+        }    
     }
     
-    if ($ingredient->type == 'Hewani') {
-        return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
-    } else {
-        return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
-    }    
-}
+    public function updateStatusHalal(Request $request, $ingredient_id)
+    {
+        if (empty($request->input('status-halal'))) {
+            return redirect()->back()->with('error', 'Bahan gagal diupdate.');
+        }
 
-    
+        $ingredient = Ingredient::findOrFail($ingredient_id);
+        $ingredient->update(['status_halal' => $request->input('status-halal')]);
+
+        return redirect()->route('ingredient.show', ['ingredient_id' => $ingredient_id]);
+    }
+
     public function show($ingredient_id)
     {
+        $ingredient = Ingredient::findOrFail($ingredient_id);
+        $listPotensiHaram = EventLog::where('ingredient_id', $ingredient_id)->where('status_halal', 'Haram')->get();
 
+        return view('ingredient/show', \compact('ingredient', 'listPotensiHaram'));
     }
+    
 
     public function destroy($ingredient_id)
     {   

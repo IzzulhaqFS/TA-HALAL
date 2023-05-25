@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}', [IngredientController::class, 'show'])->name('show');
         Route::get('/{ingredient_id}/edit', [IngredientController::class, 'edit'])->name('edit');
         Route::put('/{ingredient_id}', [IngredientController::class, 'update'])->name('update');
+        Route::put('/{ingredient_id}/status-halal', [IngredientController::class, 'updateStatusHalal'])->name('update.status-halal');
         Route::delete('/{ingredient_id}', [IngredientController::class, 'destroy'])->name('destroy');
         
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'checkCertificate'])->name('certificate');

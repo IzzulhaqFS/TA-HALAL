@@ -17,8 +17,13 @@ class Ingredient extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public static function getLatest(){
+    public static function getLatestId(){
         $latestIngredient = Ingredient::latest('created_at')->first();
         return $latestIngredient ? $latestIngredient->id : null;
+    }
+
+    public static function getType($ingredient_id){
+        $ingredient = Ingredient::findOrFail($ingredient_id);
+        return $ingredient ? $ingredient->type : null;
     }
 }

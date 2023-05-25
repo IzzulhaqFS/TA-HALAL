@@ -7,9 +7,7 @@ use App\Models\EventLog;
 use App\Models\Ingredient;
 use App\Models\Product;
 use App\Models\SubActivity;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Helpers\UuidGenerator;
 
 class ActivityController extends Controller
 {
@@ -19,12 +17,6 @@ class ActivityController extends Controller
         $mainActivity = $this->cleanData($request->input('main-activity'));
         $subActivity = $this->cleanData($request->input('sub-activity'));
 
-        $cleanedData = [
-            'event-log' => $mainActivity,
-            'sub-activity' => $subActivity,
-            'message' => 'Data successfully retrieved',
-        ];
-
         // Init identity variables
         $identity = ['ingredientId' => null, 'productId' => null, 'userId' => null];
 
@@ -33,16 +25,27 @@ class ActivityController extends Controller
             return $value['label'] === 'ingredient_id';
         });
 
-        Log::debug('LATEST INGREDIENT_ID:', ['id' => Ingredient::getLatest(), 'count' => Ingredient::count()]);
+        Log::debug('LATEST INGREDIENT_ID:', ['id' => Ingredient::getLatestId(), 'count' => Ingredient::count()]);
         // Fill data identity
         (!$hasIngredientId)
-            ? $identity['ingredientId'] = Ingredient::getLatest()
+            ? $identity['ingredientId'] = Ingredient::getLatestId()
             : $identity['ingredientId'] = $subActivity->where('label', 'ingredient_id')->pluck('value')->first();
         $identity['productId'] = $subActivity->where('label', 'product_id')->pluck('value')->first();
         $identity['userId'] = Product::findOrFail($identity['productId'])->user->id;
         
         $this->storeEventlog($mainActivity, $identity);
         $this->storeSubActivity($subActivity);
+
+        $ingredientType = Ingredient::getType($identity['ingredientId']);
+
+        $cleanedData = [
+            'user-id' => $identity['userId'],
+            'ingredient-id' => $identity['ingredientId'],
+            'ingredient-type' => strtolower($ingredientType),
+            'event-log' => $mainActivity,
+            'sub-activity' => $subActivity,
+            'message' => 'Data successfully retrieved',
+        ];
         
         return response()->json($cleanedData, 200);
     }
@@ -87,7 +90,7 @@ class ActivityController extends Controller
         }, collect());
     }
 
-    public function storeEventlog ($mainActivity, $identity) {
+    public function storeEventlog($mainActivity, $identity) {
         // map $mainActivity collection to transform each item into an array 
         // toArray convert collection of arrays to a plain PHP array
         $data = $mainActivity->map(function ($item) use ($identity) {
