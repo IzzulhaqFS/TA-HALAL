@@ -2861,6 +2861,10 @@ select{
 .m-5{
     margin: 1.25rem;
 }
+.my-5{
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
 .my-6{
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;

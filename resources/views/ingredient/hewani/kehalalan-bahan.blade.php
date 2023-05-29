@@ -99,7 +99,7 @@
                 
                 if (mainHeaderEl.getAttribute('data-value') === "Haram") {
                     console.log('masuk haram');
-                    await processActivity('{{ csrf_token() }}');
+                    await processActivity('{{ csrf_token() }}', 'rule');
                 }
             } catch (error) {
                 console.error(error);

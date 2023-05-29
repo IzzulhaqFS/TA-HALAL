@@ -6,12 +6,22 @@ use App\Http\Requests\CreateIngredientRequest;
 use App\Models\EventLog;
 use App\Models\Ingredient;
 use App\Models\Product;
+use App\Models\SubActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class IngredientController extends Controller
 {
+    public function getIngredientDetail($ingredient_id)
+    {
+        return DB::table('ingredients')
+            ->select('ingredients.*', 'products.name as product_name')
+            ->leftJoin('products', 'ingredients.product_id', '=', 'products.id')
+            ->where('ingredients.id', '=', $ingredient_id)
+            ->first();
+    }
+
     public function create($product_id)
     {
         $product = Product::select(['id', 'name'])->findOrFail($product_id);
@@ -105,10 +115,13 @@ class IngredientController extends Controller
 
     public function show($ingredient_id)
     {
-        $ingredient = Ingredient::findOrFail($ingredient_id);
-        $listPotensiHaram = EventLog::where('ingredient_id', $ingredient_id)->where('status_halal', 'Haram')->get();
+        $ingredient = $this->getIngredientDetail($ingredient_id);
+        $eventLogs = EventLog::with('subActivity')->where('ingredient_id', $ingredient_id)->get();        
+        $listPotensiHaram = $eventLogs->filter(function ($eventLog) {
+            return $eventLog->status_halal === 'Haram';
+        });
 
-        return view('ingredient/show', \compact('ingredient', 'listPotensiHaram'));
+        return view('ingredient/show', \compact('ingredient', 'eventLogs', 'listPotensiHaram'));
     }
     
 

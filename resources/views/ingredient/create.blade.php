@@ -134,7 +134,7 @@
                 // Continue with the processActivity function
                 const isPostiveSelect = document.querySelector('#is-positive-list-select');
                 if (isPostiveSelect.value === '1') {
-                    await processActivity('{{ csrf_token() }}');
+                    await processActivity('{{ csrf_token() }}', 'rule');
                 }
             } catch (error) {
                 // Handle any errors that occur during the request

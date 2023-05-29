@@ -45,15 +45,26 @@
                     @foreach ($ingredients as $key => $ingredient)
                         <tr class="intro-x">
                             <td>
-                                <p class="font-medium whitespace-nowrap ml-1">{{ $key + 1 + (($ingredients->currentPage() - 1) * $ingredients->perPage()) }}</p>
+                                <p class="font-medium whitespace-nowrap ml-1">{{ $key + 1 }}</p>
                             </td>
                             <td>
                                 <p class="font-medium text-center">{{ $ingredient->name }}</p>
                             </td>
                             <td class="w-40">
-                                <div class="flex items-center justify-center {{ $ingredient->status_halal == 'Halal' ? 'text-success' : 'text-danger' }}">
+                                @if ($ingredient->status_halal == 'Halal')
+                                <div class="flex items-center justify-center text-success">
                                     <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($ingredient->status_halal) ? 'Dalam Proses' : $ingredient->status_halal }}
                                 </div>
+                                @elseif ($ingredient->status_halal == 'Haram')
+                                <div class="flex items-center justify-center text-danger text-bold">
+                                    <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i> {{ is_null($ingredient->status_halal) ? 'Dalam Proses' : $ingredient->status_halal }}
+                                </div>
+                                @else
+                                <div class="flex items-center justify-center text-warning">
+                                    <i data-lucide="slack" class="w-4 h-4 mr-2"></i> {{ is_null($ingredient->status_halal) ? 'Dalam Proses' : $ingredient->status_halal }}
+                                </div>  
+                                @endif
+                            </td>
                             </td>
                             <td class="table-report__action">
                                 <div class="flex justify-center items-center">

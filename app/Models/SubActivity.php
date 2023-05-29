@@ -13,6 +13,6 @@ class SubActivity extends Model
     protected $guarded = ['id'];
 
     public function eventLog(){
-        return $this->belongsTo(EventLog::class, 'event_log_id');
+        return $this->belongsTo(EventLog::class, 'event_log_id', 'code');
     }
 }

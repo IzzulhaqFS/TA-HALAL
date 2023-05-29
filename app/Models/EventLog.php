@@ -15,4 +15,8 @@ class EventLog extends Model
     public function ingredient(){
         return $this->belongsTo(Ingredient::class, 'ingredient_id');
     }
+
+    public function subActivity(){
+        return $this->hasMany(SubActivity::class, 'event_log_id', 'code');
+    }
 }

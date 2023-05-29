@@ -156,7 +156,7 @@
                 
                 let selectEl = document.querySelector('#is-not-babi-certified-select');
                 if (selectEl.value === "1") {
-                    await processActivity('{{ csrf_token() }}');
+                    await processActivity('{{ csrf_token() }}', 'rule');
                 }
             } catch (error) {
                 // Handle any errors that occur during the request

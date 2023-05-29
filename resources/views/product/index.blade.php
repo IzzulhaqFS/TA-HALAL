@@ -61,9 +61,19 @@
                             </td>
                             <td class="text-center">{{ $product->ingredient_count }}</td>
                             <td class="w-40">
-                                <div class="flex items-center justify-center {{ $product->product_status == 'Halal' ? 'text-success' : 'text-danger' }}">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ $product->product_status }}
+                                @if ($product->product_status == 'Halal')
+                                <div class="flex items-center justify-center text-success">
+                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($product->product_status) ? 'Dalam Proses' : $product->product_status }}
                                 </div>
+                                @elseif ($product->product_status == 'Haram')
+                                <div class="flex items-center justify-center text-danger text-bold">
+                                    <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i> {{ is_null($product->product_status) ? 'Dalam Proses' : $product->product_status }}
+                                </div>
+                                @else
+                                <div class="flex items-center justify-center text-warning">
+                                    <i data-lucide="slack" class="w-4 h-4 mr-2"></i> {{ is_null($product->product_status) ? 'Dalam Proses' : $product->product_status }}
+                                </div>  
+                                @endif
                             </td>
                             <td class="table-report__action">
                                 <div class="flex justify-center items-center">

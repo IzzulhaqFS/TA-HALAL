@@ -26,7 +26,7 @@ const storeActivity = async (csrf_token, data) => {
     }
 };
 
-const getResult = async (userId, ingredientId, ingredientType, eventLog) => {
+const getPrediction = async (userId, ingredientId, ingredientType, eventLog) => {
     try {
         const response = await fetch(`${modelRoute}/${ingredientType}`, {
             method: 'POST',
@@ -51,7 +51,7 @@ const getResult = async (userId, ingredientId, ingredientType, eventLog) => {
     }
 };
 
-const processResult = async (csrf_token, getResultResponse) => {
+const processPrediction = async (csrf_token, predictionResponse) => {
     try {
         const response = await fetch(`${ingredientRoute}/status-halal`, {
             method: 'PUT',
@@ -60,7 +60,7 @@ const processResult = async (csrf_token, getResultResponse) => {
                 'X-CSRF-TOKEN': csrf_token,
             },
             body: JSON.stringify({
-                'status-halal': getResultResponse['status-halal'],
+                'status-halal': predictionResponse['status-halal'],
             }),
         });
 
@@ -74,7 +74,7 @@ const processResult = async (csrf_token, getResultResponse) => {
 };
 
 
-const processActivity = async (csrf_token) => {
+const processActivity = async (csrf_token, method = 'prediction') => {
     try {
         // Get the data from session storage
         let mainActivityData = JSON.parse(sessionStorage.getItem('main-activity'));
@@ -99,8 +99,16 @@ const processActivity = async (csrf_token) => {
 
 
         // Get the result from Flask model app 
-        // const getResultResponse = await getResult(userId, ingredientId, ingredientType, eventLog);
-        // await processResult(csrf_token, getResultResponse);
+        if (method === 'prediction') {
+            const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
+            await processPrediction(csrf_token, predictionResponse);
+        }
+
+        if (method === 'rule') {
+            const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
+            await processPrediction(csrf_token, predictionResponse);
+        }
+
 
     } catch (error) {
         // Handle any errors that occur during the request
