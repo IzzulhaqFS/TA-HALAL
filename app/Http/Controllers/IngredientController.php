@@ -116,12 +116,13 @@ class IngredientController extends Controller
     public function show($ingredient_id)
     {
         $ingredient = $this->getIngredientDetail($ingredient_id);
+        $product = Product::findOrFail($ingredient->product_id);
         $eventLogs = EventLog::with('subActivity')->where('ingredient_id', $ingredient_id)->get();        
         $listPotensiHaram = $eventLogs->filter(function ($eventLog) {
             return $eventLog->status_halal === 'Haram';
         });
 
-        return view('ingredient/show', \compact('ingredient', 'eventLogs', 'listPotensiHaram'));
+        return view('ingredient/show', \compact('ingredient', 'product', 'eventLogs', 'listPotensiHaram'));
     }
     
 

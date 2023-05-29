@@ -29,13 +29,13 @@ class SideMenu
                 ],
                 'title' => 'Cek Kehalalan Produk'
             ],
-            'Rekomendasi Bahan Halal / Pengganti' => [
+            'Rekomendasi Bahan Halal Pengganti' => [
                 'icon' => 'file-text',
                 'route_name' => 'file-manager',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'Rekomendasi Bahan Halal / Pengganti'
+                'title' => 'Rekomendasi Bahan Halal Pengganti'
             ],
             'Riwayat Pengecekan' => [
                 'icon' => 'clock',

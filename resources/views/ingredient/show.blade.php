@@ -5,7 +5,7 @@
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Detail Bahan (<b>{{ $ingredient->name }}</b>)</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Detail Bahan</h2>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -21,19 +21,122 @@
     </div>
     @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <div class="w-full sm:w-auto mt-3 mt-0 ml-auto">
-                <div class="w-56 relative text-slate-500">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Cari...">
-                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
+        <!-- BEGIN: Detail Hasil -->
+        <div class="box intro-y col-span-12 overflow-auto lg:overflow-visible px-8 pb-4">
+            <div class=" border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left">
+                <div class="px-5 sm:px-20 py-12">
+                    <div class="text-primary font-semibold text-3xl">{{ $ingredient->name }}</div>
+                    <div class="mt-2">ID&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->id }}</span></div>
+                    <div class="mt-1">Jenis Bahan&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->type }}</span></div>
+                </div>
+                <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-2 pb-10">
+                    <div>
+                        <div class="text-base">Hasil Pengecekan Bahan</div>
+                        @if ($ingredient->status_halal == 'Halal')
+                            <div class="text-2xl font-medium text-primary mt-2">Halal</div>
+                            <div class="mt-1"><i>Bahan termasuk bahan halal</i></div>
+                        @elseif ($ingredient->status_halal == 'Haram')
+                            <div class="text-2xl font-medium text-danger mt-2">Haram</div>
+                            <div class="mt-1"><i>Bahan berpotensi haram</i></div>
+                        @else
+                            <div class="text-2xl font-medium text-danger mt-2">Dalam Proses</div>
+                            <div class="mt-1"><i>Proses pengecekan bahan belum selesai</i></div>
+                        @endif
+
+                    </div>
+                    <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
+                        <div class="text-base">Bahan dari produk</div>
+                        <div class="text-lg font-medium text-primary mt-2">{{ $product->name }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- BEGIN: Data List -->
+            @if (count($listPotensiHaram) > 0)
+                <div class="flex flex-col sm:flex-row my-5">
+                    <h2 class="font-medium text-base mr-auto">
+                        List Potensi Haram
+                    </h2>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">NO</th>
+                            <th class="text-center whitespace-nowrap">AKTIVITAS</th>
+                            <th class="text-center whitespace-nowrap">STATUS</th>
+                            <th class="text-center whitespace-nowrap">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i = 1 @endphp
+                        @foreach ($listPotensiHaram as $potensiHaram)
+                        <tr>
+                            <td class="w-4">{{ $i }}</td>
+                            <td>{{ $potensiHaram->activity }}</td>
+                            <td class="w-40">
+                                @if ($potensiHaram->status_halal == 'Halal')
+                                <div class="flex items-center justify-center text-success">
+                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                </div>
+                                @elseif ($potensiHaram->status_halal == 'Haram')
+                                <div class="flex items-center justify-center text-danger text-bold">
+                                    <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                </div>
+                                @else
+                                <div class="flex items-center justify-center text-warning">
+                                    <i data-lucide="slack" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                </div>  
+                                @endif
+                            </td>
+                            <td class="table-report__action" style="width: 25rem;">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center text-success mr-5" href="#">
+                                        <i data-lucide="search" class="w-4 h-4 mr-1"></i>Lihat Rekomendasi Pengganti
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        @php $i++ @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="flex flex-col sm:flex-row my-5">
+                    <h2 class="font-medium text-base mr-auto">
+                        Detail List Potensi Haram
+                    </h2>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">NO</th>
+                            <th class="text-center whitespace-nowrap">AKTIVITAS</th>
+                            <th class="text-center whitespace-nowrap">SUB AKTIVITAS</th>
+                            <th class="text-center whitespace-nowrap">ISIAN</th>
+                            <th class="text-center whitespace-nowrap">TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $j = 1 @endphp
+                        @foreach ($listPotensiHaram as $potensiHaram)
+                        @foreach ($potensiHaram->subActivity as $potensi)
+                            <tr>
+                                <td>{{ $j }}</td>
+                                <td>{{ $potensiHaram->activity }}</td>
+                                <td>{{ $potensi->description }}</td>
+                                <td>{{ $potensi->value }}</td>
+                                <td>{{ $potensi->updated_at }}</td>
+                            </tr>
+                            @php $j++ @endphp
+                            @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+            </div>
+        @endif
+        <!-- END: Detail Hasil -->
+        <!-- BEGIN: Detail Aktivitas -->
         <div class="box intro-y col-span-12 overflow-auto lg:overflow-visible px-8 pb-8">
             <div class="flex flex-col sm:flex-row my-5">
-                <h2 class="font-medium text-base mr-auto">
-                    Detail Aktivitas 
+                <h2 class="font-medium text-lg mr-auto">
+                    <u>Detail Aktivitas</u> 
                 </h2>
             </div>
             <table class="table table-bordered table-hover">
@@ -72,12 +175,18 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="form-check form-switch w-auto mt-8">
+                <label class="form-check-label font-medium mr-3" for="show-sub-activity">Tampilkan isian pada setiap aktivitas</label>
+                <input id="show-sub-activity" data-target="#sub-activity-list" class="show-code form-check-input ml-0" type="checkbox">
+            </div>
         </div>
-        <hr style="width:100%">
-        <div class="box intro-y col-span-12 overflow-auto lg:overflow-visible px-8 pb-8">
+        <!-- END: Detail Aktivitas -->
+        
+        <!-- BEGIN: Detail Sub Aktivitas -->
+        <div id="sub-activity-list" class="source-code hidden box intro-y col-span-12 overflow-auto lg:overflow-visible px-8 pb-8">
             <div class="flex flex-col sm:flex-row my-5">
-                <h2 class="font-medium text-base mr-auto">
-                    Detail Sub Aktivitas 
+                <h2 class="font-medium text-lg mr-auto">
+                    <u>Detail Sub Aktivitas</u> 
                 </h2>
             </div>
             <table class="table table-bordered table-hover">
@@ -105,4 +214,17 @@
                 </tbody>
             </table>
         </div>
+
+        <script>
+            document.getElementById('show-sub-activity').addEventListener('change', function() {
+                var subActivityList = document.getElementById('sub-activity-list');
+                
+                if (this.checked) {
+                    subActivityList.style.display = 'block';
+                } else {
+                    subActivityList.style.display = 'none';
+                }
+            });
+        </script>
+        <!-- END: Detail Sub Aktivitas -->
 @endsection
