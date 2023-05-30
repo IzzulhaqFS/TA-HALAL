@@ -6,6 +6,14 @@
     data-label="Cek Sertifikat Halal Emulsifier" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Apakah emulsifier telah bersertifikat halal? <span class="text-danger">*</span></label>
+            <select id="is-emulsifier-certified-select" class="form-control" name="is-emulsifier-certified">
+                <option value="">-- Pilih --</option>
+                <option value="1" {{ old('is-emulsifier-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Iya</option>
+                <option value="0" {{ old('is-emulsifier-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Tidak</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Emulsifier</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Emulsifier" name="merk-emulsifier" placeholder="Merk Emulsifier">
         </div>
@@ -16,14 +24,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Emulsifier</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Emulsifier" name="produsen-emulsifier" placeholder="Produsen Emulsifier">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Apakah emulsifier telah bersertifikat halal?</label>
-            <select id="is-emulsifier-certified-select" class="form-control" name="is-emulsifier-certified">
-                <option value="">-- Pilih --</option>
-                <option value="1" {{ old('is-emulsifier-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-emulsifier-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Tidak</option>
-            </select>
         </div>
     </div>
     

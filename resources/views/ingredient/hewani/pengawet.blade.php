@@ -6,6 +6,14 @@
     data-label="Cek Sertifikat Halal Pengawet" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Apakah pengawet telah bersertifikat halal? <span class="text-danger">*</span></label>
+            <select id="is-pengawet-certified-select" class="form-control" name="is-pengawet-certified">
+                <option value="">-- Pilih --</option>
+                <option value="1" {{ old('is-pengawet-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pengawet telah bersertifikat halal?">Iya</option>
+                <option value="0" {{ old('is-pengawet-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pengawet telah bersertifikat halal?">Tidak</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Pengawet</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Pengawet" name="merk-pengawet" placeholder="Merk Pengawet">
         </div>
@@ -16,14 +24,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Pengawet</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Pengawet" name="produsen-pengawet" placeholder="Produsen Pengawet">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Apakah pengawet telah bersertifikat halal?</label>
-            <select id="is-pengawet-certified-select" class="form-control" name="is-pengawet-certified">
-                <option value="">-- Pilih --</option>
-                <option value="1" {{ old('is-pengawet-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pengawet telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-pengawet-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pengawet telah bersertifikat halal?">Tidak</option>
-            </select>
         </div>
     </div>
     

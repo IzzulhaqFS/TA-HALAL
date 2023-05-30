@@ -6,6 +6,15 @@
     data-label="Cek Sertifikat Halal Penyedap Rasa" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Status Penyedap Rasa <span class="text-danger">*</span></label>
+            <select id="is-penyedap-rasa-certified-select" class="form-control" name="is-penyedap-rasa-certified">
+                <option value="">-- Pilih --</option>
+                <option value="alami" {{ old('is-penyedap-rasa-certified') == "alami" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa alami</option>
+                <option value="sintetik-dengan-sertifikat-halal" {{ old('is-penyedap-rasa-certified') == "sintetik-dengan-sertifikat-halal" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa sintetik & telah bersertifikat halal</option>
+                <option value="sintetik-tanpa-sertifikat-halal" {{ old('is-penyedap-rasa-certified') == 'sintetik-tanpa-sertifikat-halal' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa sintetik & belum bersertifikat halal</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Penyedap Rasa</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Penyedap Rasa" name="merk-penyedap-rasa" placeholder="Merk Penyedap Rasa">
         </div>
@@ -16,15 +25,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Penyedap Rasa</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Penyedap Rasa" name="produsen-penyedap-rasa" placeholder="Produsen Penyedap Rasa">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Status Penyedap Rasa</label>
-            <select id="is-penyedap-rasa-certified-select" class="form-control" name="is-penyedap-rasa-certified">
-                <option value="">-- Pilih --</option>
-                <option value="alami" {{ old('is-penyedap-rasa-certified') == "alami" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa alami</option>
-                <option value="sintetik-dengan-sertifikat-halal" {{ old('is-penyedap-rasa-certified') == "sintetik-dengan-sertifikat-halal" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa sintetik & telah bersertifikat halal</option>
-                <option value="sintetik-tanpa-sertifikat-halal" {{ old('is-penyedap-rasa-certified') == 'sintetik-tanpa-sertifikat-halal' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Penyedap Rasa">Jenis penyedap rasa sintetik & belum bersertifikat halal</option>
-            </select>
         </div>
     </div>
     

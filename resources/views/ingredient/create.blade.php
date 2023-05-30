@@ -33,8 +33,8 @@
             <div class="intro-y col-span-12">
                 <!-- BEGIN: Input -->
                 <div class="intro-y box">
-                    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                        <h2 class="font-medium text-base mr-auto">Input</h2>
+                    <div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                        <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
                     </div>
                     <div id="input" class="p-5">
                         <div class="preview">
@@ -44,11 +44,11 @@
                                 <input type="text" class="form-control sub-activity" disabled data-label="Nama Produk" value="{{ $product->name }}">
                             </div>
                             <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Nama Bahan</label>
+                                <label for="regular-form-1" class="form-label">Nama Bahan <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control sub-activity" data-label="Nama Bahan" name="nama-bahan" placeholder="Nama Bahan">
                             </div>
                             <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Tipe Bahan</label>
+                                <label for="regular-form-1" class="form-label">Tipe Bahan <span class="text-danger">*</span></label>
                                 <select id="ingredient-type-select" class="form-control" name="type">
                                     <option value="">-- Pilih Tipe Bahan --</option>
                                     <option value="Hewani" {{ old('type') == 'Hewani' ? 'selected' : '' }} class="" data-label="Tipe Bahan">Hewani</option>
@@ -56,7 +56,20 @@
                                 </select>
                             </div>
                             <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam positif list?</label>
+                                <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam positif list
+                                    <span id="jumlah-bahan-info">
+                                        <i data-lucide="help-circle" class="tooltip w-4" style="margin-bottom: 0.1rem" 
+                                            title="Bahan positif list ialah bahan tidak kritis yang dipastikan halal. Daftarnya dapat dilihat pada link di samping.">
+                                        </i>
+                                    </span> 
+                                    <span class="text-danger">*</span>
+                                    <a 
+                                        class="ml-3 underline text-xs text-primary" 
+                                        href="https://github.com/Jagadwp/web-titik-kritis-halal/blob/main/Daftar_Bahan_Tidak_Kritis.csv"
+                                        target="_blank">
+                                        bahan positif list
+                                    </a>
+                                </label>
                                 <select id="is-positive-list-select" class="form-control" name="is-positive-list">
                                     <option value="">-- Pilih --</option>
                                     <option value="0" {{ old('is-positive-list') == '0' ? 'selected' : '' }} class="" data-label="Apakah bahan termasuk dalam poisitif list?">Tidak</option>

@@ -32,8 +32,8 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
+                <div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
                 </div>
                 <div id="input" class="p-5">
                     <div class="preview">
@@ -49,7 +49,7 @@
                         <form id="kelompok-bahan-form" action="{{ route('hewani.kelompok-bahan.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-4">
                                 <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <label for="regular-form-1" class="form-label">Kelompok Bahan Hewani</label>
+                                <label for="regular-form-1" class="form-label">Kelompok Bahan Hewani <span class="text-danger">*</span></label>
                                 <select id="kelompok-bahan-select" class="form-control" name="kelompok-bahan">
                                     <option value="">-- Pilih --</option>
                                     <option value="sembelih" {{ old('kelompok-bahan') == 'sembelih' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Kelompok Bahan Hewani">Bahan Disembelih</option>
@@ -63,7 +63,7 @@
                                 data-label="Cek Bahan Daging dan Turunannya"
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Bahan Baku</label>
+                                    <label for="regular-form-1" class="form-label">Bahan Baku <span class="text-danger">*</span></label>
                                     <select id="bahan-baku-sembelih-select" class="form-control" name="bahan-baku-sembelih">
                                         <option value="">-- Pilih --</option>
                                         <option value="daging" {{ old('bahan-baku') == 'daging' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Bahan Baku">Daging</option>
@@ -83,7 +83,7 @@
                                 data-label="Cek Bahan Susu, Telur, Ikan"
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Bahan Baku</label>
+                                    <label for="regular-form-1" class="form-label">Bahan Baku <span class="text-danger">*</span></label>
                                     <select id="bahan-baku-nonsembelih-select" class="form-control" name="bahan-baku-nonsembelih">
                                         <option value="">-- Pilih --</option>
                                         <option value="susu" {{ old('bahan-baku') == 'susu' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Bahan Baku">Susu</option>

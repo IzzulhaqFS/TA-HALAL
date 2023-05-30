@@ -99,15 +99,15 @@ const processActivity = async (csrf_token, method = 'prediction') => {
 
 
         // Get the result from Flask model app 
-        if (method === 'prediction') {
-            const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
-            await processPrediction(csrf_token, predictionResponse);
-        }
+        // if (method === 'prediction') {
+        //     const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
+        //     await processPrediction(csrf_token, predictionResponse);
+        // }
 
-        if (method === 'rule') {
-            const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
-            await processPrediction(csrf_token, predictionResponse);
-        }
+        // if (method === 'rule') {
+        //     const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
+        //     await processPrediction(csrf_token, predictionResponse);
+        // }
 
 
     } catch (error) {

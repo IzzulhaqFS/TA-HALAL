@@ -88,7 +88,8 @@ class HewaniController extends Controller
 
         if ($kelompokBahan == 'nonsembelih') {
             return redirect()->route('hewani.kehalalan-bahan', 
-                ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'statusBahanBaku' => 'Halal']);
+                ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 
+                    'statusBahanBaku' => 'Halal', 'nonsembelih' => true]);
         }
     }
 
@@ -120,23 +121,30 @@ class HewaniController extends Controller
     {
         $bahanBaku = $request->query('bahanBaku');
         $statusBahanBaku = $request->query('statusBahanBaku');
+        $kelompokBahan = empty($request->query('nonsembelih')) ? 'sembelih' : 'nonsembelih';
         $ingredient = $this->getIngredientDetail($ingredient_id);
         
-        return view('ingredient/hewani/kehalalan-bahan', \compact('ingredient', 'bahanBaku', 'statusBahanBaku'));   
+        return view('ingredient/hewani/kehalalan-bahan', \compact('ingredient', 'bahanBaku', 'statusBahanBaku', 'kelompokBahan'));   
     }
 
     public function processKehalalanBahan(Request $request, $ingredient_id)
     {
         $ingredient = Ingredient::findOrFail(($ingredient_id));
         $statusBahanBaku = $request->input('kehalalan-bahan');
+        $kelompokBahan = $request->input('kelompokBahan');
 
         if ($statusBahanBaku == 'Haram') {
             $ingredient->update(['status_halal' => 'Haram']);
             return response('', 204);
         };
+        
+        if ($kelompokBahan == 'sembelih') {
+            return redirect()->route('hewani.sembelih', ['ingredient_id' => $ingredient_id]);
+        }
 
-        return redirect()->route('hewani.sembelih', ['ingredient_id' => $ingredient_id]);
-
+        if ($kelompokBahan == 'nonsembelih') {
+            return redirect()->route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient_id]);
+        }
     }
 
     public function checkSembelih(Request $request, $ingredient_id)

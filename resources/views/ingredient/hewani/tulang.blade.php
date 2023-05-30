@@ -32,9 +32,9 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
-                </div>
+<div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                        <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
+                    </div>
                 <div id="input" class="p-5">
                     <div class="preview">
                         <div>
@@ -54,9 +54,9 @@
                             <div class="mt-3">
                                 <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
                                 <input type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
-                                <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="">
+                                <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
                                 
-                                <label for="regular-form-1" class="form-label">Apakah hewan asal tulang diketahui?</label>
+                                <label for="regular-form-1" class="form-label">Apakah hewan asal tulang diketahui? <span class="text-danger">*</span></label>
                                 <select id="asal-hewan-diketahui-select" class="form-control" name="asal-hewan-diketahui">
                                     <option value="">-- Pilih --</option>
                                     <option value="1" {{ old('asal-hewan-diketahui') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah hewan asal tulang diketahui?">Diketahui</option>
@@ -70,7 +70,7 @@
                                 data-label="Cek Asal Hewan Bahan Tulang"
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Apakah tulang berasal dari hewan halal?</label>
+                                    <label for="regular-form-1" class="form-label">Apakah tulang berasal dari hewan halal? <span class="text-danger">*</span></label>
                                     <select id="asal-hewan-select" class="form-control" name="asal-hewan">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('asal-hewan') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Apakah tulang berasal dari hewan halal?">Iya</option>
@@ -184,16 +184,19 @@
     <script>
         document.getElementById('right-btn').addEventListener('click', function(e) {
             let kehalalanBahanEl = document.querySelector('#kehalalan-bahan');
-            kehalalanBahanEl.value = 'Halal';
+            kehalalanBahanEl.value = 'Syubhat';
             
             let mainActivityElems = document.querySelectorAll('.main-activity');
-            mainActivityElems.forEach(function (elem, index) {
-                let val = elem.getAttribute('data-value');
-    
+            for (let i = 0; i < mainActivityElems.length; i++) {
+                let val = mainActivityElems[i].getAttribute('data-value');;
                 if (val === 'Haram') {
                     kehalalanBahanEl.value = 'Haram';
+                    break;
                 };
-            });
+                if (val === 'Halal') {
+                    kehalalanBahanEl.value = 'Halal';
+                };
+            }
             
             let form = document.querySelector('#cek-tulang-form');
             form.submit(); 

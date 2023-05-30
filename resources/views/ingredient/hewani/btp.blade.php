@@ -66,8 +66,8 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
+                <div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
                 </div>
                 <div id="input" class="p-5">
                     <div class="preview">

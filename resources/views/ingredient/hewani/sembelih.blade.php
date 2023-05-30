@@ -32,8 +32,8 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
+                <div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
                 </div>
                 <div id="input" class="p-5">
                     <div class="preview">
@@ -54,7 +54,8 @@
                             @method('PUT')
                             <div class="mt-3">
                                 <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <label for="regular-form-1" class="form-label">Apakah bahan berasal dari rumah potong bersertifikat halal?</label>
+                                <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
+                                <label for="regular-form-1" class="form-label">Apakah bahan berasal dari rumah potong bersertifikat halal? <span class="text-danger">*</span></label>
                                 <select id="is-rumah-halal-select" class="form-control" name="is-rumah-halal">
                                     <option value="">-- Pilih --</option>
                                     <option value="1" {{ old('is-rumah-halal') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah bahan berasal dari rumah potong bersertifikat halal?">Iya</option>
@@ -139,7 +140,6 @@
                                 </div>
                             </div>
                             {{-- END: Cek RPH --}}
-                            <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="">
                         </form>
                         <!-- END: Form -->
                         <div id="mover-container" class="mt-5">
@@ -184,14 +184,14 @@
                 rphDetailEl.style.display = 'block';
                 certificateDetailEl.style.display = 'none';
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
-                kehalalanBahanEl.value = ''
+                kehalalanBahanEl.value = 'Syubhat'
                 
                 removeActivityValue(certificateDetailEl)
             } else {
                 certificateDetailEl.style.display = 'none';
                 rphDetailEl.style.display = 'none';
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
-                kehalalanBahanEl.value = ''
+                kehalalanBahanEl.value = 'Syubhat'
 
                 removeActivityValue(certificateDetailEl)
                 removeActivityValue(rphDetailEl)
@@ -206,18 +206,28 @@
         function updateRPHDetailDataValue() {
             let rphActivityElems = document.querySelectorAll('.rph-activity');
             let kehalalanBahanEl = document.querySelector('#kehalalan-bahan');
-
-            rphDetailEl.setAttribute('data-value', 'Halal')            
+            let nHalalEl = 0;
+            let nSyubhatEl = 0;
+            
+            rphDetailEl.setAttribute('data-value', 'Syubhat')            
             for (let i = 0; i < rphActivityElems.length; i++) {
-                let elem = rphActivityElems[i];
-                let val = elem.getAttribute('data-value');
+                let val = rphActivityElems[i].getAttribute('data-value');
                 if (val === 'Haram') {
                     rphDetailEl.setAttribute('data-value', 'Haram');
                     break;
-                } else if (val === 'Syubhat') {
-                    rphDetailEl.setAttribute('data-value', 'Syubhat');
+                } 
+                if (val === 'Syubhat') {
+                    nSyubhatEl++;
+                }
+                if (val === 'Halal') {
+                    nHalalEl++;
                 }
             }
+
+            if (nHalalEl > 0 && nSyubhatEl === 0) {
+                rphDetailEl.setAttribute('data-value', 'Halal');
+            }
+            
             kehalalanBahanEl.value = rphDetailEl.getAttribute('data-value');
         }
 

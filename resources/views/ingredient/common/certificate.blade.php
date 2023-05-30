@@ -41,8 +41,8 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
+                <div class="flex flex-col sm:flex-row items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <i class="text-xs mr-auto"><span class="text-danger">*</span>&nbsp;Wajib diisi</i>
                 </div>
                 <div id="input" class="p-5">
                     <div class="preview">
@@ -59,7 +59,7 @@
                             @method('PUT')
                             <div class="mt-3">
                                 <input type="hidden" class="form-control sub-activity" data-pos='0' data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <label for="regular-form-1" class="form-label">Apakah bahan telah bersertifikat halal?</label>
+                                <label for="regular-form-1" class="form-label">Apakah bahan telah bersertifikat halal? <span class="text-danger">*</span></label>
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
                                     <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Iya</option>

@@ -6,6 +6,14 @@
     data-label="Cek Sertifikat Halal Pemanis" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Apakah pemanis telah bersertifikat halal? <span class="text-danger">*</span></label>
+            <select id="is-pemanis-certified-select" class="form-control" name="is-pemanis-certified">
+                <option value="">-- Pilih --</option>
+                <option value="1" {{ old('is-pemanis-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Iya</option>
+                <option value="0" {{ old('is-pemanis-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Tidak</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Pemanis</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Pemanis" name="merk-pemanis" placeholder="Merk Pemanis">
         </div>
@@ -16,14 +24,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Pemanis</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Pemanis" name="produsen-pemanis" placeholder="Produsen Pemanis">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Apakah pemanis telah bersertifikat halal?</label>
-            <select id="is-pemanis-certified-select" class="form-control" name="is-pemanis-certified">
-                <option value="">-- Pilih --</option>
-                <option value="1" {{ old('is-pemanis-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-pemanis-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Tidak</option>
-            </select>
         </div>
     </div>
     

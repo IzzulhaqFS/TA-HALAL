@@ -6,6 +6,14 @@
     data-label="Cek Sertifikat Halal Flavor" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Apakah flavor telah bersertifikat halal? <span class="text-danger">*</span></label>
+            <select id="is-flavor-certified-select" class="form-control" name="is-flavor-certified">
+                <option value="">-- Pilih --</option>
+                <option value="1" {{ old('is-flavor-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Iya</option>
+                <option value="0" {{ old('is-flavor-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Tidak</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Flavor</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Flavor" name="merk-flavor" placeholder="Merk Flavor">
         </div>
@@ -16,14 +24,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Flavor</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Flavor" name="produsen-flavor" placeholder="Produsen Flavor">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Apakah flavor telah bersertifikat halal?</label>
-            <select id="is-flavor-certified-select" class="form-control" name="is-flavor-certified">
-                <option value="">-- Pilih --</option>
-                <option value="1" {{ old('is-flavor-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-flavor-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Tidak</option>
-            </select>
         </div>
     </div>
     

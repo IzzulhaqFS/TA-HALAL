@@ -6,6 +6,15 @@
     data-label="Cek Sertifikat Halal Pewarna" 
     data-value="">
         <div class="mt-3">
+            <label for="regular-form-1" class="form-label font-medium">Status Pewarna <span class="text-danger">*</span></label>
+            <select id="is-pewarna-certified-select" class="form-control" name="is-pewarna-certified">
+                <option value="">-- Pilih --</option>
+                <option value="alami" {{ old('is-pewarna-certified') == "alami" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna alami</option>
+                <option value="sintetik-dengan-sertifikat-halal" {{ old('is-pewarna-certified') == "sintetik-dengan-sertifikat-halal" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna sintetik & telah bersertifikat halal</option>
+                <option value="sintetik-tanpa-sertifikat-halal" {{ old('is-pewarna-certified') == 'sintetik-tanpa-sertifikat-halal' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna sintetik & belum bersertifikat halal</option>
+            </select>
+        </div>
+        <div class="mt-3">
             <label for="regular-form-1" class="form-label">Merk Pewarna</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Merk Pewarna" name="merk-pewarna" placeholder="Merk Pewarna">
         </div>
@@ -16,15 +25,6 @@
         <div class="mt-3">
             <label for="regular-form-1" class="form-label">Produsen Pewarna</label>
             <input type="text" class="form-control sub-activity" data-pos="" data-label="Produsen Pewarna" name="produsen-pewarna" placeholder="Produsen Pewarna">
-        </div>
-        <div class="mt-3">
-            <label for="regular-form-1" class="form-label">Status Pewarna</label>
-            <select id="is-pewarna-certified-select" class="form-control" name="is-pewarna-certified">
-                <option value="">-- Pilih --</option>
-                <option value="alami" {{ old('is-pewarna-certified') == "alami" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna alami</option>
-                <option value="sintetik-dengan-sertifikat-halal" {{ old('is-pewarna-certified') == "sintetik-dengan-sertifikat-halal" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna sintetik & telah bersertifikat halal</option>
-                <option value="sintetik-tanpa-sertifikat-halal" {{ old('is-pewarna-certified') == 'sintetik-tanpa-sertifikat-halal' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Status Pewarna">Jenis pewarna sintetik & belum bersertifikat halal</option>
-            </select>
         </div>
     </div>
     

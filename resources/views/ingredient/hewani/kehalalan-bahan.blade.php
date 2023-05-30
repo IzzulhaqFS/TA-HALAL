@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Pengecekan Asal Bahan Daging</title>
+    <title>Kehahalan Bahan Baku {{ ucfirst($bahanBaku) }}</title>
 @endsection
 
 @section('subcontent')
@@ -9,7 +9,7 @@
         <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" 
             data-label="Cek Kehalalan Bahan Hewani" 
             data-value="{{ $statusBahanBaku }}">
-            Pengecekan Asal Bahan Daging
+            Kehahalan Bahan Baku {{ ucfirst($bahanBaku) }}
         </h2>
     </div>
     @if ($errors->any())
@@ -30,9 +30,6 @@
         <div class="intro-y col-span-12">
             <!-- BEGIN: Input -->
             <div class="intro-y box">
-                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">Input</h2>
-                </div>
                 <div id="input" class="p-5">
                     <div class="preview">
                         <div>
@@ -54,6 +51,7 @@
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Status Kehalalan</label>
                                 <input id="regular-form-1" type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input id="regular-form-1" type="hidden" class="form-control" name="kelompokBahan" value="{{ $kelompokBahan }}">
                                 <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan" value="{{ $statusBahanBaku }}">
                             </div>
                         </form>
@@ -70,7 +68,6 @@
     </div>
 
     @include('../layout/components/processing-script')
-
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             let mainHeaderEl = document.querySelector('#main-header');
@@ -98,7 +95,6 @@
                 }
                 
                 if (mainHeaderEl.getAttribute('data-value') === "Haram") {
-                    console.log('masuk haram');
                     await processActivity('{{ csrf_token() }}', 'rule');
                 }
             } catch (error) {
