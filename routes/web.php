@@ -26,6 +26,7 @@ use App\Http\Controllers\ProductController;
 Route::middleware('auth')->group(function() {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     
+    Route::get('/tes', [ProductController::class, 'tes'])->name('tes');
     Route::prefix('product')->name('product.')->group(function() {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
