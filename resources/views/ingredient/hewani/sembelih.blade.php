@@ -49,9 +49,7 @@
                             <label for="regular-form-1" class="form-label">Bahan Baku</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku) }}">
                         </div>
-                        <form id="sembelih-form" action="{{ route('hewani.sembelih.process', ['ingredient_id' => $ingredient->id]) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <form id="sembelih-form" action="{{ route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id, 'bahan-baku' => $bahanBaku]) }}" method="GET">
                             <div class="mt-3">
                                 <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
                                 <label for="regular-form-1" class="form-label">Apakah bahan berasal dari rumah potong bersertifikat halal? <span class="text-danger">*</span></label>
@@ -266,37 +264,12 @@
     
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            
-            
-            let form = document.querySelector('#sembelih-form');
-            let formData = new FormData(form);
-
-            try {
-                // Send the POST request to the Laravel route
-                let response = await fetch(form.action, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                
-                const responseData = await response.json();
-                window.location.href = `${responseData['route']}?bahan-baku={{ $bahanBaku }}`;
-                
-                let kehalalanBahanEl = await document.querySelector('#kehalalan-bahan');
-                if (kehalalanBahanEl.value === 'Haram') {
-                    await processActivity('{{ csrf_token() }}', 'rule');
-                }
-
-            } catch (error) {
-                // Handle any errors that occur during the request
-                console.error(error);
+            let kehalalanBahanEl = await document.querySelector('#kehalalan-bahan');
+            if (kehalalanBahanEl.value === 'Haram') {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#sembelih-form');
+                window.location.href = form.action;
             }
         })
     </script>

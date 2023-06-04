@@ -54,11 +54,8 @@
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
                             <input type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
-                        <form id="is-halal-certified-form" action="{{ route('ingredient.certificate.store') }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <form id="is-halal-certified-form" action="{{ route('ingredient.certificate.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-3">
-                                <input type="hidden" class="form-control sub-activity" data-pos='0' data-label="ingredient_id" name="ingredient-id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah bahan telah bersertifikat halal? <span class="text-danger">*</span></label>
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
@@ -141,36 +138,12 @@
     <script>
         // Process Activity if isHalalCertified
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            let form = document.querySelector('#is-halal-certified-form');
-        
-            // Serialize the form data
-            let formData = new FormData(form);
-
-            try {
-                // Send the POST request to the Laravel route
-                let response = await fetch(form.action, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                
-                const responseData = await response.json();
-                window.location.href = responseData['route'];
-                
-                let selectEl = document.querySelector('#is-halal-certified-select');
-                if (selectEl.value === "1") {
-                    await processActivity('{{ csrf_token() }}', 'rule');
-                }
-            } catch (error) {
-                // Handle any errors that occur during the request
-                console.error(error);
+            let selectEl = document.querySelector('#is-halal-certified-select');
+            if (selectEl.value === "1") {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#is-halal-certified-form');
+                form.submit();
             }
         })
     </script>

@@ -45,13 +45,12 @@
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($bahanBaku) }}">
                         </div>
                         <!-- BEGIN: Form -->
-                        <form id="kehalalan-bahan-form" action="{{ route('hewani.kehalalan-bahan.process', ['ingredient_id' => $ingredient->id]) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <form id="kehalalan-bahan-form" action="{{ route('hewani.kehalalan-bahan.process', [
+                            'ingredient_id' => $ingredient->id, 
+                            'bahan-baku' => $bahanBaku, 
+                            'kelompok-bahan' => $kelompokBahan]) }}" method="GET">
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Status Kehalalan</label>
-                                <input id="regular-form-1" type="hidden" class="form-control" name="bahan-baku" value="{{ $bahanBaku }}">
-                                <input id="regular-form-1" type="hidden" class="form-control" name="kelompokBahan" value="{{ $kelompokBahan }}">
                                 <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan"  disabled value="{{ $statusBahanBaku }}">
                             </div>
                         </form>
@@ -70,31 +69,12 @@
     @include('../layout/components/processing-script')
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            let mainHeaderEl = document.querySelector('#main-header');
-            let form = document.querySelector('#kehalalan-bahan-form');
-            let formData = new FormData(form);
-            try {
-                let response = await fetch(form.action, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                
-                const responseData = await response.json();
-                window.location.href = `${responseData['route']}?bahan-baku={{ $bahanBaku }}`;
-                
-                if (mainHeaderEl.getAttribute('data-value') === "Haram") {
-                    await processActivity('{{ csrf_token() }}', 'rule');
-                }
-            } catch (error) {
-                console.error(error);
+            let mainHeaderEl = document.querySelector('#main-header');            
+            if (mainHeaderEl.getAttribute('data-value') === "Haram") {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#kehalalan-bahan-form');
+                window.location.href = form.action;
             }
         })
     </script>

@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProcessBahanBakuRequest;
 use App\Http\Requests\ProcessBtpRequest;
 use App\Http\Requests\ProcessKelompokBahanRequest;
-use App\Http\Requests\ProcessSembelihRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class HewaniController extends Controller
 {
@@ -29,36 +27,6 @@ class HewaniController extends Controller
         return view('ingredient/hewani/uji-lab-babi', \compact('ingredient'));
     }
     
-    public function processUjiLabBabi(Request $request)
-    {
-        $ingredient = Ingredient::findOrFail($request->input('ingredient-id'));
-        $certified = $request->input('is-not-babi-certified');
-
-        if ($certified) {
-            $validator = Validator::make($request->all(), [
-                'is-not-babi-certified' => 'required|string',
-                'coa-number' => 'required|string',
-                'parameter' => 'required|string',
-                'metode' => 'required|string',
-                'hasil-uji-lab' => 'required|string',
-                'ingredient_id' => 'required|string',
-            ]);
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            if ($request->input('hasil-uji-lab')) {
-                $ingredient->update(['status_halal' => 'Haram']);
-            } else {
-                $ingredient->update(['status_halal' => 'Halal']);
-            }
-            return response('', 204);
-        };
-
-        return response()->json(
-            ['route' => route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id])], 200);
-    }
-
     public function checkKelompokBahan($ingredient_id)
     {
         $ingredient = $this->getIngredientDetail($ingredient_id);
@@ -130,22 +98,15 @@ class HewaniController extends Controller
     public function processKehalalanBahan(Request $request, $ingredient_id)
     {
         $ingredient = Ingredient::findOrFail(($ingredient_id));
-        $statusBahanBaku = $request->input('kehalalan-bahan');
-        $kelompokBahan = $request->input('kelompokBahan');
-
-        if ($statusBahanBaku == 'Haram') {
-            $ingredient->update(['status_halal' => 'Haram']);
-            return response('', 204);
-        };
+        $bahanBaku = $request->query('bahan-baku');
+        $kelompokBahan = $request->query('kelompok-bahan');
         
         if ($kelompokBahan == 'sembelih') {
-            return response()->json(
-                ['route' => route('hewani.sembelih', ['ingredient_id' => $ingredient->id])], 200);
-            }
+            return redirect()->route('hewani.sembelih', ['ingredient_id' => $ingredient->id, 'bahan-baku' => $bahanBaku]);
+        }
             
         if ($kelompokBahan == 'nonsembelih') {
-            return response()->json(
-                ['route' => route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id])], 200);
+            return redirect()->route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id, 'bahan-baku' => $bahanBaku]);
         }
     }
 
@@ -155,19 +116,6 @@ class HewaniController extends Controller
         $ingredient = $this->getIngredientDetail($ingredient_id);
         
         return view('ingredient/hewani/sembelih', \compact('ingredient', 'bahanBaku'));   
-    }
-
-    public function processSembelih(ProcessSembelihRequest $request, $ingredient_id){
-        $ingredient = Ingredient::findOrFail(($ingredient_id));
-        $statusBahanBaku = $request->input('kehalalan-bahan');
-
-        if ($statusBahanBaku == 'Haram') {
-            $ingredient->update(['status_halal' => 'Haram']);
-            return response('', 204);
-        };
-
-        return response()->json(
-            ['route' => route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id])], 200);
     }
 
     public function checkPengolahanTambahan(Request $request, $ingredient_id)
@@ -199,6 +147,5 @@ class HewaniController extends Controller
         $ingredient = $this->getIngredientDetail($ingredient_id);
         
         return view('ingredient/hewani/btp', \compact('ingredient', 'bahanBaku', 'arrayBTP')); 
-        
     }
 }

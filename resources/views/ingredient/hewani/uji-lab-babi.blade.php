@@ -45,9 +45,7 @@
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
-                        <form id="is-not-babi-certified-form" action="{{ route('hewani.uji-lab-babi.process') }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <form id="is-not-babi-certified-form" action="{{ route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-3">
                                 <input type="hidden" class="form-control" name="ingredient-id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kandungan DNA babi pada bahan? <span class="text-danger">*</span></label>
@@ -75,7 +73,7 @@
                                     <input type="text" class="form-control sub-activity" data-pos="1" data-label="Metode" name="metode" placeholder="Metode">
                                 </div>
                                 <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab</label>
+                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab <span class="text-danger">*</span></label>
                                     <select id="hasil-uji-lab-select" class="form-control" name="hasil-uji-lab">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('hasil-uji-lab') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Terdeteksi</option>
@@ -131,36 +129,15 @@
     
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            let form = document.querySelector('#is-not-babi-certified-form');
-            
-            // Serialize the form data
-            let formData = new FormData(form);
-
-            try {
-                // Send the POST request to the Laravel route
-                let response = await fetch(form.action, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                
-                const responseData = await response.json();
-                window.location.href = responseData['route'];
-                
-                let selectEl = document.querySelector('#is-not-babi-certified-select');
-                if (selectEl.value === "1") {
-                    await processActivity('{{ csrf_token() }}', 'rule');
-                }
-            } catch (error) {
-                // Handle any errors that occur during the request
-                console.error(error);
+            let selectEl = document.querySelector('#is-not-babi-certified-select');
+            let select2El = document.querySelector('#hasil-uji-lab-select');
+            if (selectEl.value === "1" && select2El.value === '') {
+                alert('Hasil Uji Lab wajib diisi');
+            } else if (selectEl.value === "1" && select2El.value !== '') {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#is-not-babi-certified-form');
+                form.submit();
             }
         })
     </script>

@@ -48,16 +48,16 @@ Route::middleware('auth')->group(function() {
         Route::delete('/{ingredient_id}', [IngredientController::class, 'destroy'])->name('destroy');
         
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'checkCertificate'])->name('certificate');
-        Route::put('/store/certificate', [IngredientController::class, 'processCertificate'])->name('certificate.store');
+        Route::get('/{ingredient_id}/process/certificate', [IngredientController::class, 'processCertificate'])->name('certificate.process');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {
         Route::post('/', [ActivityController::class, 'store'])->name('store');
+        Route::get('/{ingredient_id}/rule', [ActivityController::class, 'getRuleResult'])->name('rule');
     });
 
     Route::prefix('hewani')->name('hewani.')->group(function() {
         Route::get('/{ingredient_id}/check/uji-lab-babi', [HewaniController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
-        Route::put('/process/uji-lab-babi', [HewaniController::class, 'processUjiLabBabi'])->name('uji-lab-babi.process');
 
         Route::get('/{ingredient_id}/check/kelompok-bahan', [HewaniController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
         Route::get('/{ingredient_id}/process/kelompok-bahan', [HewaniController::class, 'processKelompokBahan'])->name('kelompok-bahan.process');
@@ -66,10 +66,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/process/bahan-baku', [HewaniController::class, 'processBahanBaku'])->name('bahan-baku.process');
         
         Route::get('/{ingredient_id}/check/kehalalan-bahan', [HewaniController::class, 'checkKehalalanBahan'])->name('kehalalan-bahan');
-        Route::put('/{ingredient_id}/process/kehalalan-bahan', [HewaniController::class, 'processKehalalanBahan'])->name('kehalalan-bahan.process');
+        Route::get('/{ingredient_id}/process/kehalalan-bahan', [HewaniController::class, 'processKehalalanBahan'])->name('kehalalan-bahan.process');
         
         Route::get('/{ingredient_id}/check/sembelih', [HewaniController::class, 'checkSembelih'])->name('sembelih');
-        Route::put('/{ingredient_id}/process/sembelih', [HewaniController::class, 'processSembelih'])->name('sembelih.process');
 
         Route::get('/{ingredient_id}/check/pengolahan-tambahan', [HewaniController::class, 'checkPengolahanTambahan'])->name('pengolahan-tambahan');
         Route::get('/{ingredient_id}/process/pengolahan-tambahan', [HewaniController::class, 'processPengolahanTambahan'])->name('pengolahan-tambahan.process');

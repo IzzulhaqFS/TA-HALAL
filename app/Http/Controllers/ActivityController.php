@@ -136,4 +136,25 @@ class ActivityController extends Controller
             return response()->json(['error' => 'Error creating sub activity'], 500);
         }
     }
+
+    public function getRuleResult($ingredient_id)
+    {
+        $ingredient = Ingredient::findOrFail($ingredient_id);
+        $eventLogs = EventLog::where('ingredient_id', $ingredient_id)->get();
+        $statusHalal = 'Syubhat';
+        
+        foreach ($eventLogs as $eventLog) {
+            if ($eventLog->status_halal == 'Haram') {
+                $statusHalal = 'Haram';
+                break;
+            } elseif ($eventLog->status_halal == 'Halal') {
+                $statusHalal = 'Halal';
+            }
+        }
+        
+        $ingredient->update(['status_halal' => $statusHalal]);
+
+        return redirect()->route('ingredient.show', ['ingredient_id' => $ingredient_id]);
+    }
+
 }

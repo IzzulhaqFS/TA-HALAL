@@ -1,7 +1,7 @@
 const baseRoute = 'http://127.0.0.1:8000';
 const activityRoute = `${baseRoute}/activity`;
 const ingredientRoute = `${baseRoute}/ingredient`;
-const modelRoute = 'http://127.0.0.1:5000/get_prediction_result';
+const modelRoute = 'http://127.0.0.1:5000/prediction';
 
 const storeActivity = async (csrf_token, data) => {
     try {
@@ -76,6 +76,32 @@ const processPredictionResult = async (csrf_token, predictionResult, ingredientI
     }
 };
 
+const processRuleResult = async (csrf_token, ingredientId) => {
+    try {
+        const response = await fetch(`${activityRoute}/rule`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrf_token,
+            },
+            body: JSON.stringify({
+                'ingredient-id': data['ingredient-id'],
+                'event-log': data['event-log'],
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        window.location.href = responseData['route']
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
 
 const processActivity = async (csrf_token, method = 'prediction') => {
     try {
@@ -93,6 +119,11 @@ const processActivity = async (csrf_token, method = 'prediction') => {
         // Store the activity
         const responseData = await storeActivity(csrf_token, data);
         console.log('Response data', responseData);
+        
+        // Get the result from Halal Critical Control Point (HCCP) Rule 
+        if (method === 'rule') {
+            window.location.href = `${activityRoute}/${responseData['ingredient-id']}/rule`
+        }
 
         // Get the result from Flask model app 
         if (method === 'prediction') {
@@ -100,14 +131,6 @@ const processActivity = async (csrf_token, method = 'prediction') => {
             console.log('Prediction res', predictionResult);
             await processPredictionResult(csrf_token, predictionResult, responseData['ingredient-id']);
         }
-        
-        // Get the result from Halal Critical Control Point (HCCP) Rule 
-        // if (method === 'rule') {
-        //     const ruleResult = await getRuleResult(responseData);
-        //     await processRuleResult(csrf_token, predictionResult, responseData['ingredient-id']);
-        // }
-
-
     } catch (error) {
         // Handle any errors that occur during the request
         console.error(error);
