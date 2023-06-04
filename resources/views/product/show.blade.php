@@ -5,7 +5,10 @@
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Daftar Bahan (Produk: <b>{{ $product->name }}</b>)</h2>
+    <div id="mover-container" class="mt-5">
+        <h2 class="intro-y text-lg font-medium">Daftar Bahan (Produk: <b>{{ $product->name }}</b>)</h2>
+        <a class="btn btn-outline-success w-24 inline-block" href="{{ route('product.index') }}" id="back-btn">Kembali</a>
+    </div>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -110,11 +113,13 @@
             <div class="ml-3 mt-6">
                 {{ $ingredients->links() }}
             </div>
-            <script>
-                const spanElement = document.querySelector('span.relative.z-0.inline-flex.shadow-sm.rounded-md');
-                spanElement.classList.add('ml-4');
-                spanElement.classList.add('-mt-2');
-            </script>
+            @if (count($ingredients) >= 10)
+                <script>
+                    const spanElement = document.querySelector('span.relative.z-0.inline-flex.shadow-sm.rounded-md');
+                    spanElement.classList.add('ml-4');
+                    spanElement.classList.add('-mt-2');
+                </script>
+            @endif
         </div>
         <!-- END: Data List -->
     </div>

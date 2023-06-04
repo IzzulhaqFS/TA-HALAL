@@ -31,7 +31,7 @@ class HewaniController extends Controller
     
     public function processUjiLabBabi(Request $request)
     {
-        $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));
+        $ingredient = Ingredient::findOrFail($request->input('ingredient-id'));
         $certified = $request->input('is-not-babi-certified');
 
         if ($certified) {
@@ -52,11 +52,11 @@ class HewaniController extends Controller
             } else {
                 $ingredient->update(['status_halal' => 'Halal']);
             }
-
             return response('', 204);
         };
 
-        return redirect()->route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id]);
+        return response()->json(
+            ['route' => route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id])], 200);
     }
 
     public function checkKelompokBahan($ingredient_id)
@@ -79,24 +79,24 @@ class HewaniController extends Controller
         if ($kelompokBahan == 'sembelih') {
             if ($bahanBaku == 'darah') {
                 return redirect()->route('hewani.kehalalan-bahan', 
-                    ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'statusBahanBaku' => 'Haram']);        
+                    ['ingredient_id' => $ingredient_id, 'bahan-baku' => $bahanBaku, 'status-bahan-baku' => 'Haram']);        
             }
 
             return redirect()->route('hewani.bahan-baku', 
-                ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku]);
+                ['ingredient_id' => $ingredient_id, 'bahan-baku' => $bahanBaku]);
         } 
 
         if ($kelompokBahan == 'nonsembelih') {
             return redirect()->route('hewani.kehalalan-bahan', 
-                ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 
-                    'statusBahanBaku' => 'Halal', 'nonsembelih' => true]);
+                ['ingredient_id' => $ingredient_id, 'bahan-baku' => $bahanBaku, 
+                    'status-bahan-baku' => 'Halal', 'nonsembelih' => true]);
         }
     }
 
     public function checkBahanBaku(Request $request, $ingredient_id)
     {
         $ingredient =  $this->getIngredientDetail($ingredient_id);
-        $bahanBaku = $request->query('bahanBaku');
+        $bahanBaku = $request->query('bahan-baku');
 
         if (empty($bahanBaku)) {
             $product_id = $ingredient->product->id;
@@ -110,17 +110,17 @@ class HewaniController extends Controller
 
     public function processBahanBaku(ProcessBahanBakuRequest $request, $ingredient_id)
     {
-        $bahanBaku = $request->input('bahanBaku');
+        $bahanBaku = $request->input('bahan-baku');
         $statusBahanBaku = $request->input('kehalalan-bahan');
         
         return redirect()->route('hewani.kehalalan-bahan', 
-                ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'statusBahanBaku' => $statusBahanBaku]);
+                ['ingredient_id' => $ingredient_id, 'bahan-baku' => $bahanBaku, 'status-bahan-baku' => $statusBahanBaku]);
     }
     
     public function checkKehalalanBahan(Request $request, $ingredient_id)
     {
-        $bahanBaku = $request->query('bahanBaku');
-        $statusBahanBaku = $request->query('statusBahanBaku');
+        $bahanBaku = $request->query('bahan-baku');
+        $statusBahanBaku = $request->query('status-bahan-baku');
         $kelompokBahan = empty($request->query('nonsembelih')) ? 'sembelih' : 'nonsembelih';
         $ingredient = $this->getIngredientDetail($ingredient_id);
         
@@ -139,17 +139,19 @@ class HewaniController extends Controller
         };
         
         if ($kelompokBahan == 'sembelih') {
-            return redirect()->route('hewani.sembelih', ['ingredient_id' => $ingredient_id]);
-        }
-
+            return response()->json(
+                ['route' => route('hewani.sembelih', ['ingredient_id' => $ingredient->id])], 200);
+            }
+            
         if ($kelompokBahan == 'nonsembelih') {
-            return redirect()->route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient_id]);
+            return response()->json(
+                ['route' => route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id])], 200);
         }
     }
 
     public function checkSembelih(Request $request, $ingredient_id)
     {
-        $bahanBaku = $request->query('bahanBaku');
+        $bahanBaku = $request->query('bahan-baku');
         $ingredient = $this->getIngredientDetail($ingredient_id);
         
         return view('ingredient/hewani/sembelih', \compact('ingredient', 'bahanBaku'));   
@@ -164,12 +166,13 @@ class HewaniController extends Controller
             return response('', 204);
         };
 
-        return redirect()->route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient_id]);
+        return response()->json(
+            ['route' => route('hewani.pengolahan-tambahan', ['ingredient_id' => $ingredient->id])], 200);
     }
 
     public function checkPengolahanTambahan(Request $request, $ingredient_id)
     {
-        $bahanBaku = $request->query('bahanBaku');
+        $bahanBaku = $request->query('bahan-baku');
         $ingredient = $this->getIngredientDetail($ingredient_id);
 
         return view('ingredient/hewani/pengolahan-tambahan', \compact('ingredient', 'bahanBaku')); 
@@ -178,10 +181,10 @@ class HewaniController extends Controller
     public function processPengolahanTambahan(ProcessBtpRequest $request, $ingredient_id)
     {
         $listBTP = $request->input('list-btp');
-        $bahanBaku = $request->input('bahanBaku');
+        $bahanBaku = $request->input('bahan-baku');
         
         return redirect()->route('hewani.btp', 
-            ['ingredient_id' => $ingredient_id, 'bahanBaku' => $bahanBaku, 'list-btp' => $listBTP]);
+            ['ingredient_id' => $ingredient_id, 'bahan-baku' => $bahanBaku, 'list-btp' => $listBTP]);
     }
 
     public function checkBTP(Request $request, $ingredient_id)
@@ -191,7 +194,7 @@ class HewaniController extends Controller
         $slugifiedBTP = str_replace(' ', '-', $loweredBTP);
         $arrayBTP = explode(',', $slugifiedBTP);
         
-        $bahanBaku = $request->query('bahanBaku');
+        $bahanBaku = $request->query('bahan-baku');
 
         $ingredient = $this->getIngredientDetail($ingredient_id);
         

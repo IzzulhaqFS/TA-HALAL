@@ -5,7 +5,11 @@
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Detail Bahan</h2>
+    <div id="mover-container" class="mt-5">
+        <h2 class="intro-y text-lg font-medium">Detail Bahan</h2>
+        <a class="btn btn-outline-success w-24 inline-block" href="{{ route('product.show', ['product_id' => $product->id]) }}" id="back-btn">Kembali</a>
+    </div>
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -38,6 +42,9 @@
                         @elseif ($ingredient->status_halal == 'Haram')
                             <div class="text-2xl font-medium text-danger mt-2">Haram</div>
                             <div class="mt-1"><i>Bahan berpotensi haram</i></div>
+                        @elseif ($ingredient->status_halal == 'Syubhat')
+                            <div class="text-2xl font-medium text-warning mt-2">Syubhat</div>
+                            <div class="mt-1"><i>Bahan tergolong syubhat dan harus ditelusuri lebih lanjut</i></div>
                         @else
                             <div class="text-2xl font-medium text-danger mt-2">Dalam Proses</div>
                             <div class="mt-1"><i>Proses pengecekan bahan belum selesai</i></div>

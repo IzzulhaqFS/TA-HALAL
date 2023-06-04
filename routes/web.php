@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/{ingredient_id}', [IngredientController::class, 'destroy'])->name('destroy');
         
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'checkCertificate'])->name('certificate');
-        Route::put('/store/certificate', [IngredientController::class, 'storeCertificate'])->name('certificate.store');
+        Route::put('/store/certificate', [IngredientController::class, 'processCertificate'])->name('certificate.store');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {

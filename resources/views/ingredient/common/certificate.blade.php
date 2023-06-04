@@ -58,7 +58,7 @@
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                <input type="hidden" class="form-control sub-activity" data-pos='0' data-label="ingredient_id" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <input type="hidden" class="form-control sub-activity" data-pos='0' data-label="ingredient_id" name="ingredient-id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah bahan telah bersertifikat halal? <span class="text-danger">*</span></label>
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
@@ -157,11 +157,12 @@
                     body: new URLSearchParams(formData).toString(),
                 });
 
-                if (response.redirected) {
-                    window.location.href = response.url;
-                } else if (!response.ok) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
+                const responseData = await response.json();
+                window.location.href = responseData['route'];
                 
                 let selectEl = document.querySelector('#is-halal-certified-select');
                 if (selectEl.value === "1") {

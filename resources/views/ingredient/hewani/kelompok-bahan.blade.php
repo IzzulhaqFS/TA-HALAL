@@ -48,7 +48,6 @@
                         {{-- BEGIN: Form --}}
                         <form id="kelompok-bahan-form" action="{{ route('hewani.kelompok-bahan.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-4">
-                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Kelompok Bahan Hewani <span class="text-danger">*</span></label>
                                 <select id="kelompok-bahan-select" class="form-control" name="kelompok-bahan">
                                     <option value="">-- Pilih --</option>

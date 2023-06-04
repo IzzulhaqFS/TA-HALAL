@@ -26,7 +26,7 @@ class ProcessBtpRequest extends FormRequest
         return [
             'is-ada-tambahan' => 'required',
             'list-btp' => 'required|string',
-            'bahanBaku' => 'required|string',
+            'bahan-baku' => 'required|string',
         ];
     }
 

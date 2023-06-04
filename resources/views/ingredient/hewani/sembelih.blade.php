@@ -53,7 +53,6 @@
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
                                 <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
                                 <label for="regular-form-1" class="form-label">Apakah bahan berasal dari rumah potong bersertifikat halal? <span class="text-danger">*</span></label>
                                 <select id="is-rumah-halal-select" class="form-control" name="is-rumah-halal">
@@ -283,20 +282,16 @@
                     body: new URLSearchParams(formData).toString(),
                 });
 
-                if (response.redirected) {
-                    const url = new URL(response.url);
-                    const searchParams = new URLSearchParams(url.search);
-                    searchParams.set('bahanBaku', '{{ $bahanBaku }}');
-                    url.search = searchParams.toString();
-
-                    window.location.href = url.toString();
-                } else if (!response.ok) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 
+                const responseData = await response.json();
+                window.location.href = `${responseData['route']}?bahan-baku={{ $bahanBaku }}`;
+                
                 let kehalalanBahanEl = await document.querySelector('#kehalalan-bahan');
                 if (kehalalanBahanEl.value === 'Haram') {
-                    await processActivity('{{ csrf_token() }}');
+                    await processActivity('{{ csrf_token() }}', 'rule');
                 }
 
             } catch (error) {

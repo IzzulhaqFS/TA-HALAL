@@ -49,7 +49,7 @@
                             @csrf
                             @method('PUT')
                             <div class="mt-3">
-                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
+                                <input type="hidden" class="form-control" name="ingredient-id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kandungan DNA babi pada bahan? <span class="text-danger">*</span></label>
                                 <select id="is-not-babi-certified-select" class="form-control" name="is-not-babi-certified">
                                     <option value="">-- Pilih --</option>
@@ -147,12 +147,12 @@
                     body: new URLSearchParams(formData).toString(),
                 });
 
-                if (response.redirected) {
-                    // Tambah msg
-                    window.location.href = response.url;
-                } else if (!response.ok) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
+                const responseData = await response.json();
+                window.location.href = responseData['route'];
                 
                 let selectEl = document.querySelector('#is-not-babi-certified-select');
                 if (selectEl.value === "1") {

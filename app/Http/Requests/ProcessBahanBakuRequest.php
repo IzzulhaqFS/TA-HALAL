@@ -26,7 +26,7 @@ class ProcessBahanBakuRequest extends FormRequest
         return [
             'asal-hewan-diketahui' => 'required|string',
             'kehalalan-bahan' => 'required|string',
-            'bahanBaku' => 'required|string',
+            'bahan-baku' => 'required|string',
         ];
     }
 

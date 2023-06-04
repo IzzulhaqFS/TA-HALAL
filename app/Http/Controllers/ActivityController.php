@@ -44,7 +44,6 @@ class ActivityController extends Controller
             'ingredient-type' => strtolower($ingredientType),
             'event-log' => $mainActivity,
             'sub-activity' => $subActivity,
-            'message' => 'Data successfully retrieved',
         ];
         
         return response()->json($cleanedData, 200);
@@ -91,8 +90,8 @@ class ActivityController extends Controller
     }
 
     public function storeEventlog($mainActivity, $identity) {
-        // map $mainActivity collection to transform each item into an array 
-        // toArray convert collection of arrays to a plain PHP array
+        // map -> $mainActivity collection to transform each item into an array 
+        // toArray -> convert collection of arrays to a plain PHP array
         $data = $mainActivity->map(function ($item) use ($identity) {
             return [
                 'code' => $item['code'],
@@ -107,7 +106,7 @@ class ActivityController extends Controller
             ];
         })->toArray();    
         
-        Log::debug('main data:', $data);
+        Log::debug('Main data:', $data);
 
         try {
             EventLog::insert($data);
@@ -128,7 +127,7 @@ class ActivityController extends Controller
             ];
         })->toArray();
 
-        Log::debug('sub data:', $data);
+        Log::debug('Sub data:', $data);
         
         try {
             SubActivity::insert($data);

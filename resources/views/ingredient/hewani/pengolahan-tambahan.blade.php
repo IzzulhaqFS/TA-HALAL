@@ -50,7 +50,7 @@
                         </div>
                         <form id="tambahan-form" action="{{ route('hewani.pengolahan-tambahan.process', ['ingredient_id' => $ingredient->id])}}" method="GET">
                             <div class="mt-3">
-                                <input id="bahan-baku" type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input id="bahan-baku" type="hidden" class="form-control" name="bahan-baku" value="{{ $bahanBaku }}">
                                 <label for="regular-form-1" class="form-label">Apakah terdapat pengolahan pada bahan?</label>
                                 <select id="is-ada-tambahan-select" class="form-control" name="is-ada-tambahan">
                                     <option value="">-- Pilih --</option>
@@ -147,9 +147,14 @@
     </script>
     
     <script>
-        document.getElementById('right-btn').addEventListener('click', function(e) {
-            let form = document.querySelector('#tambahan-form');
-            form.submit(); 
+        document.getElementById('right-btn').addEventListener('click', async function(e) {
+            const checkedItems = document.querySelectorAll('#tambahan-detail input[type="checkbox"]:checked');
+            if (checkedItems.length === 0) {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#tambahan-form');
+                form.submit();
+            }
         });
     </script>
     {{-- END: Additional Scripts --}}

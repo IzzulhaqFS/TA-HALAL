@@ -50,9 +50,9 @@
                             @method('PUT')
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Status Kehalalan</label>
-                                <input id="regular-form-1" type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input id="regular-form-1" type="hidden" class="form-control" name="bahan-baku" value="{{ $bahanBaku }}">
                                 <input id="regular-form-1" type="hidden" class="form-control" name="kelompokBahan" value="{{ $kelompokBahan }}">
-                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan" value="{{ $statusBahanBaku }}">
+                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Status Kehalalan Bahan Baku" name="kehalalan-bahan"  disabled value="{{ $statusBahanBaku }}">
                             </div>
                         </form>
                         <!-- END: Form -->
@@ -83,16 +83,12 @@
                     body: new URLSearchParams(formData).toString(),
                 });
 
-                if (response.redirected) {
-                    const url = new URL(response.url);
-                    const searchParams = new URLSearchParams(url.search);
-                    searchParams.set('bahanBaku', '{{ $bahanBaku }}');
-                    url.search = searchParams.toString();
-
-                    window.location.href = url.toString();
-                } else if (!response.ok) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
+                const responseData = await response.json();
+                window.location.href = `${responseData['route']}?bahan-baku={{ $bahanBaku }}`;
                 
                 if (mainHeaderEl.getAttribute('data-value') === "Haram") {
                     await processActivity('{{ csrf_token() }}', 'rule');

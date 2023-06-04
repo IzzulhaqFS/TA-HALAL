@@ -114,7 +114,7 @@
     {{-- BEGIN: Additional Scripts --}}
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
-            await processActivity('{{ csrf_token() }}', 'rule');
+            await processActivity('{{ csrf_token() }}', 'prediction');
         })
     </script>
     {{-- END: Additional Scripts --}}

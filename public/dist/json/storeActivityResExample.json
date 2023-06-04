@@ -1,0 +1,210 @@
+{
+    "user-id": "0e27b671-82f3-4c93-88d5-2daa37ba6693",
+    "ingredient-id": "99506280-ac88-4a0f-bf05-cc30ef7feac0",
+    "ingredient-type": "hewani",
+    "event-log": [
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "Mengisi Info Bahan",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:28:07"
+        },
+        {
+            "code": "eb3e274c-e252-4c30-9652-ca1bdec58515",
+            "label": "Cek Sertifikat Halal",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:28:16"
+        },
+        {
+            "code": "f0047103-9039-42b8-a441-8efc12af0c53",
+            "label": "Cek Certificate Analysis",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:28:26"
+        },
+        {
+            "code": "18f6f35c-982e-430a-9cfd-59cdcb888c0a",
+            "label": "Cek Kelompok Bahan Hewani",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:28:37"
+        },
+        {
+            "code": "7c64524e-75cb-483a-8928-93efc1cd2fc6",
+            "label": "Cek Bahan Daging dan Turunannya",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:28:37"
+        },
+        {
+            "code": "507b05c8-ed86-4370-aa8e-bfd490ea51ee",
+            "label": "Cek Daging",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:29:02"
+        },
+        {
+            "code": "959caca6-6e7a-4ca5-8484-254dc9bf5148",
+            "label": "Cek Asal Hewan Bahan Daging",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:29:02"
+        },
+        {
+            "code": "3b0aed39-0131-49af-a25f-5ff9281f2c87",
+            "label": "Cek Kehalalan Bahan Hewani",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:29:08"
+        },
+        {
+            "code": "04d994e1-f16e-4d02-ab5c-7985c627b9a3",
+            "label": "Cek Penyembelihan",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:29:17"
+        },
+        {
+            "code": "b072e01e-f85d-4dec-8fd9-3b8c12e9780e",
+            "label": "Cek Informasi Sertifikat RPH",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:29:17"
+        },
+        {
+            "code": "ffd85886-073a-4f18-b500-cb290185bb3d",
+            "label": "Cek Pengolahan",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:29:32"
+        },
+        {
+            "code": "7aab09d3-feca-4d6e-b49a-03f0f204c3d4",
+            "label": "Cek Bahan Tambahan",
+            "value": "Syubhat",
+            "timestamp": "2023-06-02 11:30:05"
+        },
+        {
+            "code": "a18ae317-cf17-4e2e-a321-8a3383811f00",
+            "label": "Cek Sertifikat Halal Pemanis",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:30:05"
+        },
+        {
+            "code": "79fa5b35-bf17-4ab9-bf79-eed9aac21ac9",
+            "label": "Cek Informasi Sertifikat Halal Pemanis",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:30:05"
+        },
+        {
+            "code": "2f819c0f-9f70-429d-a9e2-c58a60141a5b",
+            "label": "Cek Sertifikat Halal Penyedap Rasa",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:30:05"
+        },
+        {
+            "code": "99daf276-beb1-438c-ba22-97afd31c48d1",
+            "label": "Cek Informasi Sertifikat Halal Penyedap Rasa",
+            "value": "Halal",
+            "timestamp": "2023-06-02 11:30:05"
+        }
+    ],
+    "sub-activity": [
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "product_id",
+            "value": "76aad90d-d8f2-11ed-bbe4-3065ecc67505"
+        },
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "Nama Produk",
+            "value": "Steak Jos"
+        },
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "Nama Bahan",
+            "value": "Eye rib"
+        },
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "Tipe Bahan",
+            "value": "Hewani"
+        },
+        {
+            "code": "9165e32f-276e-4958-9b80-22a7db53ded9",
+            "label": "Apakah bahan termasuk dalam poisitif list?",
+            "value": "0"
+        },
+        {
+            "code": "eb3e274c-e252-4c30-9652-ca1bdec58515",
+            "label": "ingredient_id",
+            "value": "99506280-ac88-4a0f-bf05-cc30ef7feac0"
+        },
+        {
+            "code": "eb3e274c-e252-4c30-9652-ca1bdec58515",
+            "label": "Apakah bahan telah bersertifikat halal?",
+            "value": "0"
+        },
+        {
+            "code": "f0047103-9039-42b8-a441-8efc12af0c53",
+            "label": "Apakah terdapat hasil uji lab kandungan DNA babi pada bahan?",
+            "value": "0"
+        },
+        {
+            "code": "18f6f35c-982e-430a-9cfd-59cdcb888c0a",
+            "label": "Kelompok Bahan Hewani",
+            "value": "sembelih"
+        },
+        {
+            "code": "7c64524e-75cb-483a-8928-93efc1cd2fc6",
+            "label": "Bahan Baku",
+            "value": "daging"
+        },
+        {
+            "code": "507b05c8-ed86-4370-aa8e-bfd490ea51ee",
+            "label": "Apakah hewan asal daging diketahui?",
+            "value": "1"
+        },
+        {
+            "code": "959caca6-6e7a-4ca5-8484-254dc9bf5148",
+            "label": "Apakah daging berasal dari hewan halal?",
+            "value": "1"
+        },
+        {
+            "code": "959caca6-6e7a-4ca5-8484-254dc9bf5148",
+            "label": "Nama Hewan",
+            "value": "Sapi"
+        },
+        {
+            "code": "3b0aed39-0131-49af-a25f-5ff9281f2c87",
+            "label": "Status Kehalalan Bahan Baku",
+            "value": "Halal"
+        },
+        {
+            "code": "04d994e1-f16e-4d02-ab5c-7985c627b9a3",
+            "label": "Apakah bahan berasal dari rumah potong bersertifikat halal?",
+            "value": "1"
+        },
+        {
+            "code": "ffd85886-073a-4f18-b500-cb290185bb3d",
+            "label": "Apakah terdapat pengolahan pada bahan?",
+            "value": "1"
+        },
+        {
+            "code": "ffd85886-073a-4f18-b500-cb290185bb3d",
+            "label": "Daftar Bahan Tambahan Pangan pada Bahan",
+            "value": "Pemanis,Penyedap Rasa"
+        },
+        {
+            "code": "a18ae317-cf17-4e2e-a321-8a3383811f00",
+            "label": "Apakah pemanis telah bersertifikat halal?",
+            "value": "1"
+        },
+        {
+            "code": "a18ae317-cf17-4e2e-a321-8a3383811f00",
+            "label": "Merk Pemanis",
+            "value": "Pemanis C"
+        },
+        {
+            "code": "2f819c0f-9f70-429d-a9e2-c58a60141a5b",
+            "label": "Status Penyedap Rasa",
+            "value": "sintetik-dengan-sertifikat-halal"
+        },
+        {
+            "code": "99daf276-beb1-438c-ba22-97afd31c48d1",
+            "label": "Lembaga Penerbit Sertifikat",
+            "value": "MUI Wakanda"
+        }
+    ]
+}

@@ -52,8 +52,8 @@
                         {{-- BEGIN: Form --}}
                         <form id="cek-daging-form" action="{{ route('hewani.bahan-baku.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div class="mt-3">
-                                <input type="hidden" class="form-control" name="ingredient_id" value="{{ $ingredient->id }}">
-                                <input type="hidden" class="form-control" name="bahanBaku" value="{{ $bahanBaku }}">
+                                <input type="hidden" class="form-control" name="ingredient-id" value="{{ $ingredient->id }}">
+                                <input type="hidden" class="form-control" name="bahan-baku" value="{{ $bahanBaku }}">
                                 <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
 
                                 <label for="regular-form-1" class="form-label">Apakah hewan asal daging diketahui? <span class="text-danger">*</span></label>
@@ -89,7 +89,6 @@
                                 data-pos="2"
                                 data-label="Cek Warna Daging"
                                 data-value="">
-                                <br>
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Bagaimana Warna Daging?</label>
                                     <select id="cek-warna-daging-select" class="form-control" name="cek-warna-daging">

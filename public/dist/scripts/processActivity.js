@@ -1,7 +1,7 @@
 const baseRoute = 'http://127.0.0.1:8000';
 const activityRoute = `${baseRoute}/activity`;
 const ingredientRoute = `${baseRoute}/ingredient`;
-const modelRoute = 'http://127.0.0.1:5000/get_result';
+const modelRoute = 'http://127.0.0.1:5000/get_prediction_result';
 
 const storeActivity = async (csrf_token, data) => {
     try {
@@ -26,17 +26,17 @@ const storeActivity = async (csrf_token, data) => {
     }
 };
 
-const getPrediction = async (userId, ingredientId, ingredientType, eventLog) => {
+const getPredictionResult = async (responseData) => {
     try {
-        const response = await fetch(`${modelRoute}/${ingredientType}`, {
+        const response = await fetch(`${modelRoute}/${responseData['ingredient-type']}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'user-id': userId,
-                'ingredient-id': ingredientId,
-                'event-log': eventLog,
+                'user-id': responseData['user-id'],
+                'ingredient-id': responseData['ingredient-id'],
+                'event-log': responseData['event-log'],
             }),
         });
 
@@ -51,22 +51,25 @@ const getPrediction = async (userId, ingredientId, ingredientType, eventLog) => 
     }
 };
 
-const processPrediction = async (csrf_token, predictionResponse) => {
+const processPredictionResult = async (csrf_token, predictionResult, ingredientId) => {
     try {
-        const response = await fetch(`${ingredientRoute}/status-halal`, {
+        const response = await fetch(`${ingredientRoute}/${ingredientId}/status-halal`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': csrf_token,
             },
             body: JSON.stringify({
-                'status-halal': predictionResponse['status-halal'],
+                'status-halal': predictionResult['status-halal'],
             }),
         });
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
+
+        const responseData = await response.json();
+        window.location.href = responseData['route']
     } catch (error) {
         console.error(error);
         throw error;
@@ -91,22 +94,17 @@ const processActivity = async (csrf_token, method = 'prediction') => {
         const responseData = await storeActivity(csrf_token, data);
         console.log('Response data', responseData);
 
-        // Fetch another API
-        const userId = responseData['user-id'];
-        const ingredientId = responseData['ingredient-id'];
-        const ingredientType = responseData['ingredient-type'];
-        const eventLog = responseData['event-log'];
-
-
         // Get the result from Flask model app 
-        // if (method === 'prediction') {
-        //     const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
-        //     await processPrediction(csrf_token, predictionResponse);
-        // }
-
+        if (method === 'prediction') {
+            const predictionResult = await getPredictionResult(responseData);
+            console.log('Prediction res', predictionResult);
+            await processPredictionResult(csrf_token, predictionResult, responseData['ingredient-id']);
+        }
+        
+        // Get the result from Halal Critical Control Point (HCCP) Rule 
         // if (method === 'rule') {
-        //     const predictionResponse = await getPrediction(userId, ingredientId, ingredientType, eventLog);
-        //     await processPrediction(csrf_token, predictionResponse);
+        //     const ruleResult = await getRuleResult(responseData);
+        //     await processRuleResult(csrf_token, predictionResult, responseData['ingredient-id']);
         // }
 
 

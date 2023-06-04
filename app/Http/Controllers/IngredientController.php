@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\SubActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class IngredientController extends Controller
@@ -68,9 +69,9 @@ class IngredientController extends Controller
         return view('ingredient/common/certificate', \compact('ingredient'));
     }
     
-    public function storeCertificate(Request $request)
+    public function processCertificate(Request $request)
     {
-        $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));
+        $ingredient = Ingredient::findOrFail($request->input('ingredient-id'));
         $halal = $request->input('is-halal-certified');
         
         if ($halal) {
@@ -93,11 +94,13 @@ class IngredientController extends Controller
         }
 
         if ($ingredient->type == 'Hewani') {
-            return redirect()->route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
-        } 
-
+            return response()->json(
+                ['route' => route('hewani.uji-lab-babi', ['ingredient_id' => $ingredient->id])], 200);
+        }
+            
         if ($ingredient->type == 'Nabati'){
-            return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+            return response()->json(
+                ['route' => route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id])], 200);
         }    
     }
     
@@ -109,10 +112,11 @@ class IngredientController extends Controller
 
         $ingredient = Ingredient::findOrFail($ingredient_id);
         $ingredient->update(['status_halal' => $request->input('status-halal')]);
-
-        return redirect()->route('ingredient.show', ['ingredient_id' => $ingredient_id]);
+        
+        return response()->json(
+            ['route' => route('ingredient.show', ['ingredient_id' => $ingredient->id])], 200);
     }
-
+    
     public function show($ingredient_id)
     {
         $ingredient = $this->getIngredientDetail($ingredient_id);
