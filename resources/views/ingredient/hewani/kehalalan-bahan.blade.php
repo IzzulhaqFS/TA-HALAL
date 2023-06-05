@@ -67,6 +67,8 @@
     </div>
 
     @include('../layout/components/processing-script')
+    @include('../layout/components/predict')
+    
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             let mainHeaderEl = document.querySelector('#main-header');            

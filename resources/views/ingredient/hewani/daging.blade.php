@@ -149,6 +149,7 @@
     <!-- END: Form -->
 
     @include('../layout/components/processing-script')
+    @include('../layout/components/predict')
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
