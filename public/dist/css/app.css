@@ -313,7 +313,7 @@ object {
 /* 
 Tambahan Jagad 
 */
-#jumlah-bahan-info svg{
+.explanation svg{
   display: inline-block !important;
 }
 
@@ -4054,6 +4054,10 @@ select{
 }
 .align-top{
     vertical-align: top;
+}
+.text-2xs{
+    font-size: 0.7rem;
+    line-height: 1rem;
 }
 .text-xs{
     font-size: 0.75rem;

@@ -38,7 +38,7 @@
                         <th class="whitespace-nowrap">NO</th>
                         <th class="text-center whitespace-nowrap">NAMA PRODUK</th>
                         <th class="text-center whitespace-nowrap">JUMLAH BAHAN
-                            <span id="jumlah-bahan-info">
+                            <span id="explanation">
                                 <i 
                                     data-lucide="help-circle" class="tooltip w-4"
                                     style="margin-bottom: 0.1rem" 

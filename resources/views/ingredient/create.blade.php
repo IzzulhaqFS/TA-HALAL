@@ -10,7 +10,7 @@
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-label="" data-value="Syubhat">Informasi Bahan</h2>
+        <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" data-label="null" data-value="Syubhat">Informasi Bahan</h2>
     </div>
     @if ($errors->any())
     <div class="alert alert-danger mt-2" style="display: inline-block;">
@@ -56,18 +56,19 @@
                                 </select>
                             </div>
                             <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam positif list
-                                    <span id="jumlah-bahan-info">
+                                <label for="regular-form-1" class="form-label">Apakah bahan termasuk dalam Halal Positive List
+                                    <span class="explanation">
                                         <i data-lucide="help-circle" class="tooltip w-4" style="margin-bottom: 0.1rem" 
-                                            title="Bahan positif list ialah bahan tidak kritis yang dipastikan halal. Daftarnya dapat dilihat pada link di samping.">
+                                            title="Halal Positive List ialah daftar bahan tidak kritis yang telah dipastikan halal. Daftarnya dapat dilihat pada link di bawah.">
                                         </i>
                                     </span> 
                                     <span class="text-danger">*</span>
+                                    <br>
                                     <a 
-                                        class="ml-3 underline text-xs text-primary" 
+                                        class="underline text-xs text-primary" 
                                         href="https://github.com/Jagadwp/web-titik-kritis-halal/blob/main/Daftar_Bahan_Tidak_Kritis.csv"
                                         target="_blank">
-                                        bahan positif list
+                                        halal positive list
                                     </a>
                                 </label>
                                 <select id="is-positive-list-select" class="form-control" name="is-positive-list">

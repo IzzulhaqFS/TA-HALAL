@@ -1,5 +1,5 @@
-const storeDataToSession = () => {
-    document.getElementById('right-btn').addEventListener('click', function (e) {
+const storeDataToSession = (btn = document.getElementById('right-btn')) => {
+    btn.addEventListener('click', function (e) {
         e.preventDefault(); // Prevent the default form submission
 
         let data = fillData();
