@@ -55,11 +55,11 @@
     
     isBTPLainnyaCertifiedSelectEl.addEventListener('change', function() {
         if (isBTPLainnyaCertifiedSelectEl.value === "1") {
-            btpLainnyaCertDetailEl.style.display = 'block';
+            displayElements(btpLainnyaCertDetailEl);
             btpLainnyaDetailEl.setAttribute('data-value', 'Halal');
             btpLainnyaCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            btpLainnyaCertDetailEl.style.display = 'none';
+            hideElements(btpLainnyaCertDetailEl);
             btpLainnyaDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(btpLainnyaCertDetailEl);
         }

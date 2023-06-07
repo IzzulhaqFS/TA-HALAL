@@ -171,28 +171,30 @@
         
         isRumahHalalSelectEl.addEventListener('change', function() {
             if (isRumahHalalSelectEl.value === "1") {
-                certificateDetailEl.style.display = 'block';
-                rphDetailEl.style.display = 'none';
+                displayElements(certificateDetailEl);
+                hideElements(rphDetailEl);
+                
                 certificateDetailEl.setAttribute('data-value', 'Halal')
                 mainHeaderEl.setAttribute('data-value', 'Halal')
+                
                 kehalalanBahanEl.value = 'Halal';
                 
                 removeActivityValue(rphDetailEl)
             } else if (isRumahHalalSelectEl.value === "0"){
-                rphDetailEl.style.display = 'block';
-                certificateDetailEl.style.display = 'none';
+                displayElements(rphDetailEl);
+                hideElements(certificateDetailEl);
+                
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
                 kehalalanBahanEl.value = 'Syubhat'
                 
                 removeActivityValue(certificateDetailEl)
             } else {
-                certificateDetailEl.style.display = 'none';
-                rphDetailEl.style.display = 'none';
+                hideElements(certificateDetailEl, rphDetailEl);
+                
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
                 kehalalanBahanEl.value = 'Syubhat'
-
-                removeActivityValue(certificateDetailEl)
-                removeActivityValue(rphDetailEl)
+                
+                removeActivityValue(certificateDetailEl, rphDetailEl)
             }
         });
 

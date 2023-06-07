@@ -116,14 +116,14 @@
 
         isAdaTambahanSelectEl.addEventListener('change', function() {
             if (isAdaTambahanSelectEl.value === "1") {
-                tambahanDetailEl.style.display = 'block';
+                displayElements(tambahanDetailEl);
                 mainHeaderEl.setAttribute('data-value', 'Syubhat')
             } else if (isAdaTambahanSelectEl.value === "0"){
-                tambahanDetailEl.style.display = 'none';
+                hideElements(tambahanDetailEl);
                 mainHeaderEl.setAttribute('data-value', 'Halal')
                 removeActivityValue(tambahanDetailEl)
             } else {
-                tambahanDetailEl.style.display = 'none';
+                hideElements(tambahanDetailEl);
                 mainHeaderEl.setAttribute('data-value', '')
                 removeActivityValue(tambahanDetailEl)
             }

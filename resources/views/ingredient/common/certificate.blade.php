@@ -121,12 +121,12 @@
             // Check if the selected value is "1"
             if (selectEl.value === "1") {
                 // If it is, show the certificate-detail div
-                certDetailEl.style.display = 'block';
+                displayElements(certDetailEl);
                 document.getElementById('main-header').setAttribute('data-value', 'Halal');
                 certDetailEl.setAttribute('data-value', 'Halal');
             } else {
                 // Otherwise, hide it
-                certDetailEl.style.display = 'none';
+                hideElements(certDetailEl);
                 document.getElementById('main-header').setAttribute('data-value', 'Syubhat');
                 removeActivityValue(certDetailEl);
             }

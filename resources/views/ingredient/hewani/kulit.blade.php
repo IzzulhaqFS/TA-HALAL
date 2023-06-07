@@ -123,21 +123,16 @@
         
         asalHewanDiketahuiSelectEl.addEventListener('change', function() {
             if (asalHewanDiketahuiSelectEl.value === "1") {
-                asalHewanHalalEl.style.display = 'block';
-
-                ujiPermukaanEl.style.display = 'none';
+                displayElements(asalHewanHalalEl);
+                hideElements(ujiPermukaanEl);
                 removeActivityValue(ujiPermukaanEl);
             } else if (asalHewanDiketahuiSelectEl.value === "0"){
-                ujiPermukaanEl.style.display = 'block';
-                
-                asalHewanHalalEl.style.display = 'none';
+                displayElements(ujiPermukaanEl);
+                hideElements(asalHewanHalalEl);
                 removeActivityValue(asalHewanHalalEl);
             } else {
-                asalHewanHalalEl.style.display = 'none';
-                ujiPermukaanEl.style.display = 'none';
-
-                removeActivityValue(asalHewanHalalEl);
-                removeActivityValue(ujiPermukaanEl);
+                hideElements(asalHewanHalalEl, ujiPermukaanEl);
+                removeActivityValue(asalHewanHalalEl, ujiPermukaanEl);
             }
         });
 

@@ -55,11 +55,11 @@
     
     isPengawetCertifiedSelectEl.addEventListener('change', function() {
         if (isPengawetCertifiedSelectEl.value === "1") {
-            pengawetCertDetailEl.style.display = 'block';
+            displayElements(pengawetCertDetailEl);
             pengawetDetailEl.setAttribute('data-value', 'Halal');
             pengawetCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            pengawetCertDetailEl.style.display = 'none';
+            hideElements(pengawetCertDetailEl);
             pengawetDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(pengawetCertDetailEl);
         }

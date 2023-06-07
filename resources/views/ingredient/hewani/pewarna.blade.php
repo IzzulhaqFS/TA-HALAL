@@ -56,15 +56,15 @@
     
     isPewarnaCertifiedSelectEl.addEventListener('change', function() {
         if (isPewarnaCertifiedSelectEl.value === "alami") {
-            pewarnaCertDetailEl.style.display = 'none';
+            hideElements(pewarnaCertDetailEl);
             pewarnaDetailEl.setAttribute('data-value', 'Halal');
             removeActivityValue(pewarnaCertDetailEl);
         } else if (isPewarnaCertifiedSelectEl.value === "sintetik-dengan-sertifikat-halal") {
-            pewarnaCertDetailEl.style.display = 'block';
+            displayElements(pewarnaCertDetailEl);
             pewarnaDetailEl.setAttribute('data-value', 'Halal');
             pewarnaCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            pewarnaCertDetailEl.style.display = 'none';
+            hideElements(pewarnaCertDetailEl);
             pewarnaDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(pewarnaCertDetailEl);
         }

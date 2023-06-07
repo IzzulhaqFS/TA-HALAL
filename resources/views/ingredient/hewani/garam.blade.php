@@ -55,11 +55,11 @@
     
     isGaramCertifiedSelectEl.addEventListener('change', function() {
         if (isGaramCertifiedSelectEl.value === "1") {
-            garamCertDetailEl.style.display = 'block';
+            displayElements(garamCertDetailEl);
             garamDetailEl.setAttribute('data-value', 'Halal');
             garamCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            garamCertDetailEl.style.display = 'none';
+            hideElements(garamCertDetailEl);
             garamDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(garamCertDetailEl);
         }

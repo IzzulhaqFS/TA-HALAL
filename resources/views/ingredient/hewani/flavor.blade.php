@@ -55,11 +55,11 @@
     
     isFlavorCertifiedSelectEl.addEventListener('change', function() {
         if (isFlavorCertifiedSelectEl.value === "1") {
-            flavorCertDetailEl.style.display = 'block';
+            displayElements(flavorCertDetailEl);
             flavorDetailEl.setAttribute('data-value', 'Halal');
             flavorCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            flavorCertDetailEl.style.display = 'none';
+            hideElements(flavorCertDetailEl);
             flavorDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(flavorCertDetailEl);
         }

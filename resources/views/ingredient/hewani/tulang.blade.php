@@ -135,21 +135,18 @@
         
         asalHewanDiketahuiSelectEl.addEventListener('change', function() {
             if (asalHewanDiketahuiSelectEl.value === "1") {
-                asalHewanHalalEl.style.display = 'block';
+                displayElements(asalHewanHalalEl);
 
-                ujiBabiDetailEl.style.display = 'none';
+                hideElements(ujiBabiDetailEl);
                 removeActivityValue(ujiBabiDetailEl);
             } else if (asalHewanDiketahuiSelectEl.value === "0"){
-                ujiBabiDetailEl.style.display = 'block';
+                displayElements(ujiBabiDetailEl);
                 
-                asalHewanHalalEl.style.display = 'none';
+                hideElements(asalHewanHalalEl);
                 removeActivityValue(asalHewanHalalEl);
             } else {
-                asalHewanHalalEl.style.display = 'none';
-                ujiBabiDetailEl.style.display = 'none';
-
-                removeActivityValue(asalHewanHalalEl);
-                removeActivityValue(ujiBabiDetailEl);
+                hideElements(asalHewanHalalEl, ujiBabiDetailEl);
+                removeActivityValue(asalHewanHalalEl, ujiBabiDetailEl);
             }
         });
 

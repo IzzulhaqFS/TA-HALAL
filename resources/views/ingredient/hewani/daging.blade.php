@@ -161,31 +161,16 @@
         
         asalHewanDiketahuiSelectEl.addEventListener('change', function() {
             if (asalHewanDiketahuiSelectEl.value === "1") {
-                asalHewanHalalEl.style.display = 'block';
-
-                cekWarnaEl.style.display = 'none';
-                cekSeratEl.style.display = 'none';
-                cekTeksturEl.style.display = 'none';
-                removeActivityValue(cekWarnaEl);
-                removeActivityValue(cekSeratEl);
-                removeActivityValue(cekTeksturEl);
+                displayElements(asalHewanHalalEl);
+                hideElements(cekWarnaEl, cekSeratEl, cekTeksturEl);
+                removeActivityValue(cekWarnaEl, cekSeratEl, cekTeksturEl);
             } else if (asalHewanDiketahuiSelectEl.value === "0"){
-                cekWarnaEl.style.display = 'block';
-                cekSeratEl.style.display = 'block';
-                cekTeksturEl.style.display = 'block';
-                
-                asalHewanHalalEl.style.display = 'none';
+                displayElements(cekWarnaEl, cekSeratEl, cekTeksturEl);
+                hideElements(asalHewanHalalEl);
                 removeActivityValue(asalHewanHalalEl);
             } else {
-                asalHewanHalalEl.style.display = 'none';
-                cekWarnaEl.style.display = 'none';
-                cekSeratEl.style.display = 'none';
-                cekTeksturEl.style.display = 'none';
-
-                removeActivityValue(asalHewanHalalEl);
-                removeActivityValue(cekWarnaEl);
-                removeActivityValue(cekSeratEl);
-                removeActivityValue(cekTeksturEl);
+                hideElements(asalHewanHalalEl, cekWarnaEl, cekSeratEl, cekTeksturEl);
+                removeActivityValue(asalHewanHalalEl, cekWarnaEl, cekSeratEl, cekTeksturEl);
             }
         });
 

@@ -56,15 +56,15 @@
     
     isPenyedapRasaCertifiedSelectEl.addEventListener('change', function() {
         if (isPenyedapRasaCertifiedSelectEl.value === "alami") {
-            penyedapRasaCertDetailEl.style.display = 'none';
+            hideElements(penyedapRasaCertDetailEl);
             penyedapRasaDetailEl.setAttribute('data-value', 'Halal');
             removeActivityValue(penyedapRasaCertDetailEl);
         } else if (isPenyedapRasaCertifiedSelectEl.value === "sintetik-dengan-sertifikat-halal") {
-            penyedapRasaCertDetailEl.style.display = 'block';
+            displayElements(penyedapRasaCertDetailEl);
             penyedapRasaDetailEl.setAttribute('data-value', 'Halal');
             penyedapRasaCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            penyedapRasaCertDetailEl.style.display = 'none';
+            hideElements(penyedapRasaCertDetailEl);
             penyedapRasaDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(penyedapRasaCertDetailEl);
         }

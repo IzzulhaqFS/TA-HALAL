@@ -106,9 +106,9 @@
         
         isCertifiedSelectEl.addEventListener('change', function() {
             if (isCertifiedSelectEl.value === "1") {
-                ujiBabiDetailEl.style.display = 'block';
+                displayElements(ujiBabiDetailEl);
             } else {
-                ujiBabiDetailEl.style.display = 'none';
+                hideElements(ujiBabiDetailEl);
                 removeActivityValue(ujiBabiDetailEl)
             }
         });

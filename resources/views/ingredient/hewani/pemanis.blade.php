@@ -55,11 +55,11 @@
     
     isPemanisCertifiedSelectEl.addEventListener('change', function() {
         if (isPemanisCertifiedSelectEl.value === "1") {
-            pemanisCertDetailEl.style.display = 'block';
+            displayElements(pemanisCertDetailEl)
             pemanisDetailEl.setAttribute('data-value', 'Halal');
             pemanisCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            pemanisCertDetailEl.style.display = 'none';
+            hideElements(pemanisCertDetailEl);
             pemanisDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(pemanisCertDetailEl);
         }

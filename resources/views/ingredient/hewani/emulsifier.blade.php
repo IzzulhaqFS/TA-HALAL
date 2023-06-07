@@ -55,11 +55,11 @@
     
     isEmulsifierCertifiedSelectEl.addEventListener('change', function() {
         if (isEmulsifierCertifiedSelectEl.value === "1") {
-            emulsifierCertDetailEl.style.display = 'block';
+            displayElements(emulsifierCertDetailEl)
             emulsifierDetailEl.setAttribute('data-value', 'Halal');
             emulsifierCertDetailEl.setAttribute('data-value', 'Halal');
         } else {
-            emulsifierCertDetailEl.style.display = 'none';
+            hideElements(emulsifierCertDetailEl);
             emulsifierDetailEl.setAttribute('data-value', 'Haram');
             removeActivityValue(emulsifierCertDetailEl);
         }

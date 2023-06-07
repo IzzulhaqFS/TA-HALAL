@@ -120,22 +120,20 @@
         
         kelompokBahanSelectEl.addEventListener('change', function() {
             if (kelompokBahanSelectEl.value === "sembelih") {
-                bahanSembelihDetailEl.style.display = 'block';
+                displayElements(bahanSembelihDetailEl);
                 bahanSembelihDetailEl.setAttribute('data-value', 'Syubhat');
                 
-                bahanNonsembelihDetailEl.style.display = 'none';
+                hideElements(bahanNonsembelihDetailEl);
                 removeActivityValue(bahanNonsembelihDetailEl)
             } else if (kelompokBahanSelectEl.value === "nonsembelih") {
-                bahanNonsembelihDetailEl.style.display = 'block';
+                hideElements(bahanSembelihDetailEl);
                 bahanNonsembelihDetailEl.setAttribute('data-value', 'Syubhat');
                 
-                bahanSembelihDetailEl.style.display = 'none';
+                hideElements(bahanSembelihDetailEl);
                 removeActivityValue(bahanSembelihDetailEl)
             } else {
-                bahanSembelihDetailEl.style.display = 'none';
-                bahanNonsembelihDetailEl.style.display = 'none';
-                removeActivityValue(bahanSembelihDetailEl)
-                removeActivityValue(bahanNonsembelihDetailEl)
+                hideElements(bahanSembelihDetailEl, bahanNonsembelihDetailEl);
+                removeActivityValue(bahanSembelihDetailEl, bahanNonsembelihDetailEl)
             }
         });
 
