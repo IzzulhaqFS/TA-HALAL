@@ -77,30 +77,12 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('nabati')->name('nabati.')->group(function() {
-        // Not implemented yet
-        Route::get('/{ingredient_id}/check/uji-lab-babi', [NabatiController::class, 'checkUjiLabBabi'])->name('uji-lab-babi');
-        Route::put('/process/uji-lab-babi', [NabatiController::class, 'processUjiLabBabi'])->name('uji-lab-babi.process');
+        Route::get('/{ingredient_id}/check/uji-lab-babi-etanol', [NabatiController::class, 'checkUjiLabBabiEtanol'])->name('uji-lab-babi-etanol');
 
-        Route::get('/{ingredient_id}/check/uji-etanol', [NabatiController::class, 'checkUjiEtanol'])->name('uji-etanol');
-        Route::put('/store/uji-etanol', [NabatiController::class, 'storeUjiEtanol'])->name('uji-etanol.store');
-
-        // Simpan stack halaman list titik kritis per bahan
         Route::get('/{ingredient_id}/check/kelompok-bahan', [NabatiController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
-
-        Route::get('/{ingredient_id}/check/laktosa', [NabatiController::class, 'checkLaktosa'])->name('laktosa');
-        Route::get('/{ingredient_id}/check/karbon-aktif-minyak', [NabatiController::class, 'checkKarbonAktifMinyak'])->name('karbon-aktif-minyak');
-        Route::get('/{ingredient_id}/check/vitamin', [NabatiController::class, 'checkVitamin'])->name('vitamin');
-        Route::get('/{ingredient_id}/check/emulsifier', [NabatiController::class, 'checkEmulsifier'])->name('emulsifier');
-        Route::get('/{ingredient_id}/check/enzim', [NabatiController::class, 'checkEnzim'])->name('enzim');
-        Route::get('/{ingredient_id}/check/karbon-aktif', [NabatiController::class, 'checkKarbonAktif'])->name('karbon-aktif');
-        Route::get('/{ingredient_id}/check/flavor', [NabatiController::class, 'checkFlavor'])->name('flavor');
-        Route::get('/{ingredient_id}/check/pewarna', [NabatiController::class, 'checkPewarna'])->name('pewarna');
-        Route::get('/{ingredient_id}/check/resin', [NabatiController::class, 'checkResin'])->name('resin');
-        Route::get('/{ingredient_id}/check/pelapis', [NabatiController::class, 'checkPelapis'])->name('pelapis');
-        Route::get('/{ingredient_id}/check/pelarut', [NabatiController::class, 'checkPelarut'])->name('pelarut');
-        Route::get('/{ingredient_id}/check/gula', [NabatiController::class, 'checkGula'])->name('gula');
-        Route::get('/{ingredient_id}/check/proses-produksi', [NabatiController::class, 'checkProsesProduksi'])->name('proses-produksi');
-        Route::get('/{ingredient_id}/check/gelatin', [NabatiController::class, 'checkGelatin'])->name('gelatin');
+        Route::get('/{ingredient_id}/process/kelompok-bahan', [NabatiController::class, 'processKelompokBahan'])->name('kelompok-bahan.process');
+        
+        Route::get('/{ingredient_id}/check/titik-kritis', [NabatiController::class, 'checkTitikKritis'])->name('titik-kritis');
     });
 });
 

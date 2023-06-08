@@ -10,7 +10,7 @@
             <select id="is-emulsifier-certified-select" class="form-control" name="is-emulsifier-certified">
                 <option value="">-- Pilih --</option>
                 <option value="1" {{ old('is-emulsifier-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-emulsifier-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Tidak</option>
+                <option value="0" {{ old('is-emulsifier-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah emulsifier telah bersertifikat halal?">Belum</option>
             </select>
         </div>
         <div class="mt-3">

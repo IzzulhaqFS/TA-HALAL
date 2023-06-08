@@ -10,7 +10,7 @@
             <select id="is-btp-lainnya-certified-select" class="form-control" name="is-btp-lainnya-certified">
                 <option value="">-- Pilih --</option>
                 <option value="1" {{ old('is-btp-lainnya-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah BTP lain telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-btp-lainnya-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah BTP lain telah bersertifikat halal?">Tidak</option>
+                <option value="0" {{ old('is-btp-lainnya-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah BTP lain telah bersertifikat halal?">Belum</option>
             </select>
         </div>
         <div class="mt-3">

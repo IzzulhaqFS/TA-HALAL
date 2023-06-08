@@ -8,7 +8,7 @@
     <div class="intro-y flex items-center mt-8">
         <h2 id="main-header" class="text-lg font-medium mr-auto main-activity" 
             data-pos="0" 
-            data-label="Cek Certificate Analysis" 
+            data-label="Cek certificate analysis" 
             data-value="Syubhat">
             Pengecekan Hasil Uji Laboratorium
         </h2>
@@ -45,7 +45,8 @@
                             <label for="regular-form-1" class="form-label">Nama Bahan</label>
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ $ingredient->name }}">
                         </div>
-                        <form id="is-not-babi-certified-form" action="{{ route('hewani.kelompok-bahan', ['ingredient_id' => $ingredient->id]) }}" method="GET">
+                        <form id="is-not-babi-etanol-certified-form" action="{{ route('nabati.kelompok-bahan', ['ingredient_id' => $ingredient->id]) }}" method="GET">
+                            {{-- BEGIN: Uji Babi --}}
                             <div class="mt-3">
                                 <input type="hidden" class="form-control" name="ingredient-id" value="{{ $ingredient->id }}">
                                 <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kandungan DNA babi pada bahan? <span class="text-danger">*</span></label>
@@ -55,6 +56,7 @@
                                     <option value="0" {{ old('is-not-babi-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada bahan?">Tidak ada</option>
                                 </select>
                             </div>
+                            {{-- END: Uji Babi --}}
                             {{-- BEGIN: Uji Babi Detail --}}
                             <div id="uji-babi-detail" class="uji-babi-detail main-activity" 
                                 data-pos="1"
@@ -74,14 +76,52 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="regular-form-1" class="form-label">Hasil Uji Lab <span class="text-danger">*</span></label>
-                                    <select id="hasil-uji-lab-select" class="form-control" name="hasil-uji-lab">
+                                    <select id="hasil-uji-lab-babi-select" class="form-control" name="hasil-uji-lab-babi">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('hasil-uji-lab') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Terdeteksi</option>
-                                        <option value="0" {{ old('hasil-uji-lab') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
+                                        <option value="1" {{ old('hasil-uji-lab-babi') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Terdeteksi</option>
+                                        <option value="0" {{ old('hasil-uji-lab-babi') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
                                     </select>
                                 </div>
                             </div>
                             {{-- END: Uji Babi Detail --}}
+                            {{-- BEGIN: Uji Etanol --}}
+                            <div class="mt-3">
+                                <input type="hidden" class="form-control" name="ingredient-id" value="{{ $ingredient->id }}">
+                                <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kadar etanol babi pada bahan? <span class="text-danger">*</span></label>
+                                <select id="is-not-etanol-certified-select" class="form-control" name="is-not-etanol-certified">
+                                    <option value="">-- Pilih --</option>
+                                    <option value="1" {{ old('is-not-etanol-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kadar etanol babi pada bahan?">Ada</option>
+                                    <option value="0" {{ old('is-not-etanol-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kadar etanol babi pada bahan?">Tidak ada</option>
+                                </select>
+                            </div>
+                            {{-- END: Uji Etanol --}}
+                            {{-- BEGIN: Uji Etanol Detail --}}
+                            <div id="uji-etanol-detail" class="uji-etanol-detail main-activity" 
+                                data-pos="2"
+                                data-label="Cek COA Kadar etanol"
+                                data-value="">
+                                <div class="mt-4">
+                                    <label for="regular-form-1" class="form-label">Nomor COA</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Nomor COA" name="coa-number-etanol" placeholder="Nomor COA">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="regular-form-1" class="form-label">Parameter</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Parameter" name="parameter-etanol" placeholder="Parameter">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="regular-form-1" class="form-label">Metode</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="2" data-label="Metode" name="metode-etanol" placeholder="Metode">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab <span class="text-danger">*</span></label>
+                                    <select id="hasil-uji-lab-etanol-select" class="form-control" name="hasil-uji-lab-etanol">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="1" {{ old('hasil-uji-lab-etanol') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Hasil Uji Lab">Terdeteksi</option>
+                                        <option value="0" {{ old('hasil-uji-lab-etanol') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {{-- END: Uji Etanol Detail --}}
                         </form>
                         <div id="mover-container" class="mt-5">
                             <a href="javascript:void(0)" onclick="history.back()" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
@@ -100,12 +140,15 @@
 
     {{-- BEGIN: Additional Scripts --}}
     <script>
-        let isCertifiedSelectEl = document.querySelector('#is-not-babi-certified-select');
+        let isNotBabiCertifiedSelectEl = document.querySelector('#is-not-babi-certified-select');
+        let isNotEtanolCertifiedSelectEl = document.querySelector('#is-not-etanol-certified-select');
         let ujiBabiDetailEl = document.querySelector('#uji-babi-detail');
-        let HasilUjiBabiSelectEl = document.querySelector('#hasil-uji-lab-select');
+        let ujiEtanolDetailEl = document.querySelector('#uji-etanol-detail');
+        let HasilUjiBabiSelectEl = document.querySelector('#hasil-uji-lab-babi-select');
+        let HasilUjiEtanolSelectEl = document.querySelector('#hasil-uji-lab-etanol-select');
         
-        isCertifiedSelectEl.addEventListener('change', function() {
-            if (isCertifiedSelectEl.value === "1") {
+        isNotBabiCertifiedSelectEl.addEventListener('change', function() {
+            if (isNotBabiCertifiedSelectEl.value === "1") {
                 displayElements(ujiBabiDetailEl);
             } else {
                 hideElements(ujiBabiDetailEl);
@@ -123,21 +166,47 @@
             }
         });
 
+        isNotEtanolCertifiedSelectEl.addEventListener('change', function() {
+            if (isNotEtanolCertifiedSelectEl.value === "1") {
+                displayElements(ujiEtanolDetailEl);
+            } else {
+                hideElements(ujiEtanolDetailEl);
+                removeActivityValue(ujiEtanolDetailEl)
+            }
+        });
+        
+        HasilUjiEtanolSelectEl.addEventListener('change', function() {
+            if (HasilUjiEtanolSelectEl.value === "1") {
+                ujiEtanolDetailEl.setAttribute('data-value', 'Haram');
+            } else if (HasilUjiEtanolSelectEl.value === "0"){
+                ujiEtanolDetailEl.setAttribute('data-value', 'Halal');
+            } else {
+                ujiEtanolDetailEl.setAttribute('data-value', '');
+            }
+        });
+
         // Call the event listener once on page load to set the initial state of the div
-        isCertifiedSelectEl.dispatchEvent(new Event('change'));
+        isNotBabiCertifiedSelectEl.dispatchEvent(new Event('change'));
         HasilUjiBabiSelectEl.dispatchEvent(new Event('change'));
+        isNotEtanolCertifiedSelectEl.dispatchEvent(new Event('change'));
+        HasilUjiEtanolSelectEl.dispatchEvent(new Event('change'));
     </script>
     
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             let selectEl = document.querySelector('#is-not-babi-certified-select');
-            let select2El = document.querySelector('#hasil-uji-lab-select');
-            if (selectEl.value === "1" && select2El.value === '') {
+            let select2El = document.querySelector('#hasil-uji-lab-babi-select');
+            let select3El = document.querySelector('#is-not-etanol-certified-select');
+            let select4El = document.querySelector('#hasil-uji-lab-etanol-select');
+
+            const inputNotValid = ((selectEl.value === "1" && select2El.value === '') || (select3El.value === "1" && select4El.value === ''));
+            const inputValid = ((selectEl.value === "1" && select2El.value !== '') || (select3El.value === "1" && select4El.value !== ''));
+            if (inputNotValid) {
                 alert('Hasil Uji Lab wajib diisi');
-            } else if (selectEl.value === "1" && select2El.value !== '') {
+            } else if (inputValid) {
                 await processActivity('{{ csrf_token() }}', 'rule');
             } else {
-                let form = document.querySelector('#is-not-babi-certified-form');
+                let form = document.querySelector('#is-not-babi-etanol-certified-form');
                 form.submit();
             }
         })

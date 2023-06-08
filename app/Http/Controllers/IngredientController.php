@@ -76,7 +76,7 @@ class IngredientController extends Controller
         }
         
         if ($ingredient->type == 'Nabati'){
-            return redirect()->route('nabati.uji-lab-babi', ['ingredient_id' => $ingredient->id]);
+            return redirect()->route('nabati.uji-lab-babi-etanol', ['ingredient_id' => $ingredient->id]);
         }    
     }
     

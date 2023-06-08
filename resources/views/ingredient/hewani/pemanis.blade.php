@@ -10,7 +10,7 @@
             <select id="is-pemanis-certified-select" class="form-control" name="is-pemanis-certified">
                 <option value="">-- Pilih --</option>
                 <option value="1" {{ old('is-pemanis-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-pemanis-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Tidak</option>
+                <option value="0" {{ old('is-pemanis-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah pemanis telah bersertifikat halal?">Belum</option>
             </select>
         </div>
         <div class="mt-3">

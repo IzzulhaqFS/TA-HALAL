@@ -45,53 +45,7 @@ class SideMenu
                 ],
                 'title' => 'Riwayat Pengecekan'
             ],
-            'devider',
-            'forms' => [
-                'icon' => 'sidebar',
-                'title' => 'Forms',
-                'sub_menu' => [
-                    'regular-form' => [
-                        'icon' => '',
-                        'route_name' => 'regular-form',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Regular Form'
-                    ],
-                    'datepicker' => [
-                        'icon' => '',
-                        'route_name' => 'datepicker',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Datepicker'
-                    ],
-                    'tom-select' => [
-                        'icon' => '',
-                        'route_name' => 'tom-select',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Tom Select'
-                    ],
-                    'file-upload' => [
-                        'icon' => '',
-                        'route_name' => 'file-upload',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'File Upload'
-                    ],
-                    'validation' => [
-                        'icon' => '',
-                        'route_name' => 'validation',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Validation'
-                    ]
-                ]
-            ],
+            'devider'
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcessBahanBakuRequest;
 use App\Http\Requests\ProcessBtpRequest;
-use App\Http\Requests\ProcessKelompokBahanRequest;
+use App\Http\Requests\ProcessTipeBahanHewaniRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +34,7 @@ class HewaniController extends Controller
         return view('ingredient/hewani/kelompok-bahan', \compact('ingredient'));
     }
 
-    public function processKelompokBahan(ProcessKelompokBahanRequest $request, $ingredient_id)
+    public function processKelompokBahan(ProcessTipeBahanHewaniRequest $request, $ingredient_id)
     {
         $kelompokBahan = $request->input('kelompok-bahan');
         $bahanBakuSembelih = $request->input('bahan-baku-sembelih');

@@ -10,7 +10,7 @@
             <select id="is-flavor-certified-select" class="form-control" name="is-flavor-certified">
                 <option value="">-- Pilih --</option>
                 <option value="1" {{ old('is-flavor-certified') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Iya</option>
-                <option value="0" {{ old('is-flavor-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Tidak</option>
+                <option value="0" {{ old('is-flavor-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="" data-label="Apakah flavor telah bersertifikat halal?">Belum</option>
             </select>
         </div>
         <div class="mt-3">

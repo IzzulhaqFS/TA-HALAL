@@ -60,7 +60,7 @@
                                 <select id="is-halal-certified-select" class="form-control" name="is-halal-certified">
                                     <option value="">-- Pilih --</option>
                                     <option value="1" {{ old('is-halal-certified') == '1' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Iya</option>
-                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Tidak</option>
+                                    <option value="0" {{ old('is-halal-certified') == '0' ? 'selected' : '' }} class="sub-activity" data-pos='0' data-label="Apakah bahan telah bersertifikat halal?">Belum</option>
                                 </select>
                             </div>
                             {{-- BEGIN: Certificate Detail --}}

@@ -14,6 +14,7 @@ class ProductController extends Controller
     public function tes() {
         return view('product/tes');
     }
+    
     public function index()
     {
         /* EXPLANATION:
