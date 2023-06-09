@@ -15,11 +15,11 @@ class KelompokNabati
         'Margarin' => ['minyak-nabati', 'vitamin', 'emulsifier', 'flavor', 'pewarna'],
         'Gula' => ['karbon-aktif', 'resin'],
         'Pewarna' => ['emulsifier', 'pelapis', 'pelarut'],
-        'Jam / Selai' => ['pewarna', 'gula', 'asam-sitrat'],
-        'Manisan buah-buahan' => ['flavor', 'pewarna', 'gula', 'asam-sitrat'],
+        'Jam / Selai' => ['pewarna', 'gula', 'mikrobial'],
+        'Manisan buah-buahan' => ['flavor', 'pewarna', 'gula', 'mikrobial'],
         'Sari buah & konsentrat' => ['vitamin', 'enzim', 'flavor', 'pewarna', 'gula', 'gelatin'],
-        'Buah-buahan kalengan' => ['flavor', 'gula', 'asam-sitrat'],
-        'Saus' => ['gula', 'msg'],
+        'Buah-buahan kalengan' => ['flavor', 'gula', 'mikrobial'],
+        'Saus' => ['gula', 'mikrobial'],
         'Pati & turunannya' => ['enzim'],
     ];
 

@@ -17,6 +17,7 @@ class ProductController extends Controller
     
     public function index()
     {
+        // Kurang where id user -> user_id
         /* EXPLANATION:
             - If all related ingredients have status_halal of 'halal', 
                 then the product_status will be 'halal'.

@@ -82,6 +82,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/{ingredient_id}/check/kelompok-bahan', [NabatiController::class, 'checkKelompokBahan'])->name('kelompok-bahan');
         Route::get('/{ingredient_id}/process/kelompok-bahan', [NabatiController::class, 'processKelompokBahan'])->name('kelompok-bahan.process');
         
+        Route::get('/{ingredient_id}/check/potensi-bahan-kritis', [NabatiController::class, 'checkPotensiBahanKritis'])->name('potensi-bahan-kritis');
+        Route::get('/{ingredient_id}/process/potensi-bahan-kritis', [NabatiController::class, 'processPotensiBahanKritis'])->name('potensi-bahan-kritis.process');
+
         Route::get('/{ingredient_id}/check/titik-kritis', [NabatiController::class, 'checkTitikKritis'])->name('titik-kritis');
     });
 });

@@ -47,15 +47,15 @@
                             <input id="regular-form-1" type="text" class="form-control" disabled value="{{ ucfirst($kelompokBahan) }}">
                         </div>
                         {{-- BEGIN: Form --}}
-                        <form id="titik-kritis-form" action="{{ route('nabati.titik-kritis', 
-                            ['ingredient_id' => $ingredient->id, 'kelompok-bahan' => $kelompokBahan, 'index' => ((int) $index + 1) ]) }}" method="GET">
+                        <form id="titik-kritis-form" action="{{ route('nabati.titik-kritis', [
+                            'ingredient_id' => $ingredient->id, 'kelompok-bahan' => $kelompokBahan, 'bahan-kritis' => $listBahanKritis , 'index' => ((int) $index + 1) ]) }}" 
+                            method="GET">
                             {{-- BEGIN: DATA POS 0 --}}
                             <div id="dp0" class="main-activity" style="display: block;" 
                                 data-pos="0" 
                                 data-label="Cek sertifikat halal vitamin" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <input type="hidden" class="form-control" name="kelompok-bahan" value="{{ $kelompokBahan }}">
                                     <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
                                     
                                     <label for="regular-form-1" class="form-label font-medium">Apakah vitamin telah bersertifikat halal? <span class="text-danger">*</span></label>
@@ -145,7 +145,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Kehalalan media pertumbuhan vitamin?</label>
-                                    <select id="dp4_1" class="form-control" name="d4-1">
+                                    <select id="dp4_1" class="form-control" name="d4_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Halal" {{ old('dp4_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Kehalalan media pertumbuhan vitamin?">Halal</option>
                                         <option value="Haram" {{ old('dp4_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Kehalalan media pertumbuhan vitamin?">Haram</option>
@@ -222,7 +222,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Kehalalan hewan sumber pelapis pada vitamin?</label>
-                                    <select id="dp8_1" class="form-control" name="d4-1">
+                                    <select id="dp8_1" class="form-control" name="d4_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Halal" {{ old('dp8_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="8" data-label="Kehalalan hewan sumber pelapis pada vitamin?">Halal</option>
                                         <option value="Haram" {{ old('dp8_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="8" data-label="Kehalalan hewan sumber pelapis pada vitamin?">Haram</option>
@@ -238,7 +238,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?</label>
-                                    <select id="dp9_1" class="form-control" name="d4-1">
+                                    <select id="dp9_1" class="form-control" name="d4_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('dp9_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="9" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Iya</option>
                                         <option value="0" {{ old('dp9_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="9" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Tidak</option>
@@ -355,7 +355,6 @@
                 dp4.setAttribute('data-value', 'Haram');
             } else {
                 dp4.setAttribute('data-value', '');
-
             }
         });
 
@@ -400,7 +399,6 @@
                 dp7.setAttribute('data-value', 'Haram');
             } else {
                 dp7.setAttribute('data-value', '');
-
             }
         });
 
@@ -426,7 +424,6 @@
                 dp9.setAttribute('data-value', 'Haram');
             } else {
                 dp9.setAttribute('data-value', '');
-
             }
         });
 
@@ -435,7 +432,8 @@
     </script>
 
 
-    @if (count($titikKritis) == ($index + 1))
+    {{-- Jika sudah di hal akhir bahan kritis --}}
+    @if (count(explode(",", $listBahanKritis)) == ($index + 1))
     <script>
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             await processActivity('{{ csrf_token() }}', 'rule');

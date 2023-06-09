@@ -6,6 +6,7 @@ use App\Http\Requests\ProcessTipeBahanNabatiRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\KelompokNabati;
+use App\Http\Requests\processBahanKritisRequest;
 
 class NabatiController extends Controller
 {
@@ -35,17 +36,17 @@ class NabatiController extends Controller
     public function processKelompokBahan(ProcessTipeBahanNabatiRequest $request, $ingredient_id)
     {
         $kelompokBahan = $request->input('kelompok-bahan');
+        $titikKritis = KelompokNabati::get($kelompokBahan);
 
-        return redirect()->route('nabati.titik-kritis', 
-            ['ingredient_id' => $ingredient_id, 'kelompok-bahan' => $kelompokBahan, 'index' => 0]);
+        return redirect()->route('nabati.potensi-bahan-kritis', 
+            ['ingredient_id' => $ingredient_id, 'kelompok-bahan' => $kelompokBahan, 'titik-kritis' => $titikKritis]);
     }
 
-    public function checkTitikKritis(Request $request, $ingredient_id)
+    public function checkPotensiBahanKritis(Request $request, $ingredient_id)
     {
         $ingredient =  $this->getIngredientDetail($ingredient_id);
-        $index = (int) $request->query('index');
         $kelompokBahan = $request->query('kelompok-bahan');
-        $titikKritis = KelompokNabati::get($kelompokBahan);
+        $titikKritis = $request->query('titik-kritis');
 
         if (empty($kelompokBahan)) {
             $product_id = $ingredient->product->id;
@@ -54,6 +55,26 @@ class NabatiController extends Controller
                 ->with('error', 'Bahan baku tidak berhasil diproses.');
         }
         
-        return view('ingredient/nabati/'. $titikKritis[$index], \compact('ingredient', 'kelompokBahan', 'titikKritis', 'index'));
+        return view('ingredient/nabati/potensi-bahan-kritis', \compact('ingredient', 'kelompokBahan', 'titikKritis'));
+    }
+
+    public function processPotensiBahanKritis(processBahanKritisRequest $request, $ingredient_id)
+    {
+        $kelompokBahan = $request->input('kelompok-bahan');
+        $bahanKritis = $request->input('bahan-kritis');
+
+        return redirect()->route('nabati.titik-kritis', 
+            ['ingredient_id' => $ingredient_id, 'kelompok-bahan' => $kelompokBahan, 'bahan-kritis' => $bahanKritis, 'index' => 0]);
+    }
+
+    public function checkTitikKritis(Request $request, $ingredient_id)
+    {
+        $ingredient =  $this->getIngredientDetail($ingredient_id);
+        $index = (int) $request->query('index');
+        $kelompokBahan = $request->query('kelompok-bahan');
+        $listBahanKritis = $request->query('bahan-kritis');
+        $titikKritis = explode(",", $listBahanKritis);
+
+        return view('ingredient/nabati/'. $titikKritis[$index], \compact('ingredient', 'kelompokBahan', 'listBahanKritis', 'index'));
     }
 }
