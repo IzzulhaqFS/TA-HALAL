@@ -56,9 +56,7 @@
                                 data-label="Cek komponen flavor" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
-                                    
-                                    <label for="regular-form-1" class="form-label font-medium">Komponen penyusun flavor <span class="text-danger">*</span></label>
+                                    <label for="regular-form-1" class="form-label font-medium">Komponen penyusun flavor</label>
                                     <select id="dp0_1" class="form-control" name="dp0_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Tanaman" {{ old('dp0_1') == "Tanaman" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Komponen penyusun flavor">Tanaman</option>
@@ -67,7 +65,7 @@
                                     </select>
                                 </div>
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label font-medium">Terdapat penggunaan pelarut pada flavor? <span class="text-danger">*</span></label>
+                                    <label for="regular-form-1" class="form-label font-medium">Terdapat penggunaan pelarut pada flavor?</label>
                                     <select id="dp0_2" class="form-control" name="dp0_2">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('dp0_2') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Terdapat penggunaan pelarut pada flavor">Iya</option>
@@ -85,7 +83,7 @@
                                 <hr class="mt-6" style="border-top-width: 2px">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Kehalalan hewan pada komponen flavor?</label>
-                                    <select id="dp1_1" class="form-control" name="d1_1">
+                                    <select id="dp1_1" class="form-control" name="dp1_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Halal" {{ old('dp1_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Kehalalan hewan sumber pelapis pada flavor?">Halal</option>
                                         <option value="Haram" {{ old('dp1_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Kehalalan hewan sumber pelapis pada flavor?">Haram</option>
@@ -101,7 +99,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan komponen flavor sesuai syari'at Islam?</label>
-                                    <select id="dp2_1" class="form-control" name="d2_1">
+                                    <select id="dp2_1" class="form-control" name="dp2_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('dp2_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Apakah metode penyembelihan hewan komponen flavor sesuai syari'at Islam?">Iya</option>
                                         <option value="0" {{ old('dp2_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Apakah metode penyembelihan hewan komponen flavor sesuai syari'at Islam?">Tidak</option>
@@ -134,7 +132,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Etanol didapatkan dari industri khamr?</label>
-                                    <select id="dp4_1" class="form-control" name="d4_1">
+                                    <select id="dp4_1" class="form-control" name="dp4_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="0" {{ old('dp4_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Etanol didapatkan dari industri khamr?">Tidak</option>
                                         <option value="1" {{ old('dp4_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Etanol didapatkan dari industri khamr?">Iya</option>

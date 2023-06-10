@@ -1,13 +1,13 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Pengecekan Enzim</title>
+    <title>Pengecekan Pewarna</title>
 @endsection
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
         <h2 id="main-header" class="text-lg mr-auto">
-            Pengecekan Enzim
+            Pengecekan Pewarna
         </h2>
     </div>
     @if ($errors->any())
@@ -53,39 +53,30 @@
                             {{-- BEGIN: DATA POS 0 --}}
                             <div id="dp0" class="main-activity" style="display: block;" 
                                 data-pos="0" 
-                                data-label="Cek sumber enzim" 
+                                data-label="Cek jenis pewarna" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label font-medium">Sumber enzim?</label>
+                                    <label for="regular-form-1" class="form-label font-medium">Jenis Pewarna</label>
                                     <select id="dp0_1" class="form-control" name="dp0_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Tanaman" {{ old('dp0_1') == "Tanaman" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah enzim telah bersertifikat halal?">Tanaman</option>
-                                        <option value="Hewan" {{ old('dp0_1') == "Hewan" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah enzim telah bersertifikat halal?">Hewan</option>
-                                        <option value="Mikrobial" {{ old('dp0_1') == "Mikrobial" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah enzim telah bersertifikat halal?">Mikrobial</option>
+                                        <option value="Sintetik" {{ old('dp0_1') == "Sintetik" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Jenis Pewarna">Sintetik</option>
+                                        <option value="Alami" {{ old('dp0_1') == 'Alami' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Jenis Pewarna">Alami</option>
                                     </select>
                                 </div>
                             </div>
                             {{-- END: DATA POS 0 --}}
                             
-                            {{-- BEGIN: DATA POS 1 (jika dari mikrobial)--}} 
+                            {{-- BEGIN: DATA POS 1 --}}
                             <div id="dp1" class="main-activity" style="display: none;" 
                                 data-pos="1" 
-                                data-label="Cek proses produksi (enzim)" 
+                                data-label="Cek kandungan pewarna" 
                                 data-value="">
-
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Proses produksi enzim?</label>
+                                    <label for="regular-form-1" class="form-label">Pewarna termasuk pewarna cair?</label>
                                     <select id="dp1_1" class="form-control" name="dp1_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Tanpa pemisahan dari media pertumbuhan" {{ old('dp1_1') == "Tanpa pemisahan dari media pertumbuhan" ? 'selected' : '' }} 
-                                            class="sub-activity" data-pos="1" 
-                                            data-label="Tanpa pemisahan dari media pertumbuhan?">Tanpa pemisahan dari media pertumbuhan</option>
-                                        <option value="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" {{ old('dp1_1') == "Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" ? 'selected' : '' }} 
-                                            class="sub-activity" data-pos="1" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i</option>
-                                        <option value="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" {{ old('dp1_1') == "Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" ? 'selected' : '' }} 
-                                            class="sub-activity" data-pos="1" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i</option>
+                                        <option value="1" {{ old('dp1_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Pewarna termasuk pewarna cair?">Iya</option>
+                                        <option value="0" {{ old('dp1_1') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Pewarna termasuk pewarna cair?">Tidak</option>
                                     </select>
                                 </div>
                             </div>
@@ -94,58 +85,48 @@
                             {{-- BEGIN: DATA POS 2 --}}
                             <div id="dp2" class="main-activity" style="display: none;" 
                                 data-pos="2" 
-                                data-label="Cek kehalalan media (enzim)" 
-                                data-value="">
+                                data-label="Cek kandungan pelarut (pewarna)" 
+                                data-value="Syubhat">
+                                <hr class="mt-6" style="border-top-width: 2px">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Kehalalan media pertumbuhan enzim?</label>
+                                    <label for="regular-form-1" class="form-label">Pelarut berasal dari alkohol/etanol?</label>
                                     <select id="dp2_1" class="form-control" name="dp2_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Halal" {{ old('dp2_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan media pertumbuhan enzim?">Halal</option>
-                                        <option value="Haram" {{ old('dp2_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan media pertumbuhan enzim?">Haram</option>
+                                        <option value="1" {{ old('dp2_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Pelaru berasal dari alkohol/etanol?">Iya</option>
+                                        <option value="0" {{ old('dp2_1') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Pelaru berasal dari alkohol/etanol?">Tidak</option>
                                     </select>
                                 </div>
                             </div>
                             {{-- END: DATA POS 2 --}}
-                            
-                            {{-- BEGIN: DATA POS 3 (jika dari hewan)--}}
+
+                            {{-- BEGIN: DATA POS 3 --}}
                             <div id="dp3" class="main-activity" style="display: none;" 
                                 data-pos="3" 
-                                data-label="Cek certificate of analysis (Enzim)" 
+                                data-label="Cek sumber etanol (pewarna)" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Apakah terdapat hasil uji lab kandungan DNA babi pada gelatin di enzim?</label>
+                                    <label for="regular-form-1" class="form-label">Etanol pada pelarut pewarna didapatkan dari industri khamr?</label>
                                     <select id="dp3_1" class="form-control" name="dp3_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('dp3_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada di enzim?">Ada</option>
-                                        <option value="0" {{ old('dp3_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada di enzim?">Tidak ada</option>
+                                        <option value="0" {{ old('dp3_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Etanol pada pelarut pewarna didapatkan dari industri khamr?">Tidak</option>
+                                        <option value="1" {{ old('dp3_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Etanol pada pelarut pewarna didapatkan dari industri khamr?">Iya</option>
                                     </select>
                                 </div>
                             </div>
                             {{-- END: DATA POS 3 --}}
 
                             {{-- BEGIN: DATA POS 4 --}}
-                            <div id="dp4" class="main-activity" style="display: none;"
-                                data-pos="4"
-                                data-label="Cek informasi COA (enzim)"
+                            <div id="dp4" class="main-activity" style="display: none;" 
+                                data-pos="4" 
+                                data-label="Cek kandungan pelapis (pewarna)" 
                                 data-value="">
+                                <hr class="mt-6" style="border-top-width: 2px">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Nomor COA</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="4" data-label="Nomor COA" name="coa-number" placeholder="Nomor COA">
-                                </div>
-                                <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Parameter</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="4" data-label="Parameter" name="parameter" placeholder="Parameter">
-                                </div>
-                                <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Metode</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="4" data-label="Metode" name="metode" placeholder="Metode">
-                                </div>
-                                <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab</label>
-                                    <select id="dp4_1" class="form-control" name="hasil-uji-lab">
+                                    <label for="regular-form-1" class="form-label">Pelapis pada pewarna berasal dari hewan?</label>
+                                    <select id="dp4_1" class="form-control" name="dp4_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('hasil-uji-lab') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Hasil Uji Lab">Terdeteksi</option>
-                                        <option value="0" {{ old('hasil-uji-lab') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
+                                        <option value="1" {{ old('dp4_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Pelapis pada pewarna berasal dari hewan?">Iya</option>
+                                        <option value="0" {{ old('dp4_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Pelapis pada pewarna berasal dari hewan?">Tidak</option>
                                     </select>
                                 </div>
                             </div>
@@ -154,14 +135,14 @@
                             {{-- BEGIN: DATA POS 5 --}}
                             <div id="dp5" class="main-activity" style="display: none;" 
                                 data-pos="5" 
-                                data-label="Cek kehalalan hewan (enzim)" 
+                                data-label="Cek kehalalan hewan (pewarna)" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Kehalalan hewan sumber pelapis pada enzim?</label>
+                                    <label for="regular-form-1" class="form-label">Kehalalan hewan sumber pelapis pada pewarna?</label>
                                     <select id="dp5_1" class="form-control" name="dp5_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Halal" {{ old('dp5_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="5" data-label="Kehalalan hewan sumber pelapis pada enzim?">Halal</option>
-                                        <option value="Haram" {{ old('dp5_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="5" data-label="Kehalalan hewan sumber pelapis pada enzim?">Haram</option>
+                                        <option value="Halal" {{ old('dp5_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="5" data-label="Kehalalan hewan sumber pelapis pada pewarna?">Halal</option>
+                                        <option value="Haram" {{ old('dp5_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="5" data-label="Kehalalan hewan sumber pelapis pada pewarna?">Haram</option>
                                     </select>
                                 </div>
                             </div>
@@ -170,14 +151,14 @@
                             {{-- BEGIN: DATA POS 6 --}}
                             <div id="dp6" class="main-activity" style="display: none;" 
                                 data-pos="6" 
-                                data-label="Cek metode penyembelihan (enzim)" 
+                                data-label="Cek metode penyembelihan (pewarna)" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?</label>
+                                    <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan sumber pelapis pada pewarna sesuai syari'at Islam?</label>
                                     <select id="dp6_1" class="form-control" name="dp6_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('dp6_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="6" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Iya</option>
-                                        <option value="0" {{ old('dp6_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="6" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Tidak</option>
+                                        <option value="1" {{ old('dp6_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="6" data-label="Apakah metode penyembelihan hewan sumber pelapis pada pewarna sesuai syari'at Islam?">Iya</option>
+                                        <option value="0" {{ old('dp6_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="6" data-label="Apakah metode penyembelihan hewan sumber pelapis pada pewarna sesuai syari'at Islam?">Tidak</option>
                                     </select>
                                 </div>
                             </div>
@@ -219,105 +200,104 @@
     <script>
         // Display anak ke-1. Hide dan bersihkan isi anak yg lbh dari ke-1 dan cabangnya
         
-        // Sumber enzim?
+        // Cek jenis pewarna
         dp0_1.addEventListener('change', function() {
-            if (dp0_1.value === "Tanaman") {
+            if (dp0_1.value === "Alami") {
                 dp0.setAttribute('data-value', 'Halal');
                 hideElements(dp1, dp2, dp3, dp4, dp5, dp6);
                 removeActivityValue(dp1, dp2, dp3, dp4, dp5, dp6);
-            } else {
+            } else if (dp0_1.value === "Sintetik"){
                 dp0.setAttribute('data-value', 'Syubhat');
-                 if (dp0_1.value === "Hewan"){
-                    displayElements(dp3);
-                    hideElements(dp1, dp2);
-                    removeActivityValue(dp1, dp2);
-                } else if (dp0_1.value === "Mikrobial"){
-                    displayElements(dp1);
-                    hideElements(dp3, dp4, dp5, dp6);
-                    removeActivityValue(dp3, dp4, dp5, dp6);
-                } else {
-                    hideElements(dp1, dp2, dp3, dp4, dp5, dp6);
-                    removeActivityValue(dp1, dp2, dp3, dp4, dp5, dp6);
-                }
-            }
-                
-        });
-
-        // Proses produksi mikrobial enzim?
-        dp1_1.addEventListener('change', function() {
-            if (dp1_1.value.includes("pencucian")) {
-                dp1.setAttribute('data-value', 'Syubhat');
-                displayElements(dp2);
+                displayElements(dp1);
+                hideElements(dp2, dp3, dp4, dp5, dp6);
+                removeActivityValue(dp2, dp3, dp4, dp5, dp6);
             } else {
-                if (dp1_1.value.includes("tanpa")) {
-                    dp1.setAttribute('data-value', 'Halal');
-                }   
-                hideElements(dp2);
-                removeActivityValue(dp2);
+                hideElements(dp2, dp3, dp4, dp5, dp6);
+                removeActivityValue(dp2, dp3, dp4, dp5, dp6);
             }
         });
 
-        // Kehalalan media pertumbuhan enzim?
+        // Cek kandungan pewarna
+        dp1_1.addEventListener('change', function() {
+            if (dp1_1.value === "1") {
+                dp1.setAttribute('data-value', 'Syubhat');
+                displayElements(dp2, dp4);
+            } else if (dp1_1.value === "0") {
+                dp1.setAttribute('data-value', 'Syubhat');
+                hideElements(dp2, dp3, dp4, dp5, dp6);
+                removeActivityValue(dp2, dp3, dp4, dp5, dp6);
+            } else {
+                dp1.setAttribute('data-value', '');
+                hideElements(dp2, dp3, dp4, dp5, dp6);
+                removeActivityValue(dp2, dp3, dp4, dp5, dp6);
+            }
+        });
+
+
+        // Cek kandungan pelarut (pewarna)
         dp2_1.addEventListener('change', function() {
-            if (dp2_1.value ===  "Halal") {
+            if (dp2_1.value === '1') {
+                dp2.setAttribute('data-value', 'Syubhat');
+                displayElements(dp3);
+            } else if (dp2_1.value === '0') {
                 dp2.setAttribute('data-value', 'Halal');
-            } else if (dp2_1.value ===  "Haram") {
-                dp2.setAttribute('data-value', 'Haram');
+                hideElements(dp3);
+                removeActivityValue(dp3);
             } else {
                 dp2.setAttribute('data-value', '');
+                hideElements(dp3);
+                removeActivityValue(dp3);
             }
         });
 
-        // Apakah terdapat hasil uji lab babi
+        // Cek sumber etanol (pewarna)
         dp3_1.addEventListener('change', function() {
-            if (dp3_1.value ===  "1") {
-                dp3.setAttribute('data-value', 'Syubhat');
-                displayElements(dp4);
-                hideElements(dp5, dp6);
-                removeActivityValue(dp5, dp6);
-            } else if (dp3_1.value ===  "0") {
-                dp3.setAttribute('data-value', 'Syubhat');
-                displayElements(dp5);
-                hideElements(dp4);
-                removeActivityValue(dp4);
+            if (dp3_1.value === '1') {
+                dp3.setAttribute('data-value', 'Haram');
+            } else if (dp3_1.value === '0') {
+                dp3.setAttribute('data-value', 'Halal');
             } else {
                 dp3.setAttribute('data-value', '');
-                hideElements(dp4, dp5, dp6);
-                removeActivityValue(dp4, dp5, dp6);
+                hideElements(dp3);
+                removeActivityValue(dp3);
             }
         });
 
-        // Hasil Uji Lab babi
+        // Cek kandungan pelapis (pewarna)
         dp4_1.addEventListener('change', function() {
-            if (dp4_1.value ===  "0") {
+            if (dp4_1.value === '1') {
+                dp4.setAttribute('data-value', 'Syubhat');
+                displayElements(dp5);
+            } else if (dp4_1.value === '0') {
                 dp4.setAttribute('data-value', 'Halal');
-            } else if (dp4_1.value ===  "1") {
-                dp4.setAttribute('data-value', 'Haram');
+                hideElements(dp5, dp6);
+                removeActivityValue(dp5, dp6);
             } else {
                 dp4.setAttribute('data-value', '');
-
+                hideElements(dp5, dp6);
+                removeActivityValue(dp5, dp6);
             }
         });
 
-        // Kehalalan hewan sumber pelapis pada enzim?
+        // Cek kehalalan hewan (pewarna)
         dp5_1.addEventListener('change', function() {
             if (dp5_1.value ===  "Halal") {
                 dp5.setAttribute('data-value', 'Halal');
                 displayElements(dp6);
             } else {
-                if (dp5_1.value ===  "Haram") {
+                if (dp5_1.value === "Haram") {
                     dp5.setAttribute('data-value', 'Haram');
                 }
                 hideElements(dp6);
                 removeActivityValue(dp6);
             }
         });
-
-        // Apakah metode penyembelihan syar'i?
+        
+        // Cek metode penyembelihan (pewarna)
         dp6_1.addEventListener('change', function() {
-            if (dp6_1.value ===  "1") {
+            if (dp6_1.value ===  "Halal") {
                 dp6.setAttribute('data-value', 'Halal');
-            } else if (dp6_1.value ===  "0"){
+            } else if (dp6_1.value === "Haram") {
                 dp6.setAttribute('data-value', 'Haram');
             } else {
                 dp6.setAttribute('data-value', '');

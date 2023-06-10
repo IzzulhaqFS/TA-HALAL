@@ -56,9 +56,7 @@
                                 data-label="Cek sertifikat halal vitamin" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <input id="kehalalan-bahan" type="hidden" class="form-control" name="kehalalan-bahan" value="Syubhat">
-                                    
-                                    <label for="regular-form-1" class="form-label font-medium">Apakah vitamin telah bersertifikat halal? <span class="text-danger">*</span></label>
+                                    <label for="regular-form-1" class="form-label font-medium">Apakah vitamin telah bersertifikat halal?</label>
                                     <select id="dp0_1" class="form-control" name="dp0_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('dp0_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah vitamin telah bersertifikat halal?">Iya</option>
@@ -145,7 +143,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Kehalalan media pertumbuhan vitamin?</label>
-                                    <select id="dp4_1" class="form-control" name="d4_1">
+                                    <select id="dp4_1" class="form-control" name="dp4_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Halal" {{ old('dp4_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Kehalalan media pertumbuhan vitamin?">Halal</option>
                                         <option value="Haram" {{ old('dp4_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="4" data-label="Kehalalan media pertumbuhan vitamin?">Haram</option>
@@ -222,7 +220,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Kehalalan hewan sumber pelapis pada vitamin?</label>
-                                    <select id="dp8_1" class="form-control" name="d4_1">
+                                    <select id="dp8_1" class="form-control" name="dp8_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="Halal" {{ old('dp8_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="8" data-label="Kehalalan hewan sumber pelapis pada vitamin?">Halal</option>
                                         <option value="Haram" {{ old('dp8_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="8" data-label="Kehalalan hewan sumber pelapis pada vitamin?">Haram</option>
@@ -238,7 +236,7 @@
                                 data-value="">
                                 <div class="mt-4">
                                     <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?</label>
-                                    <select id="dp9_1" class="form-control" name="d4_1">
+                                    <select id="dp9_1" class="form-control" name="dp9_1">
                                         <option value="">-- Pilih --</option>
                                         <option value="1" {{ old('dp9_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="9" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Iya</option>
                                         <option value="0" {{ old('dp9_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="9" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Tidak</option>
