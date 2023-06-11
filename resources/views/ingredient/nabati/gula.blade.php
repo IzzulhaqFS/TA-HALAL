@@ -309,9 +309,9 @@
         
         // Cek metode penyembelihan resin (gula)
         dp6_1.addEventListener('change', function() {
-            if (dp6_1.value ===  "Halal") {
+            if (dp6_1.value ===  "1") {
                 dp6.setAttribute('data-value', 'Halal');
-            } else if (dp6_1.value === "Haram") {
+            } else if (dp6_1.value === "0") {
                 dp6.setAttribute('data-value', 'Haram');
             } else {
                 dp6.setAttribute('data-value', '');
@@ -326,6 +326,7 @@
     {{-- Jika sudah di hal akhir bahan kritis --}}
     @if (count(explode(",", $listBahanKritis)) == ($index + 1))
     <script>
+        document.getElementById('right-btn').innerText = 'Ambil Kesimpulan';
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             await processActivity('{{ csrf_token() }}', 'rule');
         })

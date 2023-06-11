@@ -178,6 +178,7 @@
     {{-- Jika sudah di hal akhir bahan kritis --}}
     @if (count(explode(",", $listBahanKritis)) == ($index + 1))
     <script>
+        document.getElementById('right-btn').innerText = 'Ambil Kesimpulan';
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             await processActivity('{{ csrf_token() }}', 'rule');
         })

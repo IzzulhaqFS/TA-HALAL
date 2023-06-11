@@ -21,7 +21,6 @@ class KelompokNabati
         'Buah-buahan kalengan' => ['flavor', 'gula', 'asam-sitrat'],
         'Saus' => ['gula', 'msg'],
         'Pati & turunannya' => ['enzim'],
-        'Oplosan' => ['pelarut', 'asam-sitrat', 'msg'],
     ];
 
     public static function get($kelompok)

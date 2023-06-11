@@ -82,8 +82,6 @@
                                         data-pos="0" data-label="{{ $label }}" data-info="Cek bahan kritis saus">Saus</option>
                                     <option value="Pati & turunannya" {{ old('kelompok-bahan') == 'Pati & turunannya' ? 'selected' : '' }} class="sub-activity" 
                                         data-pos="0" data-label="{{ $label }}" data-info="Cek bahan kritis pati dan turunannya">Pati & turunannya</option>
-                                    <option value="Oplosan" {{ old('kelompok-bahan') == 'Oplosan' ? 'selected' : '' }} class="sub-activity" 
-                                        data-pos="0" data-label="{{ $label }}" data-info="Cek oplosan">Oplosan</option>
                                 </select>
                             </div>
                             <div id="cek-kritis" class="main-activity" style="display: none;" 

@@ -78,7 +78,7 @@
                             {{-- BEGIN: DATA POS 1 --}}
                             <div id="dp1" class="main-activity" style="display: none;" 
                                 data-pos="1" 
-                                data-label="Cek kehalalan hewan gelatin (flavor)" 
+                                data-label="Cek kehalalan hewan (flavor)" 
                                 data-value="">
                                 <hr class="mt-6" style="border-top-width: 2px">
                                 <div class="mt-4">
@@ -265,6 +265,7 @@
     {{-- Jika sudah di hal akhir bahan kritis --}}
     @if (count(explode(",", $listBahanKritis)) == ($index + 1))
     <script>
+        document.getElementById('right-btn').innerText = 'Ambil Kesimpulan';
         document.getElementById('right-btn').addEventListener('click', async function(e) {
             await processActivity('{{ csrf_token() }}', 'rule');
         })
