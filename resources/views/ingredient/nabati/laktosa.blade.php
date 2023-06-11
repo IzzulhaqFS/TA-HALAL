@@ -1,13 +1,13 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Pengecekan Gelatin</title>
+    <title>Pengecekan Laktosa</title>
 @endsection
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
         <h2 id="main-header" class="text-lg mr-auto">
-            Pengecekan Gelatin
+            Pengecekan Laktosa
         </h2>
     </div>
     @if ($errors->any())
@@ -53,43 +53,37 @@
                             {{-- BEGIN: DATA POS 0 --}}
                             <div id="dp0" class="main-activity" style="display: block;" 
                                 data-pos="0" 
-                                data-label="Cek COA gelatin" 
+                                data-label="Cek sertifikat halal laktosa" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label font-medium">Apakah terdapat hasil uji lab kandungan DNA babi pada gelatin di gelatin?</label>
+                                    <label for="regular-form-1" class="form-label font-medium">Apakah laktosa telah bersertifikat halal?</label>
                                     <select id="dp0_1" class="form-control" name="dp0_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('dp0_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada gelatin di gelatin?">Ada</option>
-                                        <option value="0" {{ old('dp0_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah terdapat hasil uji lab kandungan DNA babi pada gelatin di gelatin?">Tidak ada</option>
+                                        <option value="1" {{ old('dp0_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah laktosa telah bersertifikat halal?">Iya</option>
+                                        <option value="0" {{ old('dp0_1') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah laktosa telah bersertifikat halal?">Belum</option>
                                     </select>
                                 </div>
                             </div>
                             {{-- END: DATA POS 0 --}}
-
+                            
                             {{-- BEGIN: DATA POS 1 --}}
-                            <div id="dp1" class="main-activity" style="display: none;"
-                                data-pos="1"
-                                data-label="Cek informasi COA gelatin"
+                            <div id="dp1" class="main-activity" style="display: none;" 
+                                data-pos="1" 
+                                data-label="Cek informasi SH laktosa" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Nomor COA</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Nomor COA" name="coa-number" placeholder="Nomor COA">
+                                    <label for="regular-form-1" class="form-label">Nomor Sertifikat</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Nomor Sertifikat" name="certificate-number" placeholder="Nomor Sertifikat">
                                 </div>
                                 <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Parameter</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Parameter" name="parameter" placeholder="Parameter">
+                                    <label for="regular-form-1" class="form-label">Lembaga Penerbit Sertifikat</label>
+                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Lembaga Penerbit Sertifikat" name="certificate-institution" placeholder="Lembaga Penerbit Sertifikat">
                                 </div>
-                                <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Metode</label>
-                                    <input type="text" class="form-control sub-activity" data-pos="1" data-label="Metode" name="metode" placeholder="Metode">
-                                </div>
-                                <div class="mt-3">
-                                    <label for="regular-form-1" class="form-label">Hasil Uji Lab</label>
-                                    <select id="dp1_1" class="form-control" name="hasil-uji-lab">
-                                        <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('hasil-uji-lab') == '1' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Terdeteksi</option>
-                                        <option value="0" {{ old('hasil-uji-lab') == '0' ? 'selected' : '' }} class="sub-activity" data-pos="1" data-label="Hasil Uji Lab">Tidak terdeteksi</option>
-                                    </select>
+                                <div style="display: flex; flex-wrap: wrap;" class="mt-1">
+                                    <div class="mt-3">
+                                        <label for="regular-form-1" class="form-label">Akhir Masa Berlaku</label>
+                                        <input type="date" class="form-control sub-activity" data-pos="1" data-label="Akhir Masa Berlaku" name="certificate-end-date" placeholder="Akhir Masa Berlaku">
+                                    </div>
                                 </div>
                             </div>
                             {{-- END: DATA POS 1 --}}
@@ -97,14 +91,14 @@
                             {{-- BEGIN: DATA POS 2 --}}
                             <div id="dp2" class="main-activity" style="display: none;" 
                                 data-pos="2" 
-                                data-label="Cek kehalalan hewan (gelatin)" 
+                                data-label="cek kehalalan hewan (laktosa)" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Kehalalan hewan sumber pelapis pada gelatin?</label>
+                                    <label for="regular-form-1" class="form-label">Kehalalan hewan pada bahan penggumpal pembuatan whey?</label>
                                     <select id="dp2_1" class="form-control" name="dp2_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Halal" {{ old('dp2_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan hewan sumber pelapis pada gelatin?">Halal</option>
-                                        <option value="Haram" {{ old('dp2_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan hewan sumber pelapis pada gelatin?">Haram</option>
+                                        <option value="Halal" {{ old('dp2_1') == "Halal" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan hewan pada bahan penggumpal pembuatan whey?">Halal</option>
+                                        <option value="Haram" {{ old('dp2_1') == "Haram" ? 'selected' : '' }} class="sub-activity" data-pos="2" data-label="Kehalalan hewan pada bahan penggumpal pembuatan whey?">Haram</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,14 +107,14 @@
                             {{-- BEGIN: DATA POS 3 --}}
                             <div id="dp3" class="main-activity" style="display: none;" 
                                 data-pos="3" 
-                                data-label="Cek metode penyembelihan (gelatin)" 
+                                data-label="Cek metode penyembelihan (laktosa)" 
                                 data-value="">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?</label>
+                                    <label for="regular-form-1" class="form-label">Apakah metode penyembelihan hewan pada bahan penggumpal pembuatan whey sesuai syari'at Islam?</label>
                                     <select id="dp3_1" class="form-control" name="dp3_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('dp3_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Iya</option>
-                                        <option value="0" {{ old('dp3_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah metode penyembelihan hewan sumber pelapis sesuai syari'at Islam?">Tidak</option>
+                                        <option value="1" {{ old('dp3_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah metode penyembelihan hewan pada bahan penggumpal pembuatan whey sesuai syari'at Islam?">Iya</option>
+                                        <option value="0" {{ old('dp3_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="3" data-label="Apakah metode penyembelihan hewan pada bahan penggumpal pembuatan whey sesuai syari'at Islam?">Tidak</option>
                                     </select>
                                 </div>
                             </div>
@@ -149,45 +143,31 @@
         let dp2 = document.querySelector('#dp2');
         let dp3 = document.querySelector('#dp3');
         let dp0_1 = document.querySelector('#dp0_1');
-        let dp1_1 = document.querySelector('#dp1_1');
-        let dp8_1 = document.querySelector('#dp8_1');
+        let dp2_1 = document.querySelector('#dp2_1');
         let dp3_1 = document.querySelector('#dp3_1');
 
     </script>
     <script>
         // Display anak ke-1. Hide dan bersihkan isi anak yg lbh dari ke-1 dan cabangnya
         
-        // Apakah terdapat hasil uji lab babi
+        // Apakah laktosa telah bersertifikat halal?
         dp0_1.addEventListener('change', function() {
-            if (dp0_1.value ===  "1") {
-                dp0.setAttribute('data-value', 'Syubhat');
+            if (dp0_1.value === "1") {
+                dp1.setAttribute('data-value', 'Halal');
                 displayElements(dp1);
                 hideElements(dp2, dp3);
                 removeActivityValue(dp2, dp3);
-            } else if (dp0_1.value ===  "0") {
-                dp0.setAttribute('data-value', 'Syubhat');
+            } else if (dp0_1.value === "0"){
                 displayElements(dp2);
-                hideElements(dp1);
-                removeActivityValue(dp1);
+                hideElements(dp1, dp3);
+                removeActivityValue(dp1, dp3);
             } else {
-                dp0.setAttribute('data-value', '');
                 hideElements(dp1, dp2, dp3);
                 removeActivityValue(dp1, dp2, dp3);
             }
         });
 
-        // Hasil Uji Lab babi
-        dp1_1.addEventListener('change', function() {
-            if (dp1_1.value ===  "0") {
-                dp1.setAttribute('data-value', 'Halal');
-            } else if (dp1_1.value ===  "1") {
-                dp1.setAttribute('data-value', 'Haram');
-            } else {
-                dp1.setAttribute('data-value', '');
-            }
-        });
-
-        // Kehalalan hewan sumber pelapis pada gelatin?
+        // Kehalalan hewan pada bahan penggumpal pembuatan whey?
         dp2_1.addEventListener('change', function() {
             if (dp2_1.value ===  "Halal") {
                 dp2.setAttribute('data-value', 'Halal');

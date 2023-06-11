@@ -236,7 +236,7 @@
         // Cek sumber karbon aktif (gula)
         dp1_1.addEventListener('change', function() {
             if (dp1_1.value === "Tumbuhan" || dp1_1.value === "Bahan tambang") {
-                dp1.setAttribute('data-value', 'halal');
+                dp1.setAttribute('data-value', 'Halal');
                 hideElements(dp2, dp3);
                 removeActivityValue(dp2, dp3);
             } else if (dp1_1.value === "Hewan") {
