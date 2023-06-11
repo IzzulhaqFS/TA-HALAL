@@ -3,7 +3,7 @@
     <h2 class="mt-4"><b>-- Pengecekan Emulsifier --</b></h2>
     <div id="emulsifier-detail" class="main-activity" 
     data-pos="" 
-    data-label="Cek Sertifikat Halal Emulsifier" 
+    data-label="Cek Sertifikat Halal Emulsifer" 
     data-value="">
         <div class="mt-3">
             <label for="regular-form-1" class="form-label font-medium">Apakah emulsifier telah bersertifikat halal? <span class="text-danger">*</span></label>
