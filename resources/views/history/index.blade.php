@@ -1,14 +1,11 @@
 @extends('../layout/' . $layout)
     
 @section('subhead')
-    <title>Daftar Bahan Produk</title>
+    <title>Riwayat Hasil Pengecekan Bahan</title>
 @endsection
 
 @section('subcontent')
-    <div id="mover-container" class="mt-5">
-        <h2 class="intro-y text-lg font-medium">Daftar Bahan (Produk: <b>{{ $product->name }}</b>)</h2>
-        <a class="btn btn-outline-success w-24 inline-block" href="{{ route('product.index') }}" id="back-btn">Kembali</a>
-    </div>
+    <h2 class="intro-y text-lg font-medium mt-10">Riwayat Pengecekan Bahan</h2>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -25,7 +22,6 @@
     @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="{{ route('ingredient.create', ['product_id'=> $product->id]) }}" class="btn btn-primary inline-block mr-1 mb-2 pr-5"><i data-lucide="plus" class="w-5"></i> Cek Bahan Baru</a>
             <div class="w-full sm:w-auto mt-3 mt-0 ml-auto">
                 <div class="w-56 relative text-slate-500">
                     <input type="text" class="form-control w-56 box pr-10" placeholder="Cari...">
@@ -40,18 +36,23 @@
                     <tr>
                         <th class="whitespace-nowrap">NO</th>
                         <th class="text-center whitespace-nowrap">NAMA BAHAN</th>
+                        <th class="text-center whitespace-nowrap">ASAL PRODUK</th>
                         <th class="text-center whitespace-nowrap">STATUS </th>
                         <th class="text-center whitespace-nowrap">AKSI</th>
+                        <th class="text-center whitespace-nowrap">TIMESTAMP</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($ingredients as $key => $ingredient)
                         <tr class="intro-x">
                             <td>
-                                <p class="font-medium whitespace-nowrap ml-1">{{ $key + 1 }}</p>
+                                <p class="font-medium whitespace-nowrap ml-1">{{ $key + 1 + (($ingredients->currentPage() - 1) * $ingredients->perPage()) }}</p>
                             </td>
-                            <td>
+                            <td class="w-60">
                                 <p class="font-medium text-center">{{ $ingredient->name }}</p>
+                            </td>
+                            <td class="w-60">
+                                <p class="font-medium text-center">{{ $ingredient->product->name }}</p>
                             </td>
                             <td class="w-40">
                                 @if ($ingredient->status_halal == 'Halal')
@@ -69,18 +70,15 @@
                                 @endif
                             </td>
                             </td>
-                            <td class="table-report__action">
+                            <td class="">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center text-success mr-5" href="{{ route('ingredient.certificate', ['ingredient_id'=> $ingredient->id]) }}">
-                                        <i data-lucide="plus" class="w-4 h-4 mr-1"></i> Cek Bahan
-                                    </a>
-                                    <a class="flex items-center text-info mr-5" href="{{ route('ingredient.show', ['ingredient_id'=> $ingredient->id]) }}">
+                                    <a class="flex items-center text-info" href="{{ route('ingredient.show', ['ingredient_id'=> $ingredient->id]) }}">
                                         <i data-lucide="file-text" class="w-4 h-4 mr-1"></i> Detail
                                     </a>
-                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal-{{ $ingredient->id }}">
-                                        <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Hapus
-                                    </a>
                                 </div>
+                            </td>
+                            <td>
+                                <p class="text-center">{{ $ingredient->updated_at }}</p>
                             </td>
                         </tr>
 

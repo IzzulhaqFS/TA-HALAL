@@ -39,7 +39,7 @@ class SideMenu
             ],
             'Riwayat Pengecekan' => [
                 'icon' => 'clock',
-                'route_name' => 'point-of-sale',
+                'route_name' => 'history.index',
                 'params' => [
                     'layout' => 'side-menu'
                 ],

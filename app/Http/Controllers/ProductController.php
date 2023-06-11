@@ -39,6 +39,7 @@ class ProductController extends Controller
                             ELSE 'Halal'
                         END AS product_status")
             )
+            ->where('p.user_id', '=', Auth::user()->id)
             ->leftJoin('ingredients as i', 'p.id', '=', 'i.product_id')
             ->groupBy('p.id')
             ->paginate(10);

@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HewaniController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
@@ -54,6 +55,10 @@ Route::middleware('auth')->group(function() {
     Route::prefix('activity')->name('activity.')->group(function() {
         Route::post('/', [ActivityController::class, 'store'])->name('store');
         Route::get('/{ingredient_id}/rule', [ActivityController::class, 'getRuleResult'])->name('rule');
+    });
+
+    Route::prefix('history')->name('history.')->group(function() {
+        Route::get('/', [HistoryController::class, 'index'])->name('index');
     });
 
     Route::prefix('hewani')->name('hewani.')->group(function() {
