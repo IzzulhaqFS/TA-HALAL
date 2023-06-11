@@ -295,7 +295,7 @@
         
         // Cek metode penyembelihan (pewarna)
         dp6_1.addEventListener('change', function() {
-            if (dp6_1.value ===  "Halal") {
+            if (dp6_1.value ===  "1") {
                 dp6.setAttribute('data-value', 'Halal');
             } else if (dp6_1.value === "Haram") {
                 dp6.setAttribute('data-value', 'Haram');

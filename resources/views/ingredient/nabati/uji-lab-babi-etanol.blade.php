@@ -199,11 +199,12 @@
             let select3El = document.querySelector('#is-not-etanol-certified-select');
             let select4El = document.querySelector('#hasil-uji-lab-etanol-select');
 
+            const isHalal = (selectEl.value === "1" && select2El.value === '0' && select3El.value === "1" && select4El.value === '0');
+            const isHaram = ((selectEl.value === "1" && select2El.value === '1') || (select3El.value === "1" && select4El.value === '1'));
             const inputNotValid = ((selectEl.value === "1" && select2El.value === '') || (select3El.value === "1" && select4El.value === ''));
-            const inputValid = ((selectEl.value === "1" && select2El.value !== '') || (select3El.value === "1" && select4El.value !== ''));
             if (inputNotValid) {
                 alert('Hasil Uji Lab wajib diisi');
-            } else if (inputValid) {
+            } else if (isHalal || isHaram) {
                 await processActivity('{{ csrf_token() }}', 'rule');
             } else {
                 let form = document.querySelector('#is-not-babi-etanol-certified-form');
