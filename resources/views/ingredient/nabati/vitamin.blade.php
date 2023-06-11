@@ -124,13 +124,13 @@
                                         <option value="">-- Pilih --</option>
                                         <option value="Tanpa pemisahan dari media pertumbuhan" {{ old('dp3_1') == "Tanpa pemisahan dari media pertumbuhan" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="3" 
-                                            data-label="Tanpa pemisahan dari media pertumbuhan?">Tanpa pemisahan dari media pertumbuhan</option>
+                                            data-label="Proses produksi vitamin?">Tanpa pemisahan dari media pertumbuhan</option>
                                         <option value="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" {{ old('dp3_1') == "Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="3" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i</option>
+                                            data-label="Proses produksi vitamin?">Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i</option>
                                         <option value="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" {{ old('dp3_1') == "Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="3" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i</option>
+                                            data-label="Proses produksi vitamin?">Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i</option>
                                     </select>
                                 </div>
                             </div>
@@ -337,7 +337,7 @@
                 dp3.setAttribute('data-value', 'Syubhat');
                 displayElements(dp4);
             } else {
-                if (dp3_1.value.includes("tanpa")) {
+                if (dp3_1.value.includes("Tanpa")) {
                     dp3.setAttribute('data-value', 'Halal');
                 }   
                 hideElements(dp4);

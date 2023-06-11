@@ -6,7 +6,7 @@ class KelompokNabati
 {
     // List kelompok nabati beserta titik kritisnya
     public const kelompokNabati = [
-        'Dried products' => ['laktosa','minyak-nabati'],
+        'Dried products' => ['laktosa', 'minyak-nabati'],
         'Tepung terigu' => ['vitamin'],
         'Oleoresin' => ['emulsifier'],
         'Emulsifier nabati' => ['enzim'],
@@ -21,6 +21,7 @@ class KelompokNabati
         'Buah-buahan kalengan' => ['flavor', 'gula', 'asam-sitrat'],
         'Saus' => ['gula', 'msg'],
         'Pati & turunannya' => ['enzim'],
+        'Oplosan' => ['pelarut', 'asam-sitrat', 'msg'],
     ];
 
     public static function get($kelompok)

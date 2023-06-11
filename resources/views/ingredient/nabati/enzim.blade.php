@@ -79,13 +79,13 @@
                                         <option value="">-- Pilih --</option>
                                         <option value="Tanpa pemisahan dari media pertumbuhan" {{ old('dp1_1') == "Tanpa pemisahan dari media pertumbuhan" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="1" 
-                                            data-label="Tanpa pemisahan dari media pertumbuhan?">Tanpa pemisahan dari media pertumbuhan</option>
+                                            data-label="Proses produksi enzim?">Tanpa pemisahan dari media pertumbuhan</option>
                                         <option value="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" {{ old('dp1_1') == "Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="1" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i</option>
+                                            data-label="Proses produksi enzim?">Terdapat pemisahan dari media pertumbuhan & tidak ada proses pencucian syar'i</option>
                                         <option value="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" {{ old('dp1_1') == "Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i" ? 'selected' : '' }} 
                                             class="sub-activity" data-pos="1" 
-                                            data-label="Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i">Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i</option>
+                                            data-label="Proses produksi enzim?">Terdapat pemisahan dari media pertumbuhan & ada proses pencucian syar'i</option>
                                     </select>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                 dp1.setAttribute('data-value', 'Syubhat');
                 displayElements(dp2);
             } else {
-                if (dp1_1.value.includes("tanpa")) {
+                if (dp1_1.value.includes("Tanpa")) {
                     dp1.setAttribute('data-value', 'Halal');
                 }   
                 hideElements(dp2);
