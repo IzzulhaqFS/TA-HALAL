@@ -31,7 +31,7 @@ class SideMenu
             ],
             'Rekomendasi Bahan Halal Pengganti' => [
                 'icon' => 'file-text',
-                'route_name' => 'file-manager',
+                'route_name' => 'recommendation.index',
                 'params' => [
                     'layout' => 'side-menu'
                 ],

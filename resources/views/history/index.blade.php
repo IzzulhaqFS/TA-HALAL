@@ -36,6 +36,7 @@
                     <tr>
                         <th class="whitespace-nowrap">NO</th>
                         <th class="text-center whitespace-nowrap">NAMA BAHAN</th>
+                        <th class="text-center whitespace-nowrap">JENIS BAHAN</th>
                         <th class="text-center whitespace-nowrap">ASAL PRODUK</th>
                         <th class="text-center whitespace-nowrap">STATUS </th>
                         <th class="text-center whitespace-nowrap">AKSI</th>
@@ -51,7 +52,10 @@
                             <td class="w-60">
                                 <p class="font-medium text-center">{{ $ingredient->name }}</p>
                             </td>
-                            <td class="w-60">
+                            <td class="">
+                                <p class="font-medium text-center">{{ $ingredient->type }}</p>
+                            </td>
+                            <td class="w-40">
                                 <p class="font-medium text-center">{{ $ingredient->product->name }}</p>
                             </td>
                             <td class="w-40">

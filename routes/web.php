@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\NabatiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -67,6 +68,10 @@ Route::middleware('auth')->group(function() {
     Route::prefix('activity')->name('activity.')->group(function() {
         Route::post('/', [ActivityController::class, 'store'])->name('store');
         Route::get('/{ingredient_id}/rule', [ActivityController::class, 'getRuleResult'])->name('rule');
+    });
+
+    Route::prefix('recommendation')->name('recommendation.')->group(function() {
+        Route::get('/', [RecommendationController::class, 'index'])->name('index');
     });
 
     Route::prefix('history')->name('history.')->group(function() {
