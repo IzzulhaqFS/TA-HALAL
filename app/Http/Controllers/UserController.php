@@ -15,8 +15,6 @@ class UserController extends Controller
 
     public function store(UserRegistrationRequest $request)
     {
-        $request->all();
-        // Hash the password
         $hashedPassword = bcrypt($request->password);
         
         User::create([
@@ -47,11 +45,8 @@ class UserController extends Controller
     public function update(Request $request, $user_id)
     {
         $user = User::findOrFail($user_id);
-
-        // Update the user
         $user->update($request->all());
 
-        // Redirect to the user index page with success message
         return redirect()->back()->with('success', 'User berhasil diperbarui.');
     }
 }
