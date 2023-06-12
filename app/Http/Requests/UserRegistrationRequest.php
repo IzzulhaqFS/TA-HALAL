@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProcessSembelihRequest extends FormRequest
+class UserRegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,14 @@ class ProcessSembelihRequest extends FormRequest
     public function rules()
     {
         return [
-            'is-rumah-halal' => 'required|string',
-            'kehalalan-bahan' => 'required|string',
+            'name' => 'required|string|max:200',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|max:100',
+            'id_card' => 'required|string',
+            'phone' => 'required|string',
+            'umkm_name' => 'required|string',
         ];
     }
-
 
     /**
      * Get the custom attribute names for validator errors.
@@ -38,7 +41,10 @@ class ProcessSembelihRequest extends FormRequest
     public function attributes()
     {
         return [
-            'kelompok-bahan' => 'Kelompok bahan',
+            'name' => 'nama',
+            'id_card' => 'NIK',
+            'phone' => 'telepon',
+            'umkm_name' => 'nama UMKM',
         ];
     }
 
@@ -54,6 +60,7 @@ class ProcessSembelihRequest extends FormRequest
             'max' => ':attribute tidak boleh lebih dari :max karakter.',
             'integer' => ':attribute harus berupa angka.',
             'string' => ':attribute harus berupa teks.',
+            'confirmed' => 'konfirmasi :attribute harus sesuai.',
         ];
     }
 }

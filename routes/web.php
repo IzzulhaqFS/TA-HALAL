@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\NabatiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,22 @@ use App\Http\Controllers\ProductController;
 */
 
 
+Route::prefix('user')->name('user.')->group(function() {
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+});
+
 // TA Routes Start
 Route::middleware('auth')->group(function() {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     
     Route::get('/tes', [ProductController::class, 'tes'])->name('tes');
+    Route::prefix('user')->name('user.')->group(function() {
+        Route::get('/{user_id}', [UserController::class, 'show'])->name('show');
+        Route::put('/{user_id}', [UserController::class, 'update'])->name('update');
+        Route::delete('/{user_id}', [UserController::class, 'destroy'])->name('destroy');
+    });
+    
     Route::prefix('product')->name('product.')->group(function() {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');

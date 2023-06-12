@@ -33,7 +33,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            throw new \Exception('Wrong email or password.');
+            throw new \Exception('Email atau password salah. Silahkan registrasi jika belum mempunyai akun.');
         }
     }
 
