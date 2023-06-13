@@ -15,48 +15,27 @@
                     </div>
                     <div class="report-box-2 intro-y mt-5">
                         <div class="box grid grid-cols-12">
-                            <div class="col-span-12 lg:col-span-4 px-8 py-12 flex flex-col justify-center">
+                            <div class="col-span-12 lg:col-span-4 pl-16 flex flex-col px-8 py-12">
                                 <i data-lucide="pie-chart" class="w-10 h-10 text-pending"></i>
-                                <div class="justify-start flex items-center text-slate-600 dark:text-slate-300 mt-12">
+                                <div class="justify-start flex items-center font-medium mt-9">
                                     Total Produk Saya
                                 </div>
                                 <div class="flex items-center justify-start mt-4">
                                     <div class="relative text-2xl font-medium pl-3 ml-0.5">
-                                        <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> 10
+                                        <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> {{ $data['productCount'] }}
                                     </div>
                                 </div>
-                                <div class="justify-start flex items-center text-slate-600 dark:text-slate-300 mt-8">
+                                <div class="justify-start flex items-center font-medium mt-8">
                                     Total Bahan Saya
                                 </div>
                                 <div class="flex items-center justify-start mt-4">
                                     <div class="relative text-2xl font-medium pl-3 ml-0.5">
-                                        <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> 50
+                                        <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> {{ $data['ingredientCount'] }}
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-secondary relative justify-start rounded-full mt-8">
-                                    Unduh Laporan
-                                    <span class="w-8 h-8 absolute flex justify-center items-center bg-primary text-white rounded-full right-0 top-0 bottom-0 my-auto ml-auto mr-0.5">
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </span>
-                                </button>
                             </div>
                             <div class="col-span-12 lg:col-span-8 py-10 px-6 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
-                                <ul
-                                    class="
-                                        nav
-                                        nav-pills
-                                        w-60
-                                        border
-                                        border-slate-300
-                                        dark:border-darkmode-300
-                                        border-dashed
-                                        rounded-md
-                                        mx-auto
-                                        p-1
-                                        mb-8
-                                    "
-                                    role="tablist"
-                                >
+                                <ul class="nav nav-pills w-60 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md mx-auto p-1 mb-8" role="tablist">
                                     <li id="detail-aktivitas-penelusuran-tab" class="nav-item flex-1" role="presentation">
                                         <div
                                             class="nav-link w-full py-1.5 px-2 active text-center"
@@ -76,61 +55,55 @@
                                         <div class="col-span-6 sm:col-span-6 md:col-span-4">
                                             <div class="text-slate-500">Jumlah Aktivitas</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">4.501</div>
+                                                <div class="text-base">{{ $data['eventLogCount'] }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">Bahan Selesai Dicek</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">{{ $data['doneIngredientCount']}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">Bahan Masih Diproses</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">{{ $data['inProcessIngredientCount']}}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                             <div class="text-slate-500">Aktivitas Berstatus Halal</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">2</div>
+                                                <div class="text-base">{{ $data['halalActivity'] }}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                             <div class="text-slate-500">Aktivitas Berstatus Syubhat</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">$72.000</div>
+                                                <div class="text-base">{{ $data['syubhatActivity'] }}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                             <div class="text-slate-500">Aktivitas Berstatus Haram</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">$54.000</div>
+                                                <div class="text-base">{{ $data['haramActivity'] }}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-                                            <div class="text-slate-500">Success Payment</div>
+                                            <div class="text-slate-500">Bahan Berstatus Halal</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">2.500</div>
-                                                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="52% Higher than last month">
-                                                    52% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i>
-                                                </div>
+                                                <div class="text-base">{{ $data['halalIngredientCount'] }}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-                                            <div class="text-slate-500">Unpaid Loan</div>
+                                            <div class="text-slate-500">Bahan Berstatus Syubhat</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">$72.000</div>
+                                                <div class="text-base">{{ $data['syubhatIngredientCount'] }}</div>
                                             </div>
                                         </div>
                                         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-                                            <div class="text-slate-500">Posted Campaign</div>
+                                            <div class="text-slate-500">Bahan Berstatus Haram</div>
                                             <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">4.501</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
-                                            <div class="text-slate-500">Social Media</div>
-                                            <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">2</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
-                                            <div class="text-slate-500">Net Margin</div>
-                                            <div class="mt-1.5 flex items-center">
-                                                <div class="text-base">$72.000</div>
-                                                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="49% Higher than last month">
-                                                    49% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i>
-                                                </div>
+                                                <div class="text-base">{{ $data['haramIngredientCount'] }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -156,17 +129,17 @@
                                 <div class="flex items-center">
                                     <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
                                     <span class="truncate">Bahan Halal</span>
-                                    <span class="font-medium ml-auto">62%</span>
+                                    <span class="font-medium ml-auto">{{ $data['halalPercentage'] }}%</span>
                                 </div>
                                 <div class="flex items-center mt-4">
                                     <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
                                     <span class="truncate">Bahan Syubhat</span>
-                                    <span class="font-medium ml-auto">33%</span>
+                                    <span class="font-medium ml-auto">{{ $data['syubhatPercentage'] }}%</span>
                                 </div>
                                 <div class="flex items-center mt-4">
                                     <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
                                     <span class="truncate">Bahan Haram</span>
-                                    <span class="font-medium ml-auto">10%</span>
+                                    <span class="font-medium ml-auto">{{ $data['haramPercentage'] }}%</span>
                                 </div>
                             </div>
                         </div>
