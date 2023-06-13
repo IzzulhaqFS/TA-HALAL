@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventLog;
-use App\Models\Ingredient;
 use App\Models\Product;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -30,9 +27,12 @@ class HomeController extends Controller
         $haramIngredientCount = $ingredient->where('status_halal', '=', 'Haram')->count();
         $syubhatIngredientCount = $ingredient->where('status_halal', '=', 'Syubhat')->count();
 
-        $halalPercentage = (int) round(($halalIngredientCount / $ingredientCount) * 100);
-        $haramPercentage = (int) round(($haramIngredientCount / $ingredientCount) * 100);
-        $syubhatPercentage = (int) round(($syubhatIngredientCount / $ingredientCount) * 100);
+        $halalPercentage = $haramPercentage = $syubhatPercentage = 0;
+        if ($ingredientCount) {
+            $halalPercentage = (int) round(($halalIngredientCount / $doneIngredientCount) * 100);
+            $haramPercentage = (int) round(($haramIngredientCount / $doneIngredientCount) * 100);
+            $syubhatPercentage = (int) round(($syubhatIngredientCount / $doneIngredientCount) * 100);
+        }
 
         // Activity Related
         $eventLogs = EventLog::where('user_id', $user?->id)->get();

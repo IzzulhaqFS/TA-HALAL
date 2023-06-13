@@ -116,14 +116,20 @@
                 <!-- BEGIN: Statistik Bahan-->
                 <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 row-start-4 lg:row-start-3 xl:row-start-auto mt-6 xl:mt-8">
                     <div class="intro-y flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-5">Statistik Bahan</h2>
+                        <h2 class="text-lg font-medium truncate mr-5">Statistik Hasil Cek Bahan</h2>
                     </div>
                     <div class="report-box-2 before:hidden xl:before:block intro-y mt-5">
                         <div class="box p-5">
                             <div class="mt-3">
+                                @if (!(empty($data['halalIngredientCount']) && empty($data['syubhatIngredientCount']) && empty($data['haramIngredientCount'])))
                                 <div class="h-[196px]">
-                                    <canvas id="report-donut-chart"></canvas>
+                                    <canvas id="report-donut-chart" 
+                                        data-halal="{{ $data['halalIngredientCount'] }}" 
+                                        data-syubhat="{{ $data['syubhatIngredientCount'] }}" 
+                                        data-haram="{{ $data['haramIngredientCount'] }}" >
+                                    </canvas>
                                 </div>
+                                @endif
                             </div>
                             <div class="w-52 sm:w-auto mx-auto mt-8">
                                 <div class="flex items-center">
@@ -132,12 +138,12 @@
                                     <span class="font-medium ml-auto">{{ $data['halalPercentage'] }}%</span>
                                 </div>
                                 <div class="flex items-center mt-4">
-                                    <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
+                                    <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
                                     <span class="truncate">Bahan Syubhat</span>
                                     <span class="font-medium ml-auto">{{ $data['syubhatPercentage'] }}%</span>
                                 </div>
                                 <div class="flex items-center mt-4">
-                                    <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
+                                    <div class="w-2 h-2 bg-danger rounded-full mr-3"></div>
                                     <span class="truncate">Bahan Haram</span>
                                     <span class="font-medium ml-auto">{{ $data['haramPercentage'] }}%</span>
                                 </div>
@@ -163,33 +169,26 @@
                             </button>
                         </div>
                         <div class="mt-5 intro-x">
-                            <div class="box zoom-in">
+                            <div class="box zoom-in py-2">
                                 <div class="tiny-slider" id="important-notes">
                                     <div class="p-5">
-                                        <div class="text-base font-medium truncate">Lorem Ipsum is simply dummy text</div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">View Notes</button>
-                                            <button type="button" class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto">Dismiss</button>
+                                        <div class="text-base font-medium truncate">Manfaat Sertifikasi Halal</div>
+                                        <div class="text-slate-500 text-justify mt-2">
+                                            Dari sisi konsumen, manfaat Sertifikasi Halal adalah konsumen mendapat jaminan perlindungan dan kepastian bahwa produk yang mereka konsumsi telah resmi ditetapkan halal oleh pihak yang berwenang. 
+                                            <br><br>
+                                            Dari sisi produsen, produsen menjadi semakin dipercaya dan memiliki reputasi baik di kalangan konsumen muslim sebagai syarat agar produk mereka bisa sukses di pasar lokal maupun internasional.
                                         </div>
                                     </div>
                                     <div class="p-5">
-                                        <div class="text-base font-medium truncate">Lorem Ipsum is simply dummy text</div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">View Notes</button>
-                                            <button type="button" class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto">Dismiss</button>
+                                        <div class="text-base font-medium truncate">Usahakan Mengisi Form Pengecekan Selengkap Mungkin</div>
+                                        <div class="text-slate-500 text-justify mt-2">
+                                            Pengisian form yang lengkap akan semakin meningkatkan akurasi hasil pengecekan. Selain itu, data yang diisikan juga dapat terarsipkan dengan baik   . 
                                         </div>
                                     </div>
                                     <div class="p-5">
-                                        <div class="text-base font-medium truncate">Lorem Ipsum is simply dummy text</div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">View Notes</button>
-                                            <button type="button" class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto">Dismiss</button>
+                                        <div class="text-base font-medium truncate">Apa itu Titik Kritis?</div>
+                                        <div class="text-slate-500 text-justify mt-2">
+                                            Titik kritis atau titik kritis halal adalah suatu tahapan produksi pangan di mana ada kemungkinan suatu produk menjadi haram
                                         </div>
                                     </div>
                                 </div>
