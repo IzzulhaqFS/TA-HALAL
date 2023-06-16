@@ -66,7 +66,7 @@
                                     <br>
                                     <a 
                                         class="underline text-xs text-primary" 
-                                        href="https://github.com/Jagadwp/web-titik-kritis-halal/blob/main/Daftar_Bahan_Tidak_Kritis.csv"
+                                        href="https://drive.google.com/file/d/1eEK1mR3ppnVHfSo1NteKLLm-pPHXwu6g/view?usp=sharing"
                                         target="_blank">
                                         halal positive list
                                     </a>

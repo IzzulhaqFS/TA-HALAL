@@ -95,7 +95,7 @@
                             </td>
                             <td class="table-report__action" style="width: 25rem;">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center text-success mr-5" href="{{ route('recommendation.index') }}">
+                                    <a class="flex items-center text-success mr-5" href="{{ route('recommendation.index') }}?activity={{ $potensiHaram->activity }}">
                                         <i data-lucide="search" class="w-4 h-4 mr-1"></i>Lihat Rekomendasi Pengganti
                                     </a>
                                 </div>

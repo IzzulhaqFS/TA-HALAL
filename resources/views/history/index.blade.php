@@ -53,7 +53,7 @@
                                 <p class="font-medium text-center">{{ $ingredient->name }}</p>
                             </td>
                             <td class="">
-                                <p class="font-medium text-center">{{ $ingredient->type }}</p>
+                                <p class="text-center">{{ $ingredient->type }}</p>
                             </td>
                             <td class="w-40">
                                 <p class="font-medium text-center">{{ $ingredient->product->name }}</p>
