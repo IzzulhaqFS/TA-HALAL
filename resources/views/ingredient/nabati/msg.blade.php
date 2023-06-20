@@ -131,6 +131,7 @@
 
             }
         });
+        
         // Cek kehalalan media
         dp1_1.addEventListener('change', function() {
             if (dp1_1.value ===  "Halal") {

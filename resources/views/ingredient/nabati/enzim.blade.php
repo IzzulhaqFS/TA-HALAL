@@ -239,8 +239,7 @@
                     hideElements(dp1, dp2, dp3, dp4, dp5, dp6);
                     removeActivityValue(dp1, dp2, dp3, dp4, dp5, dp6);
                 }
-            }
-                
+            }    
         });
 
         // Proses produksi mikrobial enzim?
@@ -295,7 +294,6 @@
                 dp4.setAttribute('data-value', 'Haram');
             } else {
                 dp4.setAttribute('data-value', '');
-
             }
         });
 

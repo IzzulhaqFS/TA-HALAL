@@ -207,7 +207,7 @@
             }
         });
 
-        // Kehalalan hewan pada bahan penggumpal pembuatan whey?
+        // Kehalalan hewan pada minyak nabati?
         dp3_1.addEventListener('change', function() {
             if (dp3_1.value ===  "Halal") {
                 dp3.setAttribute('data-value', 'Halal');

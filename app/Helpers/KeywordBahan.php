@@ -20,6 +20,7 @@ class KeywordBahan
         $words = explode(' ', $cleanedActivity);
         $keyword = self::KeywordBahan;
         $query = '';
+        
         for ($i = count($words) - 1; $i >= 0; $i--) {
             for ($j = 0; $j < count($keyword); $j++ ) {
                 if (str_contains($words[$i], $keyword[$j])) {

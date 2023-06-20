@@ -288,7 +288,7 @@
     <script>
         // Display anak ke-1. Hide dan bersihkan isi anak yg lbh dari ke-1 dan cabangnya
         
-        // Pelapis berasal dari hewan (contoh: gelatin)?
+        // Apakah vitamin telah bersertifikat halal?
         dp0_1.addEventListener('change', function() {
             if (dp0_1.value === "1") {
                 dp1.setAttribute('data-value', 'Halal');

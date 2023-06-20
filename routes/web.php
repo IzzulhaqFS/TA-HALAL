@@ -111,7 +111,6 @@ Route::middleware('auth')->group(function() {
     });
 });
 
-
 // TA Routes End
 
 Route::controller(AuthController::class)->middleware('loggedin')->group(function() {
