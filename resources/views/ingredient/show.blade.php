@@ -124,11 +124,19 @@
                         @php $j = 1 @endphp
                         @foreach ($listPotensiHaram as $potensiHaram)
                         @foreach ($potensiHaram->subActivity as $potensi)
+                            @php 
+                                $potensiValue = $potensi->value; 
+                                if ($potensi->value === "1") {
+                                    $potensiValue = 'Iya / Positif';
+                                } else if ($potensi->value === "0") {
+                                    $potensiValue = 'Tidak / Negatif';
+                                }
+                            @endphp
                             <tr>
                                 <td>{{ $j }}</td>
                                 <td>{{ $potensiHaram->activity }}</td>
                                 <td>{{ $potensi->description }}</td>
-                                <td>{{ $potensi->value }}</td>
+                                <td>{{ $potensiValue  }}</td>
                                 <td>{{ $potensi->updated_at }}</td>
                             </tr>
                             @php $j++ @endphp
@@ -209,11 +217,19 @@
                 <tbody>
                     @foreach ($eventLogs as $key => $eventLog)
                         @foreach ($eventLog->subActivity as $subActivity)
+                        @php 
+                            $subActivityValue = $subActivity->value; 
+                            if ($subActivity->value === "1") {
+                                $subActivityValue = 'Iya / Positif';
+                            } else if ($subActivity->value === "0") {
+                                $subActivityValue = 'Tidak / Negatif';
+                            }
+                        @endphp
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $eventLog->activity }}</td>
                             <td>{{ $subActivity->description }}</td>
-                            <td>{{ $subActivity->value }}</td>
+                            <td>{{ $subActivityValue }}</td>
                             <td>{{ $subActivity->updated_at }}</td>
                         </tr>
                         @endforeach
