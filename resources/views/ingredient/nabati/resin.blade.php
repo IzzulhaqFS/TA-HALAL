@@ -56,11 +56,11 @@
                                 data-label="Cek kandungan resin" 
                                 data-value="Syubhat">
                                 <div class="mt-4">
-                                    <label for="regular-form-1" class="form-label font-medium">Apakah ada penggunaan gelatin pada proses pembuatan resin</label>
+                                    <label for="regular-form-1" class="form-label font-medium">Apakah ada penggunaan gelatin pada proses pembuatan resin?</label>
                                     <select id="dp0_1" class="form-control" name="dp0_1">
                                         <option value="">-- Pilih --</option>
-                                        <option value="1" {{ old('dp0_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah ada penggunaan gelatin pada proses pembuatan resin">Ada</option>
-                                        <option value="0" {{ old('dp0_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah ada penggunaan gelatin pada proses pembuatan resin">Tidak ada</option>
+                                        <option value="1" {{ old('dp0_1') == "1" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah ada penggunaan gelatin pada proses pembuatan resin?">Ada</option>
+                                        <option value="0" {{ old('dp0_1') == "0" ? 'selected' : '' }} class="sub-activity" data-pos="0" data-label="Apakah ada penggunaan gelatin pada proses pembuatan resin?">Tidak ada</option>
                                     </select>
                                 </div>
                             </div>

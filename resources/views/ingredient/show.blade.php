@@ -60,7 +60,7 @@
             @if (count($listPotensiHaram) > 0)
                 <div class="flex flex-col sm:flex-row my-5">
                     <h2 class="font-medium text-base mr-auto">
-                        List Potensi Haram
+                        Daftar Potensi Haram
                     </h2>
                 </div>
                 <table class="table table-bordered table-hover">
@@ -107,7 +107,7 @@
                 </table>
                 <div class="flex flex-col sm:flex-row my-5">
                     <h2 class="font-medium text-base mr-auto">
-                        Detail List Potensi Haram
+                        Detail Daftar Potensi Haram
                     </h2>
                 </div>
                 <table class="table table-bordered table-hover">
@@ -154,6 +154,14 @@
                     <u>Detail Aktivitas</u> 
                 </h2>
             </div>
+            {{-- <style>
+                .table th {
+                    padding: 0px
+                } 
+                .table td {
+                    padding: 0px
+                } 
+            </style> --}}
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>

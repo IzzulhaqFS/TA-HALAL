@@ -297,7 +297,7 @@
         dp6_1.addEventListener('change', function() {
             if (dp6_1.value ===  "1") {
                 dp6.setAttribute('data-value', 'Halal');
-            } else if (dp6_1.value === "Haram") {
+            } else if (dp6_1.value === "0") {
                 dp6.setAttribute('data-value', 'Haram');
             } else {
                 dp6.setAttribute('data-value', '');
