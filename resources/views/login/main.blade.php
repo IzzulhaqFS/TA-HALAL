@@ -27,9 +27,9 @@
                     <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">Login</h2>
                     <div class="intro-x mt-8">
                         <form id="login-form">
-                            <input id="email" type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" value="jagad@mail.com">
+                            <input id="email" type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" value="">
                             <div id="error-email" class="login__input-error text-danger mt-2"></div>
-                            <input id="password" type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" value="password">
+                            <input id="password" type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" value="">
                             <div id="error-password" class="login__input-error text-danger mt-2"></div>
                         </form>
                     </div>
