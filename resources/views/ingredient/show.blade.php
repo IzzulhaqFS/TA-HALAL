@@ -30,7 +30,8 @@
             <div class=" border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left">
                 <div class="px-5 sm:px-20 py-12">
                     <div class="text-primary font-semibold text-3xl">{{ $ingredient->name }}</div>
-                    <div class="mt-2">ID&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->id }}</span></div>
+                    <div class="mt-2">Case ID&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->id }}</span></div>
+                    <div class="mt-1">Penguji&nbsp;<span class="font-medium">:&nbsp;{{ $userName }}</span></div>
                     <div class="mt-1">Jenis Bahan&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->type }}</span></div>
                 </div>
                 <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-2 pb-10">
@@ -117,7 +118,7 @@
                             <th class="text-center whitespace-nowrap">AKTIVITAS</th>
                             <th class="text-center whitespace-nowrap">SUB AKTIVITAS</th>
                             <th class="text-center whitespace-nowrap">ISIAN</th>
-                            <th class="text-center whitespace-nowrap">TIMESTAMP</th>
+                            <th class="text-center whitespace-nowrap">WAKTU PENGISIAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,19 +167,16 @@
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">NO</th>
-                        <th class="text-center whitespace-nowrap">CASE ID</th>
                         <th class="text-center whitespace-nowrap">AKTIVITAS</th>
                         <th class="text-center whitespace-nowrap">STATUS</th>
-                        <th class="text-center whitespace-nowrap">ID PENGUJI</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($eventLogs as $key => $eventLog)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td class="w-56">{{ $eventLog->ingredient_id }}</td>
+                        <td class="w-5">{{ $key + 1 }}</td>
                         <td>{{ $eventLog->activity }}</td>
-                        <td class="w-44">
+                        <td class="">
                             @if ($eventLog->status_halal == 'Halal')
                             <div class="flex items-center justify-center text-success">
                                 <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($eventLog->status_halal) ? 'Dalam Proses' : $eventLog->status_halal }}
@@ -193,7 +191,6 @@
                             </div>  
                             @endif
                         </td>
-                        <td class="w-56">{{ $eventLog->user_id }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -219,7 +216,7 @@
                         <th class="text-center whitespace-nowrap">AKTIVITAS</th>
                         <th class="text-center whitespace-nowrap">SUB AKTIVITAS</th>
                         <th class="text-center whitespace-nowrap">ISIAN</th>
-                        <th class="text-center whitespace-nowrap">TIMESTAMP</th>
+                        <th class="text-center whitespace-nowrap">WAKTU PENGISIAN</th>
                     </tr>
                 </thead>
                 <tbody>

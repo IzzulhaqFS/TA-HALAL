@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         $products = DB::table('products as p')
             ->select(
-                'p.*', 
+                'p.id', 'p.user_id', 'p.name', 
                 DB::raw('COUNT(i.id) AS ingredient_count'),
                 DB::raw("CASE
                             WHEN COUNT(CASE WHEN i.status_halal = 'Haram' THEN 1 END) > 0 THEN 'Haram'
@@ -41,7 +41,7 @@ class ProductController extends Controller
             )
             ->where('p.user_id', '=', Auth::user()->id)
             ->leftJoin('ingredients as i', 'p.id', '=', 'i.product_id')
-            ->groupBy('p.id')
+            ->groupBy('p.id', 'p.user_id', 'p.name')
             ->paginate(10);
 
         return view('product/index', \compact('products'));
