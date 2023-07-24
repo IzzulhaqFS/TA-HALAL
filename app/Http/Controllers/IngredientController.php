@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\KeywordBahan;
 use App\Http\Requests\CreateIngredientRequest;
 use App\Models\EventLog;
 use App\Models\Ingredient;
@@ -97,13 +98,21 @@ class IngredientController extends Controller
     {
         $ingredient = $this->getIngredientDetail($ingredient_id);
         $product = Product::findOrFail($ingredient->product_id);
-        $userName = $product->user->name;
+        $username = $product->user->name;
         $eventLogs = EventLog::with('subActivity')->where('ingredient_id', $ingredient_id)->get();        
-        $listPotensiHaram = $eventLogs->filter(function ($eventLog) {
+        $listHaramActivity = $eventLogs->filter(function ($eventLog) {
             return $eventLog->status_halal === 'Haram';
         });
 
-        return view('ingredient/show', \compact('ingredient', 'product', 'eventLogs', 'listPotensiHaram', 'userName'));
+        $listPotensiHaram = $listHaramActivity->map(function ($act) {
+            if (!empty(KeywordBahan::getRecommendationQuery($act->activity))) {
+                return [$act, true];
+            } else {
+                return [$act, false];
+            }
+        });
+
+        return view('ingredient/show', \compact('ingredient', 'product', 'eventLogs', 'listPotensiHaram', 'username'));
     }
     
 

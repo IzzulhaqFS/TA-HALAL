@@ -31,7 +31,7 @@
                 <div class="px-5 sm:px-20 py-12">
                     <div class="text-primary font-semibold text-3xl">{{ $ingredient->name }}</div>
                     <div class="mt-2">Case ID&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->id }}</span></div>
-                    <div class="mt-1">Penguji&nbsp;<span class="font-medium">:&nbsp;{{ $userName }}</span></div>
+                    <div class="mt-1">Penguji&nbsp;<span class="font-medium">:&nbsp;{{ $username }}</span></div>
                     <div class="mt-1">Jenis Bahan&nbsp;<span class="font-medium">:&nbsp;{{ $ingredient->type }}</span></div>
                 </div>
                 <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-2 pb-10">
@@ -78,27 +78,31 @@
                         @foreach ($listPotensiHaram as $potensiHaram)
                         <tr>
                             <td class="w-4">{{ $i }}</td>
-                            <td>{{ $potensiHaram->activity }}</td>
+                            <td>{{ $potensiHaram[0]->activity }}</td>
                             <td class="w-40">
-                                @if ($potensiHaram->status_halal == 'Halal')
+                                @if ($potensiHaram[0]->status_halal == 'Halal')
                                 <div class="flex items-center justify-center text-success">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                    <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram[0]->status_halal) ? 'Dalam Proses' : $potensiHaram[0]->status_halal }}
                                 </div>
-                                @elseif ($potensiHaram->status_halal == 'Haram')
+                                @elseif ($potensiHaram[0]->status_halal == 'Haram')
                                 <div class="flex items-center justify-center text-danger text-bold">
-                                    <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                    <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram[0]->status_halal) ? 'Dalam Proses' : $potensiHaram[0]->status_halal }}
                                 </div>
                                 @else
                                 <div class="flex items-center justify-center text-warning">
-                                    <i data-lucide="slack" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram->status_halal) ? 'Dalam Proses' : $potensiHaram->status_halal }}
+                                    <i data-lucide="slack" class="w-4 h-4 mr-2"></i> {{ is_null($potensiHaram[0]->status_halal) ? 'Dalam Proses' : $potensiHaram[0]->status_halal }}
                                 </div>  
                                 @endif
                             </td>
                             <td class="table-report__action" style="width: 25rem;">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center text-success mr-5" href="{{ route('recommendation.index') }}?activity={{ $potensiHaram->activity }}">
+                                    @if ($potensiHaram[1])
+                                    <a class="flex items-center text-success mr-5" href="{{ route('recommendation.index') }}?activity={{ $potensiHaram[0]->activity }}">
                                         <i data-lucide="search" class="w-4 h-4 mr-1"></i>Lihat Rekomendasi Pengganti
                                     </a>
+                                    @else
+                                        <p>-</p>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -124,7 +128,7 @@
                     <tbody>
                         @php $j = 1 @endphp
                         @foreach ($listPotensiHaram as $potensiHaram)
-                        @foreach ($potensiHaram->subActivity as $potensi)
+                        @foreach ($potensiHaram[0]->subActivity as $potensi)
                             @php 
                                 $potensiValue = $potensi->value; 
                                 if ($potensi->value === "1") {
@@ -135,7 +139,7 @@
                             @endphp
                             <tr>
                                 <td>{{ $j }}</td>
-                                <td>{{ $potensiHaram->activity }}</td>
+                                <td>{{ $potensiHaram[0]->activity }}</td>
                                 <td>{{ $potensi->description }}</td>
                                 <td>{{ $potensiValue  }}</td>
                                 <td>{{ $potensi->updated_at }}</td>
