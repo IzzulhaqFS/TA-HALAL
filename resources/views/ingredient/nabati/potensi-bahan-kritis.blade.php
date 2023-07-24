@@ -49,7 +49,7 @@
                         {{-- BEGIN: Form --}}
                         <form id="potensi-bahan-kritis-form" action="{{ route('nabati.potensi-bahan-kritis.process', ['ingredient_id' => $ingredient->id]) }}" method="GET">
                             <div id="potensi-bahan-kritis-detail">
-                                <h2 class="mt-4"><b>-- Pilih bahan kritis yang digunakan pada bahan --</b> <span class="text-danger">*</span></h2>
+                                <h2 class="mt-4"><b>-- Pilih bahan kritis yang digunakan pada bahan --</b></h2>
                                 <div class="mt-4" id="list-potensi-bahan-kritis">
                                     <input id="kelompok-bahan" type="hidden" class="form-control" name="kelompok-bahan" value="{{ $kelompokBahan }}">
                                     <input id="bahan-kritis" type="hidden" class="form-control" name="bahan-kritis">
