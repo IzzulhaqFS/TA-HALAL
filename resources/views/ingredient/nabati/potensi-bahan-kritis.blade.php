@@ -95,9 +95,14 @@
     </script>
 
     <script>
-        document.getElementById('right-btn').addEventListener('click', function(e) {
-            let form = document.querySelector('#potensi-bahan-kritis-form');
-            form.submit(); 
+        document.getElementById('right-btn').addEventListener('click', async function(e) {
+            let bahanKritisFixEl = document.querySelector('#bahan-kritis');
+            if (bahanKritisFixEl.value === '') {
+                await processActivity('{{ csrf_token() }}', 'rule');
+            } else {
+                let form = document.querySelector('#potensi-bahan-kritis-form');
+                window.location.href = form.action;
+            }
         })
     </script>
     {{-- END: Additional Scripts --}}

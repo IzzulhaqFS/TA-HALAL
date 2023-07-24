@@ -25,7 +25,6 @@ class processBahanKritisRequest extends FormRequest
     {
         return [
             'kelompok-bahan' => 'required|string',
-            'bahan-kritis' => 'required|string',
         ];
     }
 
