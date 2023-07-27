@@ -101,7 +101,7 @@
                 await processActivity('{{ csrf_token() }}', 'rule');
             } else {
                 let form = document.querySelector('#potensi-bahan-kritis-form');
-                window.location.href = form.action;
+                form.submit();
             }
         })
     </script>
