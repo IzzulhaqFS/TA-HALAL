@@ -207,14 +207,14 @@
             let rphActivityElems = document.querySelectorAll('.rph-activity');
             let kehalalanBahanEl = document.querySelector('#kehalalan-bahan');
             let nHalalEl = 0;
+            let nHaramEl = 0;
             let nSyubhatEl = 0;
             
             rphDetailEl.setAttribute('data-value', 'Syubhat')            
             for (let i = 0; i < rphActivityElems.length; i++) {
                 let val = rphActivityElems[i].getAttribute('data-value');
                 if (val === 'Haram') {
-                    rphDetailEl.setAttribute('data-value', 'Haram');
-                    break;
+                    nHaramEl++;
                 } 
                 if (val === 'Syubhat') {
                     nSyubhatEl++;
@@ -226,6 +226,10 @@
 
             if (nHalalEl > 0 && nSyubhatEl === 0) {
                 rphDetailEl.setAttribute('data-value', 'Halal');
+            }
+            
+            if (nHaramEl > 0) {
+                rphDetailEl.setAttribute('data-value', 'Haram');
             }
             
             kehalalanBahanEl.value = rphDetailEl.getAttribute('data-value');

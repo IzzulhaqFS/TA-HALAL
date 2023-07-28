@@ -5,8 +5,14 @@
 @endsection
 
 @section('subcontent')
+    <script>
+        function exportToPDF() {
+            window.print();
+        }
+    </script>
     <div id="mover-container" class="mt-5">
         <h2 class="intro-y text-lg font-medium">Detail Bahan</h2>
+        <a class="btn btn-outline-warning" href="javascript:void(0);" onclick="exportToPDF()" id="back-btn">Ekspor Ke PDF</a>
         <a class="btn btn-outline-success w-24 inline-block" href="{{ route('product.show', ['product_id' => $product->id]) }}" id="back-btn">Kembali</a>
     </div>
 
