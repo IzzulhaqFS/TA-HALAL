@@ -116,24 +116,24 @@
         // Get a reference to the select element and the bahan-sembelih-detail div
         let kelompokBahanSelectEl = document.querySelector('#kelompok-bahan-select');
         let bahanSembelihDetailEl = document.querySelector('#bahan-sembelih-detail');
-        let bahanNonsembelihDetailEl = document.querySelector('#bahan-nonsembelih-detail');
+        let bahanNonSembelihDetailEl = document.querySelector('#bahan-nonsembelih-detail');
         
         kelompokBahanSelectEl.addEventListener('change', function() {
             if (kelompokBahanSelectEl.value === "sembelih") {
                 displayElements(bahanSembelihDetailEl);
                 bahanSembelihDetailEl.setAttribute('data-value', 'Syubhat');
                 
-                hideElements(bahanNonsembelihDetailEl);
-                removeActivityValue(bahanNonsembelihDetailEl)
+                hideElements(bahanNonSembelihDetailEl);
+                removeActivityValue(bahanNonSembelihDetailEl)
             } else if (kelompokBahanSelectEl.value === "nonsembelih") {
-                hideElements(bahanSembelihDetailEl);
-                bahanNonsembelihDetailEl.setAttribute('data-value', 'Syubhat');
+                displayElements(bahanNonSembelihDetailEl);
+                bahanNonSembelihDetailEl.setAttribute('data-value', 'Syubhat');
                 
                 hideElements(bahanSembelihDetailEl);
                 removeActivityValue(bahanSembelihDetailEl)
             } else {
-                hideElements(bahanSembelihDetailEl, bahanNonsembelihDetailEl);
-                removeActivityValue(bahanSembelihDetailEl, bahanNonsembelihDetailEl)
+                hideElements(bahanSembelihDetailEl, bahanNonSembelihDetailEl);
+                removeActivityValue(bahanSembelihDetailEl, bahanNonSembelihDetailEl)
             }
         });
 
