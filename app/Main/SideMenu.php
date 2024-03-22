@@ -29,6 +29,30 @@ class SideMenu
                 ],
                 'title' => 'Cek Kehalalan Produk'
             ],
+            'Screening Produk Hewani' => [
+                'icon' => 'crosshair',
+                'route_name' => 'screening.hewani',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Screening Produk Hewani'
+            ],
+            'Screening Produk Nabati' => [
+                'icon' => 'crosshair',
+                'route_name' => 'product.index',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Screening Produk Nabati'
+            ],
+            'Screening Produk Campuran' => [
+                'icon' => 'crosshair',
+                'route_name' => 'product.index',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Screening Produk Campuran'
+            ],
             'Rekomendasi Bahan Halal Pengganti' => [
                 'icon' => 'file-text',
                 'route_name' => 'recommendation.index',

@@ -12,6 +12,7 @@ use App\Http\Controllers\NabatiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ScreeningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,10 @@ Route::middleware('auth')->group(function() {
         
         Route::get('/{ingredient_id}/check/certificate', [IngredientController::class, 'checkCertificate'])->name('certificate');
         Route::get('/{ingredient_id}/process/certificate', [IngredientController::class, 'processCertificate'])->name('certificate.process');
+    });
+
+    Route::prefix('screening')->name('screening.')->group(function() {
+        Route::get('/hewani', [ScreeningController::class, 'createHewani'])->name('hewani');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {
