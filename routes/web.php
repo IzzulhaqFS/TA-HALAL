@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('screening')->name('screening.')->group(function() {
         Route::get('/hewani', [ScreeningController::class, 'createHewani'])->name('hewani');
+        Route::get('/nabati', [ScreeningController::class, 'createNabati'])->name('nabati');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {

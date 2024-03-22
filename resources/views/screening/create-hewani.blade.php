@@ -34,6 +34,24 @@
                                 <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Produk" name="nama-produk" placeholder="Nama Produk">
                             </div>
                             <div class="mt-3">
+                                <label for="form-control-select-1" class="form-label">Pilih Jenis Bahan</label>
+                                <select id="form-control-select-1" class="form-control" name="jenis-bahan" placeholder="Pilih Jenis Bahan">
+                                    <option>Telur</option>
+                                    <option>Susu</option>
+                                    <option>Madu</option>
+                                    <option>Ikan</option>
+                                    <option>Kulit</option>
+                                    <option>Daging</option>
+                                    <option>Tulang</option>
+                                    <option>Turunan Bahan Hewani</option>
+                                    <option>Bagian Hewan Lain</option>
+                                </select>
+                            </div>
+                            <div class="mt-3">
+                                <label for="regular-form-1" class="form-label">Nama Hewan</label>
+                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Hewan" name="nama-hewan" placeholder="Nama Hewan">
+                            </div>
+                            <!-- <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Apakah bahan yang digunakan berasal dari babi?</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio1" value="Ya">
@@ -65,7 +83,7 @@
                                     <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio6" value="Tidak">
                                     <label class="form-check-label" for="inlineRadio6">Tidak</label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Apakah produk menggunakan bahan tambahan selain bahan baku?</label>
                                 <div class="form-check form-check-inline">
@@ -77,7 +95,7 @@
                                     <label class="form-check-label" for="inlineRadio8">Tidak</label>
                                 </div>
                             </div>
-                            <div class="mt-3">
+                            <!-- <div class="mt-3">
                                 <label for="regular-form-1" class="form-label">Apakah produk menggunakan bahan berikut? Susu, telur, madu, atau ikan</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio9" value="Ya">
@@ -87,7 +105,7 @@
                                     <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio10" value="Tidak">
                                     <label class="form-check-label" for="inlineRadio10">Tidak</label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div id="mover-container" class="mt-5">
                                 <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                                 <button id="submit-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>

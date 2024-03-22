@@ -39,7 +39,7 @@ class SideMenu
             ],
             'Screening Produk Nabati' => [
                 'icon' => 'crosshair',
-                'route_name' => 'product.index',
+                'route_name' => 'screening.nabati',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
