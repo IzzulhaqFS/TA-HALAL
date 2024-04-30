@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function() {
     Route::prefix('screening')->name('screening.')->group(function() {
         Route::get('/hewani', [ScreeningController::class, 'createHewani'])->name('hewani');
         Route::get('/nabati', [ScreeningController::class, 'createNabati'])->name('nabati');
+        Route::post('/', [ScreeningController::class, 'checkHalalHewani'])->name('check-hewani');
+        Route::post('/', [ScreeningController::class, 'checkHalalNabati'])->name('check-nabati');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {

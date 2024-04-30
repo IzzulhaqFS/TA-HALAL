@@ -34,81 +34,28 @@
                                 <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Produk" name="nama-produk" placeholder="Nama Produk">
                             </div>
                             <div class="mt-3">
-                                <label for="form-control-select-1" class="form-label">Pilih Jenis Bahan</label>
-                                <select id="form-control-select-1" class="form-control" name="jenis-bahan" placeholder="Pilih Jenis Bahan">
-                                    <option>Telur</option>
-                                    <option>Susu</option>
-                                    <option>Madu</option>
-                                    <option>Ikan</option>
-                                    <option>Kulit</option>
-                                    <option>Daging</option>
-                                    <option>Tulang</option>
-                                    <option>Turunan Bahan Hewani</option>
-                                    <option>Bagian Hewan Lain</option>
-                                </select>
+                                <label for="regular-form-1" class="form-label">Nama Bahan <span class="text-danger">*</span></label>
+                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Bahan" name="nama-bahan" placeholder="Nama Hewan">
                             </div>
-                            <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Nama Hewan</label>
-                                <input id="regular-form-1" type="text" class="form-control sub-activity" data-label="Nama Hewan" name="nama-hewan" placeholder="Nama Hewan">
+                            <div class="mt-3 form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="checkbox1" data-label="Tidak Diolah" name="tidak-diolah">
+                                <label class="form-check-label" for="checkbox1">Apakah bahan tidak diolah?</label>
                             </div>
-                            <!-- <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah bahan yang digunakan berasal dari babi?</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio1" value="Ya">
-                                    <label class="form-check-label" for="inlineRadio1">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio2" value="Tidak">
-                                    <label class="form-check-label" for="inlineRadio2">Tidak</label>
-                                </div>
+                            <div class="mt-3 form-check">
+                                <input class="form-check-input" type="checkbox" value="2" id="checkbox2" data-label="Mikrobial" name="mikrobial">
+                                <label class="form-check-label" for="checkbox2">Apakah pengolahan menggunakan kultivasi mikrobial?</label>
                             </div>
-                            <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah bahan yang digunakan berasal dari hewan buas atau pemakan daging?</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio3" value="Ya">
-                                    <label class="form-check-label" for="inlineRadio3">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio4" value="Tidak">
-                                    <label class="form-check-label" for="inlineRadio4">Tidak</label>
-                                </div>
+                            <div class="mt-3 form-check">
+                                <input class="form-check-input" type="checkbox" value="3" id="checkbox3" data-label="Alkohol" name="alkohol">
+                                <label class="form-check-label" for="checkbox3">Ada fermentasi khamr atau alkohol?</label>
                             </div>
-                            <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah bahan yang digunakan berasal dari bagian tubuh hewan? Daging, kulit, atau tulang</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio5" value="Ya">
-                                    <label class="form-check-label" for="inlineRadio5">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio6" value="Tidak">
-                                    <label class="form-check-label" for="inlineRadio6">Tidak</label>
-                                </div>
-                            </div> -->
-                            <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah produk menggunakan bahan tambahan selain bahan baku?</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio7" value="Ya">
-                                    <label class="form-check-label" for="inlineRadio7">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioTidak1" id="inlineRadio8" value="Tidak">
-                                    <label class="form-check-label" for="inlineRadio8">Tidak</label>
-                                </div>
+                            <div class="mt-3 form-check">
+                                <input class="form-check-input" type="checkbox" value="4" id="checkbox4" data-label="Bahan Penolong" name="bahan-penolong">
+                                <label class="form-check-label" for="checkbox4">Ada bahan tambahan atau penolong?</label>
                             </div>
-                            <!-- <div class="mt-3">
-                                <label for="regular-form-1" class="form-label">Apakah produk menggunakan bahan berikut? Susu, telur, madu, atau ikan</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioYa" id="inlineRadio9" value="Ya">
-                                    <label class="form-check-label" for="inlineRadio9">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioTidak" id="inlineRadio10" value="Tidak">
-                                    <label class="form-check-label" for="inlineRadio10">Tidak</label>
-                                </div>
-                            </div> -->
                             <div id="mover-container" class="mt-5">
                                 <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
-                                <button id="submit-btn" type="submit" class="btn btn-primary w-24 inline-block">Lanjutkan</button>
+                                <button id="submit-btn" type="submit" class="btn btn-primary w-24 inline-block">Hasil</button>
                             </div>
                         </div>
                     </div>
@@ -118,4 +65,49 @@
         </div>
     </form>
     <!-- END: Form -->
+
+    @if(isset($namaProduk))
+    <div class="mt-4">
+        <h3>Hasil Screening</h3>
+        <p>Nama Produk: {{ $namaProduk }}</p>
+        <p>Nama Bahan: {{ $namaBahan }}</p>
+        <p>Status Halal: {{ $isHalal }}</p>
+    </div>
+    @endif
+
+    <script>
+        const checkboxes = document.querySelectorAll('.form-check-input');
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', function() {
+                // Jika checkbox yang dipilih adalah checkbox1
+                if (this.value == '1' && this.checked) {
+                    // Nonaktifkan checkbox lain
+                    checkboxes.forEach((cb) => {
+                        if (cb.value != '1') {
+                            cb.disabled = true;
+                        }
+                    });
+                } else {
+                    // Aktifkan kembali checkbox lain
+                    checkboxes.forEach((cb) => {
+                        cb.disabled = false;
+                    });
+                }
+
+                if (this.value == '2' && this.checked) {
+                    checkboxes.forEach((cb) => {
+                        if (cb.value == '4') {
+                            cb.disabled = true;
+                        }
+                    });
+                } else {
+                    checkboxes.forEach((cb) => {
+                        cb.disabled = false;
+                    });
+                }
+            });
+        });
+    </script>
+
 @endsection
