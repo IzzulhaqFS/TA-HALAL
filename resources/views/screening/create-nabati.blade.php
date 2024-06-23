@@ -18,7 +18,7 @@
     </div>    
     @endif
     <!-- BEGIN: Form -->
-    <form id="create-product-form"  action="{{ route('product.store') }}"  method="POST">
+    <form id="create-product-form"  action="{{ route('screening.check-nabati') }}"  method="POST">
         @csrf
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12">
@@ -54,7 +54,7 @@
                                 <label class="form-check-label" for="checkbox4">Ada bahan tambahan atau penolong?</label>
                             </div>
                             <div id="mover-container" class="mt-5">
-                                <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                                <a href="{{ route('screening.history-nabati') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                                 <button id="submit-btn" type="submit" class="btn btn-primary w-24 inline-block">Hasil</button>
                             </div>
                         </div>

@@ -31,7 +31,7 @@ class SideMenu
             ],
             'Screening Produk Hewani' => [
                 'icon' => 'crosshair',
-                'route_name' => 'screening.hewani',
+                'route_name' => 'screening.history-hewani',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -39,19 +39,19 @@ class SideMenu
             ],
             'Screening Produk Nabati' => [
                 'icon' => 'crosshair',
-                'route_name' => 'screening.nabati',
+                'route_name' => 'screening.history-nabati',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
                 'title' => 'Screening Produk Nabati'
             ],
-            'Screening Produk Campuran' => [
+            'Screening Produk Jadi' => [
                 'icon' => 'crosshair',
-                'route_name' => 'product.index',
+                'route_name' => 'screening.history-produk-jadi',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'Screening Produk Campuran'
+                'title' => 'Screening Produk Jadi'
             ],
             'Rekomendasi Bahan Halal Pengganti' => [
                 'icon' => 'file-text',

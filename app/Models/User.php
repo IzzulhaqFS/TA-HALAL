@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Product;
+use App\Models\screeningProdukHewani;
+use App\Models\screeningProdukNabati;
+use App\Models\screeningProdukJadi;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class User extends Authenticatable
@@ -53,5 +56,20 @@ class User extends Authenticatable
 
     public function products(){
         return $this->hasMany(Product::class, 'user_id');
+    }
+
+    public function screeningProdukHewani()
+    {
+        return $this->hasMany(screeningProdukHewani::class, 'user_id');
+    }
+
+    public function screeningProdukNabati()
+    {
+        return $this->hasMany(screeningProdukNabati::class, 'user_id');
+    }
+
+    public function screeningProdukJadi()
+    {
+        return $this->hasMany(screeningProdukJadi::class, 'user_id');
     }
 }

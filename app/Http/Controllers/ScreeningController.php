@@ -16,6 +16,11 @@ class ScreeningController extends Controller
         return view('screening/create-nabati');
     }
 
+    public function createProdukJadi()
+    {
+        return view('screening/create-produk-jadi');
+    }
+
     public function checkHalalHewani(Request $request)
     {
         $namaProduk = $request->input('nama-produk');
@@ -77,5 +82,18 @@ class ScreeningController extends Controller
         }
 
         return view('screening/create-nabati', \compact('namaProduk', 'namaBahan', 'isHalal'));
+    }
+
+    public function checkHalalProdukJadi(Request $request)
+    {
+        $namaProduk = $request->input('nama-produk');
+        $daftarBahan = $request->input('daftar-bahan');
+        $bahanPenolong = $request->has('bahan-penolong') ? true : false;
+
+        $isHalal = 'Halal';
+
+        $arrayDaftarBahan = explode(";", $daftarBahan);
+
+        return view('screening/create-hewani', \compact('namaProduk', 'daftarBahan', 'isHalal'));
     }
 }

@@ -13,6 +13,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScreeningController;
+use App\Http\Controllers\ScreeningProdukHewaniController;
+use App\Http\Controllers\ScreeningProdukNabatiController;
+use App\Http\Controllers\ScreeningProdukJadiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,10 +70,21 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('screening')->name('screening.')->group(function() {
-        Route::get('/hewani', [ScreeningController::class, 'createHewani'])->name('hewani');
-        Route::get('/nabati', [ScreeningController::class, 'createNabati'])->name('nabati');
-        Route::post('/', [ScreeningController::class, 'checkHalalHewani'])->name('check-hewani');
-        Route::post('/', [ScreeningController::class, 'checkHalalNabati'])->name('check-nabati');
+        Route::get('/history-hewani', [ScreeningProdukHewaniController::class, 'index'])->name('history-hewani');
+        Route::get('/history-nabati', [ScreeningProdukNabatiController::class, 'index'])->name('history-nabati');
+        Route::get('/history-produk-jadi', [ScreeningProdukJadiController::class, 'index'])->name('history-produk-jadi');
+
+        Route::get('/hewani', [ScreeningProdukHewaniController::class, 'create'])->name('hewani');
+        Route::get('/nabati', [ScreeningProdukNabatiController::class, 'create'])->name('nabati');
+        Route::get('/produk-jadi', [ScreeningProdukJadiController::class, 'create'])->name('produk-jadi');
+
+        Route::post('/hewani', [ScreeningProdukHewaniController::class, 'store'])->name('check-hewani');
+        Route::post('/nabati', [ScreeningProdukNabatiController::class, 'store'])->name('check-nabati');
+        Route::post('/produk-jadi', [ScreeningProdukJadiController::class, 'store'])->name('check-produk-jadi');
+        
+        Route::delete('/{screening_produk_hewani_id}', [ScreeningProdukHewaniController::class, 'destroy'])->name('destroy-hewani');
+        Route::delete('/{screening_produk_nabati_id}', [ScreeningProdukNabatiController::class, 'destroy'])->name('destroy-nabati');
+        Route::delete('/{screening_produk_jadi_id}', [ScreeningProdukJadiController::class, 'destroy'])->name('destroy-produk-jadi');
     });
 
     Route::prefix('activity')->name('activity.')->group(function() {

@@ -64,7 +64,7 @@
                                 <label class="form-check-label" for="checkbox3">Apakah ada pengolahan lanjutan pada bahan baku?</label>
                             </div>
                             <div id="mover-container" class="mt-5">
-                                <a href="{{ route('product.index') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
+                                <a href="{{ route('screening.history-hewani') }}" id="left-btn" class="btn btn-outline-primary w-24 inline-block">Kembali</a>
                                 <button id="submit-btn" type="submit" class="btn btn-primary w-24 inline-block">Hasil</button>
                             </div>
                         </div>
