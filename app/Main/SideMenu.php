@@ -45,14 +45,6 @@ class SideMenu
                 ],
                 'title' => 'Screening Produk Nabati'
             ],
-            'Screening Produk Jadi' => [
-                'icon' => 'crosshair',
-                'route_name' => 'screening.history-produk-jadi',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Screening Produk Jadi'
-            ],
             'Rekomendasi Bahan Halal Pengganti' => [
                 'icon' => 'file-text',
                 'route_name' => 'recommendation.index',

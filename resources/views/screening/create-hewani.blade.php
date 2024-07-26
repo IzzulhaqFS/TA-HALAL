@@ -6,7 +6,7 @@
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto main-activity">Screening Produk</h2>
+        <h2 class="text-lg font-medium mr-auto main-activity">Screening Produk Hewani</h2>
     </div>
     @if ($errors->any())
     <div class="alert alert-danger mt-2" style="display: inline-block;">
@@ -77,12 +77,13 @@
     <!-- END: Form -->   
 
     @if(isset($namaProduk))
-    <div class="mt-4">
-        <h3>Hasil Screening</h3>
-        <p>Nama Produk: {{ $namaProduk }}</p>
-        <p>Jenis Bahan: {{ $jenisBahan }}</p>
-        <p>Nama Hewan: {{ $namaHewan }}</p>
-        <p>Status Halal: {{ $isHalal }}</p>
+    @csrf
+    <div class="grid grid-cols-12 gap-6 mt-5">
+        <div class="intro-y col-span-12">
+            <div class="intro-y box">
+                <h2 class="text-lg font-medium mr-auto main-activity p-5">{{ $isHalal }}</h2>
+            </div>
+        </div>
     </div>
     @endif
 

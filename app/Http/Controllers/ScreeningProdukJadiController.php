@@ -50,8 +50,6 @@ class ScreeningProdukJadiController extends Controller
             return redirect()->route('screening.produk-jadi')->with('error', 'Produk gagal disimpan.');
         }
 
-        // return redirect()->route('ingredient.create', ['product_id' => $product->id])
-        //     ->with('success', 'Produk berhasil disimpan.');
         return view('screening/create-produk-jadi', \compact('namaProduk', 'daftarBahan', 'isHalal'));
     }
 
@@ -60,41 +58,10 @@ class ScreeningProdukJadiController extends Controller
         $deleted = ScreeningProdukJadi::findOrFail($screening_produk_jadi_id)->delete();
 
         if ($deleted) {
-            return redirect()->route('product.index')->with('success', 'Produk berhasil dihapus.');
+            return redirect()->route('screening.history-product-jadi')->with('success', 'Produk berhasil dihapus.');
         } else {
             return redirect()->back()->with('error', 'Produk gagal dihapus.');
 
         }
     }
-
-    // public function checkHalalHewani(Request $request)
-    // {
-    //     $namaProduk = $request->input('nama-produk');
-    //     $jenisBahan = $request->input('jenis-bahan');
-    //     $namaHewan = $request->input('nama-hewan');
-    //     $hewanHalal = $request->has('hewan-halal') ? true : false;
-    //     $sembelihSyariat = $request->has('sembelih-syariat') ? true : false;
-    //     $pengolahanLanjutan = $request->has('pengolahan-lanjutan') ? true : false;
-
-    //     $isHalal = '';
-
-    //     if (($jenisBahan == 'Telur' || $jenisBahan == 'Susu' || $jenisBahan == 'Madu' || $jenisBahan == 'Ikan') && !$pengolahanLanjutan) {
-    //         $isHalal = 'Halal';
-    //     } elseif (($jenisBahan == 'Telur' || $jenisBahan == 'Susu' || $jenisBahan == 'Madu' || $jenisBahan == 'Ikan') && $pengolahanLanjutan) {
-    //         $isHalal = 'Titik Kritis, Perlu sertifikasi Halal';
-    //     } else {
-    //         if (!$hewanHalal) {
-    //             $isHalal = 'Haram';
-    //         } elseif (!$sembelihSyariat) {
-    //             $isHalal = 'Jangan digunakan';
-    //         } elseif ($pengolahanLanjutan) {
-    //             $isHalal = 'Titik Kritis, Perlu sertifikasi Halal';
-    //         } else {
-    //             $isHalal = 'Halal';
-    //         }
-    //     }
-
-    //     // return view('screening/create-hewani', \compact('namaProduk', 'jenisBahan', 'namaHewan', 'isHalal'));
-    //     return $isHalal;
-    // }
 }
